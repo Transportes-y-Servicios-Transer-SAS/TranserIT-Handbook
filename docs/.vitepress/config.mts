@@ -73,7 +73,7 @@ export default defineConfig({
     },
 
     footer: {
-      message: 'Área de IT · Transportes y Servicios Transer S.A.',
+      message: 'Área de IT · Transportes y Servicios Transer S.A.S.',
       copyright: 'Documento interno',
     },
   },
