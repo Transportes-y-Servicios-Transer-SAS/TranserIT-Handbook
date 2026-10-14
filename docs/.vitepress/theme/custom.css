@@ -18,16 +18,16 @@
   --vp-layout-max-width: 1520px;
 
   /*
-   * La medida de lectura.
+   * La medida de la prosa: el ancho completo de la columna, igual que las figuras.
    *
-   * Medida, no estimada: con Inter a 16px el carácter medio de estas páginas ocupa 7.81px, así que
-   * 40rem son 82 caracteres por línea. Los 46rem que había antes eran 94, por encima de lo que se
-   * lee cómodo; subirla para «aprovechar» el ancho la habría llevado a 102.
+   * Es una decisión tomada a sabiendas. La referencia tipográfica para lectura cómoda está entre
+   * 60 y 75 caracteres por línea, y a este ancho la línea pasa de 120. Se asume porque la página
+   * se veía desequilibrada con el texto pegado a la izquierda y todo el ancho vacío a su derecha.
    *
-   * El ancho que sobraba a la derecha no era de la prosa: era una columna vacía. Se recupera abajo
-   * y se la llevan las figuras y las tablas, que sí leen mejor anchas.
+   * Lo que compensa en parte el salto está justo debajo: a línea larga, más cuerpo y más
+   * interlineado. Es lo que permite que el ojo encuentre el renglón siguiente al volver.
    */
-  --tr-medida: 40rem;
+  --tr-medida: none;
   /* Lo que pueden ocupar las figuras. */
   --tr-ancho-figura: 74rem;
 }
@@ -85,14 +85,28 @@
 }
 
 /*
- * Los bloques de código van con el texto, no con las figuras.
+ * Los bloques de código acompañan al texto.
  *
- * Un comando de dos palabras dentro de una caja de 1105px se lee como una lámina suelta y rompe la
- * columna de lectura. Pero tampoco caben en la medida de la prosa: los comandos del área llegan a
- * los 75 caracteres. De ahí el ancho propio, entre los dos.
+ * Mientras la prosa tuvo medida propia, un bloque al ancho completo se leía como una lámina suelta.
+ * Ahora que la prosa ocupa toda la columna, el bloque desentonaría por lo contrario: por estrecho.
  */
 .vp-doc > div > div[class*='language-'] {
-  max-width: 48rem;
+  max-width: none;
+}
+
+/*
+ * A línea larga, más cuerpo y más aire entre renglones.
+ *
+ * Lo que vuelve ilegible una línea ancha no es su ancho, es el salto de vuelta: al terminar la
+ * línea el ojo tiene que encontrar el principio de la siguiente, y cuanto más largo el recorrido,
+ * más fácil es repetir o saltarse una. Subir el interlineado es lo que lo hace recuperable.
+ */
+.vp-doc > div > p,
+.vp-doc > div > ul,
+.vp-doc > div > ol,
+.vp-doc > div > blockquote {
+  font-size: 1.0625rem;
+  line-height: 1.85;
 }
 
 /* La página de inicio no necesita nada de esto */
@@ -105,8 +119,6 @@
  * en cada archivo se desvía en cuanto alguien lo retoca en uno solo.
  */
 .siguiente {
-  /* El texto de dentro queda exactamente en la medida de lectura, sumando su propio relleno. */
-  max-width: calc(var(--tr-medida) + 2.5rem);
   margin: 2rem 0 0;
   padding: 1rem 1.25rem;
   border-left: 3px solid var(--vp-c-brand-1);
