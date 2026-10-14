@@ -37,7 +37,7 @@ una rama, no a un *commit*. Cuando algo no cuadra, lo primero es mirar en cuál 
 
 ```powershell
 # Crea la rama y te mueve a ella, en un solo paso
-git switch -c feat/vort-142-liquidacion-retencion
+git switch -c feature/vort-142-liquidacion-retencion
 
 # Moverte a una que ya existe
 git switch develop
@@ -70,9 +70,14 @@ tipo/vort-123-nombre-sustancial-de-la-rama
 
 | Parte | Qué es |
 |---|---|
-| `tipo` | El **mismo vocabulario que los mensajes de *commit*** — `feat`, `fix`, `refactor`, `docs`… No se inventa uno distinto para las ramas |
+| `tipo` | Uno de cuatro: **`feature`**, `bugfix`, `hotfix` o `spike`. No se inventa ninguno más |
 | `vort-123` | El identificador de la historia en el tablero |
 | el resto | Un nombre que diga de qué va, con guiones entre palabras |
+
+> **Ojo con el tipo, porque hay dos vocabularios parecidos y no son el mismo.** La rama se llama
+> `feature/…`, con la palabra entera. El *commit* que va dentro empieza por `feat:`, abreviado. Son
+> dos listas distintas —la de ramas tiene cuatro tipos, la de *commits* tiene diez— y confundirlas
+> es el error más común al empezar.
 
 > ⚠️ **Todo en minúscula, sin excepción, y la razón no es estética.**
 >
@@ -86,8 +91,8 @@ nada que enlace una rama con la tarea que la pidió salvo ese texto. Escribirlo 
 — y por eso es peligroso: lo que se pierde es la trazabilidad, y se descubre meses después, cuando
 alguien pregunta por qué entró un cambio.
 
-El patrón completo con sus tipos y duraciones está en el **§2.3 de las convenciones del Core**, y para
-Vórtice lo afina el **ADR-039 §7**.
+Los cuatro tipos y cuánto dura cada uno están en el **§2.3 de las convenciones del Core**; que el
+identificador de la historia vaya dentro, y que todo vaya en minúscula, lo añade el **ADR-039 §7**.
 
 ## Trabajar en ella es lo que ya sabes
 
@@ -99,7 +104,7 @@ Lo nuevo es el final.
 ### Publicarla: `git push`
 
 ```powershell
-git push -u origin feat/vort-142-liquidacion-retencion
+git push -u origin feature/vort-142-liquidacion-retencion
 ```
 
 **El `-u` se escribe una sola vez por rama.** Deja emparejada tu rama local con la del servidor, y a

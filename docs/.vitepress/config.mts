@@ -43,6 +43,7 @@ export default defineConfig({
             { text: '1 · Qué es y qué problema resuelve', link: '/git/que-es' },
             { text: '2 · El flujo básico', link: '/git/flujo-basico' },
             { text: '3 · Ramas', link: '/git/ramas' },
+            { text: '4 · Nuestra estructura', link: '/git/estructura' },
           ],
         },
       ],

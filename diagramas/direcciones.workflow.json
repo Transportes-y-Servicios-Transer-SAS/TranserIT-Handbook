@@ -1,0 +1,184 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Dos direcciones, con reglas distintas",
+    "output": "docs/public/diagramas/direcciones.html",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "locale": "es",
+    "translations": {
+      "viewer.kind.frontend": "Tu rama, mientras trabajas",
+      "viewer.kind.cloud": "Un ambiente compartido",
+      "viewer.kind.backend": "Producción, y el estándar"
+    },
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "frontend": {
+          "label": "Tu rama, mientras trabajas"
+        },
+        "cloud": {
+          "label": "Un ambiente compartido"
+        },
+        "backend": {
+          "label": "Producción, y el estándar"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "master",
+      "label": "master · producción"
+    },
+    {
+      "id": "test",
+      "label": "test · pruebas"
+    },
+    {
+      "id": "develop",
+      "label": "develop · el tronco"
+    },
+    {
+      "id": "trabajo",
+      "label": "Tu rama"
+    }
+  ],
+  "phases": [
+    {
+      "id": "sube",
+      "label": "Sube la funcionalidad, siempre revisada",
+      "fromCol": 0,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "baja",
+      "label": "Baja lo transversal, sin revisar de nuevo",
+      "fromCol": 4,
+      "toCol": 5
+    }
+  ],
+  "mainPath": [
+    "r",
+    "d1",
+    "t1",
+    "m1",
+    "d2",
+    "t2"
+  ],
+  "nodes": [
+    {
+      "id": "r",
+      "lane": "trabajo",
+      "col": 0,
+      "type": "frontend",
+      "label": "feature/vort-142-…",
+      "sublabel": "vive días, no semanas"
+    },
+    {
+      "id": "d1",
+      "lane": "develop",
+      "col": 1,
+      "type": "cloud",
+      "label": "develop",
+      "sublabel": "lo que el equipo termina"
+    },
+    {
+      "id": "t1",
+      "lane": "test",
+      "col": 2,
+      "type": "cloud",
+      "label": "test",
+      "sublabel": "operaciones lo comprueba"
+    },
+    {
+      "id": "m1",
+      "lane": "master",
+      "col": 3,
+      "type": "backend",
+      "label": "master",
+      "sublabel": "lo liberado, y el estándar"
+    },
+    {
+      "id": "d2",
+      "lane": "develop",
+      "col": 4,
+      "type": "cloud",
+      "label": "develop al día",
+      "sublabel": "sin pedir permiso"
+    },
+    {
+      "id": "t2",
+      "lane": "test",
+      "col": 5,
+      "type": "cloud",
+      "label": "test al día",
+      "sublabel": "sin pedir permiso"
+    }
+  ],
+  "edges": [
+    {
+      "id": "s1",
+      "from": "r",
+      "to": "d1",
+      "label": "solicitud de cambio"
+    },
+    {
+      "id": "s2",
+      "from": "d1",
+      "to": "t1",
+      "label": "solicitud de cambio"
+    },
+    {
+      "id": "s3",
+      "from": "t1",
+      "to": "m1",
+      "label": "solicitud de cambio"
+    },
+    {
+      "id": "b1",
+      "from": "m1",
+      "to": "d2",
+      "label": "git merge, sin solicitud",
+      "variant": "dashed"
+    },
+    {
+      "id": "b2",
+      "from": "d2",
+      "to": "t2",
+      "label": "git merge",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Por qué sube con revisión",
+      "items": [
+        "Es el único punto donde alguien que no escribió el cambio lo mira antes de producción",
+        "Ninguna excepción: tampoco para una línea, tampoco con prisa",
+        "Si el cambio se generó con asistencia, la revisión es obligatoria por política corporativa"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Por qué baja sin revisión",
+      "items": [
+        "No es una laguna de control: lo que baja ya se revisó al entrar a master",
+        "Pedir una solicitud sería pedir que alguien apruebe por segunda vez lo mismo",
+        "Y lo que de verdad produce es retraso donde más duele: ambientes compartidos con una dependencia vulnerable"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Lo que hace trunk-based a esto no es el número de ramas",
+      "items": [
+        "Es la duración: una rama de tres semanas es gitflow aunque el repositorio tenga una sola rama larga",
+        "El tronco es develop; test y master no son líneas paralelas, son promoción",
+        "Si una rama lleva semanas abierta, el problema no es la rama: la tarea era demasiado grande"
+      ]
+    }
+  ]
+}
