@@ -118,9 +118,36 @@ Lo aprendido al integrarlo, para no redescubrirlo:
 
 ## Publicación
 
-**Pendiente de decidir dónde**, y hay una restricción medida: un sitio de GitHub Pages **con acceso
-restringido exige GitHub Enterprise Cloud** — no basta Team ni Pro. Con un plan de organización
-normal, el sitio sería legible por cualquiera en internet.
+El flujo de `.github/workflows/publicar.yml` construye el sitio y lo despliega en GitHub Pages por
+artefacto —`actions/deploy-pages`, no una rama `gh-pages`—, al empujar a `master` o a mano.
 
-Como este manual va a nombrar repositorios, ramas y compuertas internas, la salida prevista es
-**servirlo como imagen de contenedor** en infraestructura propia.
+**Hoy no puede desplegar, y conviene saber por qué.** Medido contra la API el 2026-10-14:
+
+```
+POST /repos/.../pages  →  422
+"Your current plan does not support GitHub Pages for this repository."
+```
+
+La organización está en plan `free`, y ahí **Pages solo sirve sitios desde repositorios públicos**.
+Este repositorio es privado a propósito: el manual nombra repositorios, ramas, compuertas, el
+bloqueo de la red corporativa, la guía interna de contraseñas y el estado de la autenticación de
+Vórtice. Nada de eso debería ser indexable.
+
+Las tres salidas, y ninguna es técnica:
+
+| | Qué implica |
+|---|---|
+| **Subir la organización a Team** | Pages desde repositorio privado, visible solo para miembros. Es la única que publica el manual completo sin exponerlo |
+| **Un segundo sitio público solo con la sección de Git** | Las siete partes son genéricas: no nombran un repositorio ni un ambiente |
+| **Servirlo como imagen de contenedor** | En infraestructura propia, sin depender del plan |
+
+**El flujo falla en el paso de despliegue mientras tanto, y es deliberado**: un flujo que se quedara
+en verde sin publicar sería exactamente el defecto que este manual enseña a reconocer.
+
+### Dos cosas que el flujo da por hechas
+
+**`BASE_URL`.** El sitio cuelga del nombre del repositorio, no de la raíz del dominio. El flujo lo
+pasa como variable de entorno y `config.mts` la lee; sin eso, todos los activos apuntan fuera.
+
+**No regenera los diagramas.** Usa `build:sitio` y no `build`, porque el segundo necesita archify
+clonado al lado y en la integración no lo hay. Lo generado viene versionado justo por esto.

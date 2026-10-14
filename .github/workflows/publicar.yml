@@ -1,0 +1,76 @@
+# Construye el manual y lo publica en GitHub Pages.
+#
+# Usa el despliegue por artefacto —`actions/deploy-pages`— y NO una rama `gh-pages`.
+# Es lo que GitHub recomienda hoy y evita versionar lo generado en una rama aparte: el sitio
+# construido no es código fuente y no tiene por qué vivir en la historia del repositorio.
+#
+# ⚠️ Requiere que GitHub Pages esté habilitado en el repositorio. Con el plan actual de la
+# organización NO se puede habilitar en un repositorio privado — la API responde «Your current plan
+# does not support GitHub Pages for this repository». Hasta que el repositorio sea público o el plan
+# suba a Team, este flujo construye correctamente y falla al desplegar, que es el comportamiento
+# honesto: no se queda en verde fingiendo que publicó.
+name: Publicar el manual
+
+on:
+  push:
+    branches: [master]
+  # Y a mano, para poder publicar una revisión sin tener que empujar nada.
+  workflow_dispatch:
+
+# Lo que el despliegue necesita, y nada más.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Una publicación a la vez. No se cancela la que está en curso: terminar un despliegue a medias
+# deja el sitio en un estado que nadie pidió.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Instalar dependencias
+        run: bun install --frozen-lockfile
+
+      - uses: actions/configure-pages@v5
+
+      - name: Construir el sitio
+        # `build:sitio` y no `build`: el segundo regenera los diagramas con archify, que no es una
+        # dependencia instalable y no está aquí. Lo generado ya viene versionado, a propósito.
+        run: bun run build:sitio
+        env:
+          # El sitio vive bajo el nombre del repositorio, no en la raíz del dominio.
+          BASE_URL: /TranserIT-Handbook/
+
+      - name: Comprobar que se construyó algo
+        # Una publicación vacía es el fallo silencioso clásico: el despliegue sale en verde y el
+        # sitio queda en blanco. Se mira antes de subir.
+        run: |
+          test -f docs/.vitepress/dist/index.html || { echo "No hay index.html construido"; exit 1; }
+          paginas=$(find docs/.vitepress/dist -name '*.html' -not -path '*/diagramas/*' | wc -l)
+          echo "Páginas construidas: $paginas"
+          test "$paginas" -ge 10 || { echo "Demasiado pocas páginas: algo no se construyó"; exit 1; }
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vitepress/dist
+
+  publicar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - id: despliegue
+        uses: actions/deploy-pages@v4

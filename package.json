@@ -12,6 +12,7 @@
     "diagramas": "bun scripts/diagramas.mjs",
     "dev": "bun scripts/diagramas.mjs && vitepress dev docs",
     "build": "bun scripts/diagramas.mjs && vitepress build docs",
+    "build:sitio": "vitepress build docs",
     "preview": "vitepress preview docs"
   },
   "devDependencies": {

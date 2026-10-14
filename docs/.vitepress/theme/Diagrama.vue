@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, onBeforeUnmount } from 'vue'
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 
 import './diagramas/estilos.css'
 
@@ -42,9 +42,15 @@ const svg = computed(() => fuentes[`./diagramas/${props.nombre}.svg`] ?? '')
 const dialogo = ref<HTMLDialogElement | null>(null)
 const abierto = ref(false)
 
-/** La dirección solo se calcula al abrir: así el visor no se descarga con la página. */
+/**
+ * La dirección solo se calcula al abrir: así el visor no se descarga con la página.
+ *
+ * `withBase` no sobra: el sitio no siempre vive en la raíz del dominio —en GitHub Pages cuelga del
+ * nombre del repositorio— y una ruta absoluta escrita a mano apunta fuera. El síntoma sería un
+ * diálogo que abre vacío, y solo en producción.
+ */
 const url = computed(() =>
-  abierto.value ? `/diagramas/${props.nombre}.html?theme=${tema.value}` : '',
+  abierto.value ? withBase(`/diagramas/${props.nombre}.html?theme=${tema.value}`) : '',
 )
 
 /**
