@@ -44,6 +44,7 @@ export default defineConfig({
             { text: '2 · El flujo básico', link: '/git/flujo-basico' },
             { text: '3 · Ramas', link: '/git/ramas' },
             { text: '4 · Nuestra estructura', link: '/git/estructura' },
+            { text: '5 · El día a día', link: '/git/dia-a-dia' },
           ],
         },
       ],

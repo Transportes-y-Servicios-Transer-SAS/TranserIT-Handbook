@@ -1,0 +1,117 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Entregar el trabajo, y por qué en este orden",
+    "output": "docs/public/diagramas/entrega.html",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "locale": "es",
+    "translations": {
+      "viewer.kind.frontend": "Lo que haces tú",
+      "viewer.kind.security": "Donde se mira antes de que salga",
+      "viewer.kind.cloud": "Lo que toca a los demás"
+    },
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "frontend": { "label": "Lo que haces tú" },
+        "security": { "label": "Donde se mira antes de que salga" },
+        "cloud": { "label": "Lo que toca a los demás" }
+      }
+    }
+  },
+  "lanes": [{ "id": "dia", "label": "En tu equipo" }],
+  "phases": [
+    { "id": "antes", "label": "Antes de confirmar", "fromCol": 0, "toCol": 2 },
+    { "id": "orden", "label": "Y aquí el orden importa", "fromCol": 3, "toCol": 4, "variant": "emphasis" },
+    { "id": "fuera", "label": "Sale", "fromCol": 5, "toCol": 5 }
+  ],
+  "mainPath": ["e1", "e2", "e3", "e4", "e5", "e6"],
+  "nodes": [
+    {
+      "id": "e1",
+      "lane": "dia",
+      "col": 0,
+      "type": "frontend",
+      "label": "El formato",
+      "sublabel": "antes de confirmar"
+    },
+    {
+      "id": "e2",
+      "lane": "dia",
+      "col": 1,
+      "type": "security",
+      "label": "Elegir y mirar",
+      "sublabel": "add por ruta · diff --staged"
+    },
+    {
+      "id": "e3",
+      "lane": "dia",
+      "col": 2,
+      "type": "frontend",
+      "label": "Confirmar",
+      "sublabel": "con su nota: por qué"
+    },
+    {
+      "id": "e4",
+      "lane": "dia",
+      "col": 3,
+      "type": "cloud",
+      "label": "Traer develop",
+      "sublabel": "lo que entró mientras"
+    },
+    {
+      "id": "e5",
+      "lane": "dia",
+      "col": 4,
+      "type": "security",
+      "label": "La compuerta",
+      "sublabel": "después del merge, no antes"
+    },
+    {
+      "id": "e6",
+      "lane": "dia",
+      "col": 5,
+      "type": "cloud",
+      "label": "Publicar",
+      "sublabel": "y pedir la revisión"
+    }
+  ],
+  "edges": [
+    { "id": "x1", "from": "e1", "to": "e2", "label": "ya formateado" },
+    { "id": "x2", "from": "e2", "to": "e3", "label": "esto sí va" },
+    { "id": "x3", "from": "e3", "to": "e4", "label": "git fetch" },
+    { "id": "x4", "from": "e4", "to": "e5", "label": "con lo de todos dentro" },
+    { "id": "x5", "from": "e5", "to": "e6", "label": "en verde" }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Por qué la compuerta va después de traer develop",
+      "items": [
+        "Así se prueba el código que de verdad va a salir, con los cambios de todos ya dentro",
+        "Al revés, pruebas una versión que no existe en ningún sitio y la compuerta pasa en falso",
+        "Es el paso que más veces se hace al revés"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "diff --staged es la última oportunidad",
+      "items": [
+        "Es el único momento en que ves exactamente lo que va a salir, línea por línea",
+        "Ahí se descubre la contraseña de prueba, el archivo con datos de un cliente, el apunte personal",
+        "Una vez publicado, borrarlo del último commit no lo borra de la historia"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Agregar por ruta, no con git add .",
+      "items": [
+        "git add . se lleva todo lo que haya en la carpeta, lo mirases o no",
+        "Nombrar las rutas obliga a saber qué estás entregando",
+        "Y es lo que hace que el diff de arriba sea corto y se pueda leer de verdad"
+      ]
+    }
+  ]
+}

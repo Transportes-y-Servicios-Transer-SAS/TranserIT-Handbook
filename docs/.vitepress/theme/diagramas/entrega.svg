@@ -1,0 +1,185 @@
+<svg viewBox="0 0 1128 280" data-layout-contract="readable-v2" role="img" lang="es" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase" data-node-ui="">
+        <title id="archify-diagram-title">Entregar el trabajo, y por qué en este orden</title>
+        <desc id="archify-diagram-description">Un diagrama de flujo de trabajo generado por Archify.</desc>
+        <!-- Definitions -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-default" />
+          </marker>
+          <marker id="arrowhead-emphasis" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-emphasis" />
+          </marker>
+          <marker id="arrowhead-security" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-security" />
+          </marker>
+          <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-dashed" />
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" class="c-grid" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <style>
+          svg[data-node-ui] [data-node-id] > rect:not(.c-mask) { stroke-width: 1.25px; }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-frontend { fill: color-mix(in srgb, var(--frontend-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--frontend-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-backend { fill: color-mix(in srgb, var(--backend-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--backend-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-database { fill: color-mix(in srgb, var(--database-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--database-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-cloud { fill: color-mix(in srgb, var(--cloud-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--cloud-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-security { fill: color-mix(in srgb, var(--security-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--security-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-messagebus { fill: color-mix(in srgb, var(--messagebus-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--messagebus-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-external { fill: color-mix(in srgb, var(--external-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--external-stroke) 72%, var(--mask)); }
+          svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-region { fill: color-mix(in srgb, var(--cloud-stroke) 3%, transparent); stroke: color-mix(in srgb, var(--cloud-stroke) 42%, var(--lane-stroke)); stroke-dasharray: none; }
+          svg[data-node-ui] .c-security-group { stroke: color-mix(in srgb, var(--security-stroke) 58%, var(--lane-stroke)); }
+          svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-security-group { stroke-dasharray: 4 3; }
+          svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-lane { stroke: var(--lane-stroke); stroke-dasharray: none; }
+          svg[data-node-ui] [data-graph-role="structural-frame-label-mask"] { rx: 5px; fill: color-mix(in srgb, var(--cloud-stroke) 10%, var(--mask)); stroke: color-mix(in srgb, var(--cloud-stroke) 38%, var(--mask)); stroke-width: .8px; }
+          svg[data-node-ui] [data-composition-frame-kind="security-group"] > [data-graph-role="structural-frame-label-mask"] { fill: color-mix(in srgb, var(--security-stroke) 9%, var(--mask)); stroke: color-mix(in srgb, var(--security-stroke) 36%, var(--mask)); }
+          svg[data-node-ui] .phase-rule { opacity: .5; stroke-dasharray: none; }
+          svg[data-node-ui] .phase-chip { stroke: var(--lane-stroke); stroke-width: .75px; }
+          svg[data-node-ui] g[data-edge-from] > rect.c-mask { rx: 7px; stroke: var(--lane-stroke); stroke-width: .75px; }
+          svg[data-node-ui][data-preset="blueprint"] :is([data-graph-role="structural-frame-label-mask"], g[data-edge-from] > rect.c-mask, .phase-chip) { rx: 2px; }
+          svg[data-node-ui][data-preset="editorial"] :is([data-graph-role="structural-frame-label-mask"], g[data-edge-from] > rect.c-mask, .phase-chip) { rx: 3px; }
+        </style>
+
+        <!-- Background Grid -->
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- Swimlanes -->
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-0" x="40" y="52" width="1072" height="104" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="54" y="74" class="t-muted" font-size="10" font-weight="600">01 / En tu equipo</text>
+
+        <!-- Phase headers -->
+        <path d="M 56 35 H 516.4" class="a-default phase-rule" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <rect x="233" y="27" width="106.39999999999999" height="16" rx="8" class="c-mask phase-chip"/>
+        <text x="286.2" y="38.5" class="t-muted" font-size="8" font-weight="600" text-anchor="middle" letter-spacing=".04em">Antes de confirmar</text>
+        <path d="M 599.5999999999999 35 H 919.1999999999999" class="a-emphasis phase-rule" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <rect x="694.1999999999998" y="27" width="130.39999999999998" height="16" rx="8" class="c-mask phase-chip"/>
+        <text x="759.3999999999999" y="38.5" class="t-backend" font-size="8" font-weight="600" text-anchor="middle" letter-spacing=".04em">Y aquí el orden importa</text>
+        <path d="M 1015.5999999999999 35 H 1091.6" class="a-default phase-rule" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <rect x="1033.6" y="27" width="40" height="16" rx="8" class="c-mask phase-chip"/>
+        <text x="1053.6" y="38.5" class="t-muted" font-size="8" font-weight="600" text-anchor="middle" letter-spacing=".04em">Sale</text>
+
+        <!-- Workflow groups -->
+
+
+        <!-- Edge paths -->
+        <path data-edge-from="e1" data-edge-to="e2" data-edge-label="ya formateado" data-edge-key="0" data-edge-id="x1" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="140,119;220.39999999999998,119" d="M 140 119 L 220.39999999999998 119" class="a-default" data-animate="edge" style="--step:0" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="e2" data-edge-to="e3" data-edge-label="esto sí va" data-edge-key="1" data-edge-id="x2" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="364.4,119;430.4,119" d="M 364.4 119 L 430.4 119" class="a-default" data-animate="edge" style="--step:1" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="e3" data-edge-to="e4" data-edge-label="git fetch" data-edge-key="2" data-edge-id="x3" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="526.4,119;587.5999999999999,119" d="M 526.4 119 L 587.5999999999999 119" class="a-default" data-animate="edge" style="--step:2" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="e4" data-edge-to="e5" data-edge-label="con lo de todos dentro" data-edge-key="3" data-edge-id="x4" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="687.5999999999999,119;811.1999999999999,119" d="M 687.5999999999999 119 L 811.1999999999999 119" class="a-default" data-animate="edge" style="--step:3" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="e5" data-edge-to="e6" data-edge-label="en verde" data-edge-key="4" data-edge-id="x5" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="951.1999999999999,119;1007.5999999999999,119" d="M 951.1999999999999 119 L 1007.5999999999999 119" class="a-default" data-animate="edge" style="--step:4" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+
+        <!-- Nodes -->
+        <g id="node-e1" data-node-id="e1" data-node-label="El formato" tabindex="0" role="button" aria-label="Enfocar El formato, antes de confirmar, En tu equipo › Antes de confirmar" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="antes de confirmar" data-node-context="En tu equipo › Antes de confirmar">
+          <title>El formato · antes de confirmar · En tu equipo › Antes de confirmar</title>
+          <rect x="48" y="93" width="92" height="52" rx="8" class="c-mask"/>
+          <rect x="48" y="93" width="92" height="52" rx="8" class="c-frontend" data-animate="node" style="--step:0" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(54 99) scale(0.6875)">
+            <rect x="2" y="3" width="12" height="10" rx="2"/>
+            <path d="M2 6.5h12"/>
+            <circle cx="4.1" cy="4.8" r=".7" class="sigil-fill"/>
+            <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="100" y="114" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">El formato</text>
+          <text data-detail="context" x="94" y="131" class="t-muted" font-size="7.7" text-anchor="middle">antes de confirmar</text>
+        </g>
+
+        <g id="node-e2" data-node-id="e2" data-node-label="Elegir y mirar" tabindex="0" role="button" aria-label="Enfocar Elegir y mirar, add por ruta · diff --staged, En tu equipo › Antes de confirmar" aria-pressed="false" data-node-kind="security" data-node-sublabel="add por ruta · diff --staged" data-node-context="En tu equipo › Antes de confirmar">
+          <title>Elegir y mirar · add por ruta · diff --staged · En tu equipo › Antes de confirmar</title>
+          <rect x="220.39999999999998" y="93" width="144" height="52" rx="8" class="c-mask"/>
+          <rect x="220.39999999999998" y="93" width="144" height="52" rx="8" class="c-security" data-animate="node" style="--step:1" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(226.39999999999998 99) scale(0.6875)">
+            <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
+            <path d="m5.8 8 1.5 1.5 3-3"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="292.4" y="114" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Elegir y mirar</text>
+          <text data-detail="context" x="292.4" y="131" class="t-muted" font-size="8" text-anchor="middle">add por ruta · diff --staged</text>
+        </g>
+
+        <g id="node-e3" data-node-id="e3" data-node-label="Confirmar" tabindex="0" role="button" aria-label="Enfocar Confirmar, con su nota: por qué, En tu equipo › Antes de confirmar" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="con su nota: por qué" data-node-context="En tu equipo › Antes de confirmar">
+          <title>Confirmar · con su nota: por qué · En tu equipo › Antes de confirmar</title>
+          <rect x="430.4" y="93" width="96" height="52" rx="8" class="c-mask"/>
+          <rect x="430.4" y="93" width="96" height="52" rx="8" class="c-frontend" data-animate="node" style="--step:2" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(436.4 99) scale(0.6875)">
+            <rect x="2" y="3" width="12" height="10" rx="2"/>
+            <path d="M2 6.5h12"/>
+            <circle cx="4.1" cy="4.8" r=".7" class="sigil-fill"/>
+            <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="479.09999999999997" y="114" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Confirmar</text>
+          <text data-detail="context" x="478.4" y="131" class="t-muted" font-size="7.3" text-anchor="middle">con su nota: por qué</text>
+        </g>
+
+        <g id="node-e4" data-node-id="e4" data-node-label="Traer develop" tabindex="0" role="button" aria-label="Enfocar Traer develop, lo que entró mientras, En tu equipo › Y aquí el orden importa" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="lo que entró mientras" data-node-context="En tu equipo › Y aquí el orden importa">
+          <title>Traer develop · lo que entró mientras · En tu equipo › Y aquí el orden importa</title>
+          <rect x="587.5999999999999" y="93" width="100" height="52" rx="8" class="c-mask"/>
+          <rect x="587.5999999999999" y="93" width="100" height="52" rx="8" class="c-cloud" data-animate="node" style="--step:3" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(593.5999999999999 99) scale(0.6875)">
+            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="637.5999999999999" y="125.2" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Traer develop</text>
+          <text data-detail="context" x="637.5999999999999" y="139.3" class="t-muted" font-size="7.3" text-anchor="middle">lo que entró mientras</text>
+        </g>
+
+        <g id="node-e5" data-node-id="e5" data-node-label="La compuerta" tabindex="0" role="button" aria-label="Enfocar La compuerta, después del merge, no antes, En tu equipo › Y aquí el orden importa" aria-pressed="false" data-node-kind="security" data-node-sublabel="después del merge, no antes" data-node-context="En tu equipo › Y aquí el orden importa">
+          <title>La compuerta · después del merge, no antes · En tu equipo › Y aquí el orden importa</title>
+          <rect x="811.1999999999999" y="93" width="140" height="52" rx="8" class="c-mask"/>
+          <rect x="811.1999999999999" y="93" width="140" height="52" rx="8" class="c-security" data-animate="node" style="--step:4" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(817.1999999999999 99) scale(0.6875)">
+            <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
+            <path d="m5.8 8 1.5 1.5 3-3"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="881.1999999999999" y="114" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">La compuerta</text>
+          <text data-detail="context" x="881.1999999999999" y="131" class="t-muted" font-size="8" text-anchor="middle">después del merge, no antes</text>
+        </g>
+
+        <g id="node-e6" data-node-id="e6" data-node-label="Publicar" tabindex="0" role="button" aria-label="Enfocar Publicar, y pedir la revisión, En tu equipo › Sale" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="y pedir la revisión" data-node-context="En tu equipo › Sale">
+          <title>Publicar · y pedir la revisión · En tu equipo › Sale</title>
+          <rect x="1007.5999999999999" y="93" width="92" height="52" rx="8" class="c-mask"/>
+          <rect x="1007.5999999999999" y="93" width="92" height="52" rx="8" class="c-cloud" data-animate="node" style="--step:5" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(1013.5999999999999 99) scale(0.6875)">
+            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="1053.6" y="114" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Publicar</text>
+          <text data-detail="context" x="1053.6" y="131" class="t-muted" font-size="7.3" text-anchor="middle">y pedir la revisión</text>
+        </g>
+
+        <!-- Edge labels -->
+        <g data-detail="context" data-edge-from="e1" data-edge-to="e2" data-edge-label="ya formateado" data-edge-key="0" data-edge-id="x1">
+          <rect x="144" y="99" width="72.4" height="14" rx="3" class="c-mask"/>
+          <text x="180.2" y="109" class="t-muted" font-size="8" text-anchor="middle">ya formateado</text>
+        </g>
+        <g data-detail="context" data-edge-from="e2" data-edge-to="e3" data-edge-label="esto sí va" data-edge-key="1" data-edge-id="x2">
+          <rect x="368.4" y="99" width="58" height="14" rx="3" class="c-mask"/>
+          <text x="397.4" y="109" class="t-muted" font-size="8" text-anchor="middle">esto sí va</text>
+        </g>
+        <g data-detail="context" data-edge-from="e3" data-edge-to="e4" data-edge-label="git fetch" data-edge-key="2" data-edge-id="x3">
+          <rect x="530.4" y="99" width="53.199999999999996" height="14" rx="3" class="c-mask"/>
+          <text x="557" y="109" class="t-muted" font-size="8" text-anchor="middle">git fetch</text>
+        </g>
+        <g data-detail="context" data-edge-from="e4" data-edge-to="e5" data-edge-label="con lo de todos dentro" data-edge-key="3" data-edge-id="x4">
+          <rect x="691.5999999999999" y="99" width="115.6" height="14" rx="3" class="c-mask"/>
+          <text x="749.3999999999999" y="109" class="t-muted" font-size="8" text-anchor="middle">con lo de todos dentro</text>
+        </g>
+        <g data-detail="context" data-edge-from="e5" data-edge-to="e6" data-edge-label="en verde" data-edge-key="4" data-edge-id="x5">
+          <rect x="955.1999999999998" y="99" width="48.4" height="14" rx="3" class="c-mask"/>
+          <text x="979.3999999999999" y="109" class="t-muted" font-size="8" text-anchor="middle">en verde</text>
+        </g>
+
+        <!-- Legend -->
+        <g data-legend="" data-legend-bridge="">
+          <text x="20" y="180" class="t-primary" font-size="12" font-weight="650">Leyenda</text>
+          <g data-legend-semantic-kind="frontend" data-legend-kind="frontend" data-legend-label="Lo que haces tú" data-legend-x="20" data-legend-baseline="200" data-legend-width="113">
+            <rect x="20" y="192" width="14" height="9" rx="2" class="c-frontend" stroke-width="1"/>
+            <text x="42" y="200" class="t-muted" font-size="7.5" font-weight="500">Lo que haces tú</text>
+          </g>
+          <g data-legend-semantic-kind="security" data-legend-kind="security" data-legend-label="Donde se mira antes de que salga" data-legend-x="140" data-legend-baseline="200" data-legend-width="192">
+            <rect x="140" y="192" width="14" height="9" rx="2" class="c-security" stroke-width="1"/>
+            <text x="162" y="200" class="t-muted" font-size="7.5" font-weight="500">Donde se mira antes de que salga</text>
+          </g>
+          <g data-legend-semantic-kind="cloud" data-legend-kind="cloud" data-legend-label="Lo que toca a los demás" data-legend-x="339" data-legend-baseline="200" data-legend-width="150">
+            <rect x="339" y="192" width="14" height="9" rx="2" class="c-cloud" stroke-width="1"/>
+            <text x="361" y="200" class="t-muted" font-size="7.5" font-weight="500">Lo que toca a los demás</text>
+          </g>
+        </g>
+      </svg>
