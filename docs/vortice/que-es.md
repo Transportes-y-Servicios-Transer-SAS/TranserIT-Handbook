@@ -69,7 +69,6 @@ resto se arma con sus respuestas delante. Están en [el flujo](/vortice/flujo).
 | **`vortice-frontend`** | La pantalla | trabajas en pantalla |
 | **`vortice-specs`** | **Las especificaciones**, el verificador de forma y la publicación al tablero | **siempre** |
 | **`TranserIT-Architecture`** | Los ADR, las convenciones y el stack | quieres saber por qué algo es como es |
-| `vortice-analisis` | Análisis, manuales y guiones de apoyo | lo pide quien lleva el área |
 
 ## Tu primer día
 

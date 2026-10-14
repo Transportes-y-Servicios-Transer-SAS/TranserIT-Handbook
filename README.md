@@ -5,10 +5,9 @@ El manual técnico del **área de IT de Transer**: control de versiones, proceso
 
 ## Por qué existe
 
-Había un manual de Git de 416 líneas, bien escrito, y **daba por sabido lo que venía a enseñar**. No era
-un problema de calidad: el manual abre con *«todo se ejecuta en PowerShell»* y la tabla de ramas, así
-que para entender su primer párrafo ya había que saber qué es un repositorio, una rama, una solicitud
-de cambio y una fusión.
+El manual de Git que había —416 líneas, bien escritas— **daba por sabido lo que venía a enseñar**.
+Abre con *«todo se ejecuta en PowerShell»* y la tabla de ramas, así que para entender su primer
+párrafo ya había que saber qué es un repositorio, una rama, una solicitud de cambio y una fusión.
 
 > **Era un cómo-se-hace para quien va a teclear. Faltaba el qué-es para quien va a entender.**
 
