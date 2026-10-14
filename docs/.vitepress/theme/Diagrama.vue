@@ -47,10 +47,48 @@ const url = computed(() =>
   abierto.value ? `/diagramas/${props.nombre}.html?theme=${tema.value}` : '',
 )
 
+/**
+ * El visor de archify arranca con la animación en «Fija» salvo que encuentre `archify-motion`
+ * en `localStorage` —no admite un parámetro de URL para esto—, así que se siembra ese valor.
+ *
+ * Solo la PRIMERA vez, y por eso hace falta una marca propia: cuando alguien pulsa «Fija», archify
+ * no guarda «still», BORRA su clave, de modo que «sin clave» significa a la vez «nunca estuvo aquí»
+ * y «lo apagó a propósito». Sin la marca, cada apertura le volvería a encender lo que apagó.
+ *
+ * El visor se sirve del mismo origen que la página, así que comparten almacenamiento. Si está
+ * bloqueado —ventana privada, cookies de terceros—, no pasa nada: el visor abre en «Fija» y el
+ * botón sigue ahí.
+ */
+const SEMBRADO = 'transer-handbook-animacion-sembrada'
+
+function sembrarAnimacion() {
+  try {
+    if (localStorage.getItem(SEMBRADO)) return
+    localStorage.setItem('archify-motion', 'live')
+    localStorage.setItem(SEMBRADO, '1')
+  } catch {
+    /* almacenamiento bloqueado: el visor abrirá en «Fija» */
+  }
+}
+
+/**
+ * Cuántas veces se ha pedido abrir. Es un sello, no una cuenta: sirve para que un cierre viejo no
+ * apague una apertura nueva.
+ *
+ * Hace falta porque el evento `close` NO llega en el mismo tic que `close()`. Quien cierre y vuelva
+ * a abrir enseguida encola las dos cosas, y sin el sello el `close` tardío descarga el visor que se
+ * acaba de pedir: queda un diálogo abierto y vacío.
+ */
+let aperturas = 0
+
 function abrir() {
+  sembrarAnimacion()
   abierto.value = true
+  const sello = ++aperturas
   // En el mismo tic el <dialog> todavía no tiene su contenido; se espera al siguiente cuadro.
-  requestAnimationFrame(() => dialogo.value?.showModal())
+  requestAnimationFrame(() => {
+    if (sello === aperturas) dialogo.value?.showModal()
+  })
 }
 
 function cerrar() {
@@ -59,7 +97,11 @@ function cerrar() {
 
 /** `close` cubre la tecla de escape cuando el foco todavía no entró al visor. */
 function alCerrar() {
-  abierto.value = false
+  const sello = aperturas
+  // Se espera un cuadro para que una reapertura encolada antes ya haya ocurrido.
+  requestAnimationFrame(() => {
+    if (sello === aperturas && !dialogo.value?.open) abierto.value = false
+  })
 }
 
 onBeforeUnmount(() => dialogo.value?.close())

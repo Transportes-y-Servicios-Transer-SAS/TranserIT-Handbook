@@ -5,6 +5,7 @@
     "title": "La historia del mismo informe",
     "subtitle": "Un solo archivo. Cada punto dice qué cambió, quién lo cambió y por qué.",
     "locale": "es",
+    "animation": "trace",
     "translations": {
       "legend.timeline.change": "Un cambio al documento",
       "legend.timeline.alert": "Algo que la revisión encontró",
