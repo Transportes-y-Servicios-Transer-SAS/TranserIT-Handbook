@@ -160,11 +160,4 @@ parar acá sin perderte nada.
   color: var(--vp-c-text-2);
   line-height: 1.9;
 }
-.siguiente {
-  margin: 2rem 0 0;
-  padding: 1rem 1.25rem;
-  border-left: 3px solid var(--vp-c-brand-1);
-  background: var(--vp-c-bg-soft);
-  border-radius: 0 8px 8px 0;
-}
 </style>

@@ -1,0 +1,121 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Por dónde pasa un archivo tuyo",
+    "subtitle": "Cada comando lo mueve de un estado al siguiente. No hay más estados que estos cinco.",
+    "output": "estados.html",
+    "locale": "es",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "translations": {
+      "legend.lifecycle.start": "Donde empieza",
+      "legend.lifecycle.active": "Todavía solo tuyo",
+      "legend.lifecycle.waiting": "Git no lo sigue",
+      "legend.lifecycle.success": "Guardado de verdad",
+      "viewer.kind.start": "Donde empieza",
+      "viewer.kind.active": "Todavía solo tuyo",
+      "viewer.kind.waiting": "Git no lo sigue",
+      "viewer.kind.success": "Guardado de verdad"
+    }
+  },
+  "mainPath": ["limpio", "modificado", "elegido", "confirmado", "publicado"],
+  "states": [
+    {
+      "id": "limpio",
+      "type": "start",
+      "label": "Como en la historia",
+      "sublabel": "no has tocado nada",
+      "step": "01"
+    },
+    {
+      "id": "modificado",
+      "type": "active",
+      "label": "Lo cambiaste",
+      "sublabel": "Git lo ve, no se lo lleva",
+      "tag": "en rojo",
+      "step": "02"
+    },
+    {
+      "id": "elegido",
+      "type": "active",
+      "label": "Elegido",
+      "sublabel": "este sí va en el commit",
+      "tag": "en verde",
+      "step": "03"
+    },
+    {
+      "id": "confirmado",
+      "type": "success",
+      "label": "En tu historia",
+      "sublabel": "con tu nota y tu nombre",
+      "tag": "solo en tu equipo",
+      "step": "04"
+    },
+    {
+      "id": "publicado",
+      "type": "success",
+      "label": "En la copia central",
+      "sublabel": "los demás ya lo ven",
+      "step": "05"
+    },
+    {
+      "id": "nuevo",
+      "type": "waiting",
+      "label": "Recién creado",
+      "sublabel": "Git no lo sigue aún",
+      "tag": "se queda fuera"
+    }
+  ],
+  "transitions": [
+    { "id": "t1", "from": "limpio", "to": "modificado", "label": "lo editas" },
+    { "id": "t2", "from": "modificado", "to": "elegido", "label": "git add" },
+    { "id": "t3", "from": "elegido", "to": "confirmado", "label": "git commit" },
+    { "id": "t4", "from": "confirmado", "to": "publicado", "label": "git push" },
+    { "id": "t5", "from": "nuevo", "to": "elegido", "label": "git add" },
+    {
+      "id": "t6",
+      "from": "elegido",
+      "to": "modificado",
+      "label": "git restore",
+      "note": "lo saca de la lista sin perder el cambio",
+      "variant": "dashed"
+    },
+    {
+      "id": "t7",
+      "from": "publicado",
+      "to": "modificado",
+      "label": "y vuelta a empezar",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Por qué hay un paso entre cambiar y confirmar",
+      "items": [
+        "Un commit es un cambio con sentido, no todo lo que tocaste hoy",
+        "Puedes tocar seis archivos y confirmar solo dos, en un commit que se explique solo",
+        "Y es donde se revisa que no sale ningún dato que no debía"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "El que más veces se olvida",
+      "items": [
+        "Un archivo recién creado NO entra solo: Git no sigue lo que nunca le presentaste",
+        "git status lo lista aparte, como no rastreado",
+        "Si no lo añades, el commit sale sin él y el error aparece en el equipo de otra persona"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Confirmado no es publicado",
+      "items": [
+        "git commit guarda en tu equipo; nadie más lo ve",
+        "git push es lo que lo lleva a la copia central",
+        "Si tu equipo se pierde entre uno y otro, el trabajo se pierde con él"
+      ]
+    }
+  ]
+}

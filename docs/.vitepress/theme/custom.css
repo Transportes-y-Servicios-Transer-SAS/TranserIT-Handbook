@@ -80,10 +80,39 @@
 /* Y lo que es figura o tabla usa todo lo que hay: ahí el ancho se lee mejor, no peor */
 .vp-doc > div > figure,
 .vp-doc > div > table,
-.vp-doc > div > .caos,
-.vp-doc > div > .siguiente {
+.vp-doc > div > .caos {
   max-width: none;
+}
+
+/*
+ * Los bloques de código van con el texto, no con las figuras.
+ *
+ * Un comando de dos palabras dentro de una caja de 1105px se lee como una lámina suelta y rompe la
+ * columna de lectura. Pero tampoco caben en la medida de la prosa: los comandos del área llegan a
+ * los 75 caracteres. De ahí el ancho propio, entre los dos.
+ */
+.vp-doc > div > div[class*='language-'] {
+  max-width: 48rem;
 }
 
 /* La página de inicio no necesita nada de esto */
 .VPHome .vp-doc > div > p { max-width: none; }
+
+/*
+ * El cierre de cada parte: qué acabas de entender y qué viene después.
+ *
+ * Vive aquí y no en la página porque ya lo usan dos, y el manual tendrá siete. Un bloque repetido
+ * en cada archivo se desvía en cuanto alguien lo retoca en uno solo.
+ */
+.siguiente {
+  /* El texto de dentro queda exactamente en la medida de lectura, sumando su propio relleno. */
+  max-width: calc(var(--tr-medida) + 2.5rem);
+  margin: 2rem 0 0;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--vp-c-brand-1);
+  border-radius: 0 8px 8px 0;
+  background: var(--vp-c-bg-soft);
+}
+.siguiente > p:last-child {
+  margin-bottom: 0;
+}

@@ -41,6 +41,7 @@ export default defineConfig({
           text: 'Git, de cero',
           items: [
             { text: '1 · Qué es y qué problema resuelve', link: '/git/que-es' },
+            { text: '2 · El flujo básico', link: '/git/flujo-basico' },
           ],
         },
       ],
