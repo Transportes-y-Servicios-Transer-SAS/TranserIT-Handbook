@@ -1,0 +1,237 @@
+<svg viewBox="0 0 1140 445" role="img" lang="es" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase" data-tree-ui="" data-tree-direction="down" data-reader-fit="intrinsic-height" data-reader-min-text="7.5">
+        <title id="archify-diagram-title">Qué comando deshace lo tuyo</title>
+        <desc id="archify-diagram-description">La pregunta no es qué hiciste mal, sino hasta dónde llegó. Eso decide el comando y el precio.</desc>
+        <!-- Definitions -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-default" />
+          </marker>
+          <marker id="arrowhead-emphasis" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-emphasis" />
+          </marker>
+          <marker id="arrowhead-security" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-security" />
+          </marker>
+          <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-dashed" />
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" class="c-grid" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <style>
+          svg[data-tree-ui] .tree-hue-root { --tree-hue: var(--text-muted); --tree-wash: transparent; }
+          svg[data-tree-ui] .tree-hue-backend { --tree-hue: var(--backend-stroke); --tree-wash: var(--backend-fill); }
+          svg[data-tree-ui] .tree-hue-database { --tree-hue: var(--database-stroke); --tree-wash: var(--database-fill); }
+          svg[data-tree-ui] .tree-hue-cloud { --tree-hue: var(--cloud-stroke); --tree-wash: var(--cloud-fill); }
+          svg[data-tree-ui] .tree-hue-frontend { --tree-hue: var(--frontend-stroke); --tree-wash: var(--frontend-fill); }
+          svg[data-tree-ui] .tree-hue-messagebus { --tree-hue: var(--messagebus-stroke); --tree-wash: var(--messagebus-fill); }
+          svg[data-tree-ui] .tree-hue-external { --tree-hue: var(--external-stroke); --tree-wash: var(--external-fill); }
+          svg[data-tree-ui] .tree-edge { stroke-linejoin: round; stroke-linecap: round; }
+          svg[data-tree-ui] .tree-edge-trunk { stroke: color-mix(in srgb, var(--text) 18%, var(--arrow)); }
+          svg[data-tree-ui] .tree-edge-hued { stroke: color-mix(in srgb, var(--tree-hue) 42%, var(--arrow)); }
+          svg[data-tree-ui] .tree-root { fill: var(--text); stroke: none; }
+          svg[data-tree-ui] [data-tree-depth="0"] .tree-label { fill: var(--mask); }
+          svg[data-tree-ui] [data-tree-depth="0"] .tree-sublabel { fill: var(--mask); opacity: 0.68; }
+          svg[data-tree-ui] .tree-branch { fill: var(--tree-wash); stroke: color-mix(in srgb, var(--tree-hue) 48%, var(--lane-stroke)); }
+          svg[data-tree-ui] .tree-leaf { fill: var(--mask); stroke: color-mix(in srgb, var(--tree-hue) 22%, var(--lane-stroke)); }
+          svg[data-tree-ui] .tree-socket { fill: var(--mask); stroke: var(--tree-hue); pointer-events: none; }
+          svg[data-tree-ui] .tree-accent { stroke: var(--tree-hue); pointer-events: none; }
+          svg[data-tree-ui] [data-tree-stack] { display: none; fill: var(--mask); stroke: color-mix(in srgb, var(--tree-hue) 70%, var(--lane-stroke)); }
+          svg[data-tree-ui] [data-tree-collapsed] [data-tree-stack] { display: inline; }
+          svg[data-tree-ui] [data-tree-hidden] { display: none; }
+          svg[data-tree-ui] .tree-toggle-hit { fill: transparent; }
+          svg[data-tree-ui] .tree-toggle-disc { fill: var(--mask); stroke: color-mix(in srgb, var(--tree-hue) 55%, var(--lane-stroke)); transition: stroke 0.15s ease, fill 0.15s ease; }
+          svg[data-tree-ui] .tree-toggle-glyph { stroke: var(--text-muted); fill: none; transition: stroke 0.15s ease; }
+          svg[data-tree-ui] .tree-toggle-count { display: none; }
+          svg[data-tree-ui] .tree-count-pill { fill: var(--tree-hue); stroke: none; }
+          svg[data-tree-ui] .tree-toggle-count text { fill: var(--mask); }
+          svg[data-tree-ui] [data-tree-toggle] { cursor: pointer; outline: none; }
+          svg[data-tree-ui] [data-tree-toggle][aria-expanded="true"] .tree-toggle-plus { display: none; }
+          svg[data-tree-ui] [data-tree-toggle][aria-expanded="false"] .tree-toggle-count { display: inline; }
+          svg[data-tree-ui] [data-tree-toggle][aria-expanded="false"] .tree-toggle-disc { fill: var(--tree-hue); stroke: var(--tree-hue); }
+          svg[data-tree-ui] [data-tree-toggle][aria-expanded="false"] .tree-toggle-glyph { stroke: var(--mask); }
+          svg[data-tree-ui] [data-tree-toggle]:hover .tree-toggle-disc,
+          svg[data-tree-ui] [data-tree-toggle]:focus-visible .tree-toggle-disc { stroke: var(--tree-hue); stroke-width: 2; }
+          svg[data-tree-ui] [data-tree-toggle]:hover .tree-toggle-glyph,
+          svg[data-tree-ui] [data-tree-toggle]:focus-visible .tree-toggle-glyph { stroke: var(--text); }
+          svg[data-tree-ui] [data-tree-expand-all] { cursor: pointer; outline: none; }
+          svg[data-tree-ui] [data-tree-expand-all] rect { fill: var(--mask); stroke: var(--lane-stroke); }
+          svg[data-tree-ui] [data-tree-expand-all]:is(:hover, :focus-visible) rect { stroke: var(--arrow-emphasis); stroke-width: 2; }
+          svg[data-tree-ui]:not([data-tree-any-collapsed]) [data-tree-expand-all] { display: none; }
+        </style>
+
+        <!-- Background Grid -->
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- Containment links -->
+        <path data-edge-from="raiz" data-edge-to="n1" data-edge-key="0" data-tree-ancestors="raiz" data-composition-points="567,123;567,151;126.5,151;126.5,179" d="M 567 123 L 567 141 Q 567 151 557 151 L 136.5 151 Q 126.5 151 126.5 161 L 126.5 179" class="a-default tree-edge tree-edge-trunk" data-animate="edge" style="--step:1" stroke-width="1.8"/>
+        <path data-edge-from="n1" data-edge-to="n1a" data-edge-key="1" data-tree-ancestors="n1 raiz" data-composition-points="126,255;126,311" d="M 126 255 L 126 311" class="a-default tree-edge tree-edge-hued tree-hue-backend" data-animate="edge" style="--step:2" stroke-width="1.5"/>
+        <path data-edge-from="raiz" data-edge-to="n2" data-edge-key="2" data-tree-ancestors="raiz" data-composition-points="567,123;567,151;336,151;336,179" d="M 567 123 L 567 141 Q 567 151 557 151 L 346 151 Q 336 151 336 161 L 336 179" class="a-default tree-edge tree-edge-trunk" data-animate="edge" style="--step:1" stroke-width="1.8"/>
+        <path data-edge-from="n2" data-edge-to="n2a" data-edge-key="3" data-tree-ancestors="n2 raiz" data-composition-points="336,255;336,311" d="M 336 255 L 336 311" class="a-default tree-edge tree-edge-hued tree-hue-database" data-animate="edge" style="--step:2" stroke-width="1.5"/>
+        <path data-edge-from="raiz" data-edge-to="n3" data-edge-key="4" data-tree-ancestors="raiz" data-composition-points="567,123;567,151;656,151;656,179" d="M 567 123 L 567 141 Q 567 151 577 151 L 646 151 Q 656 151 656 161 L 656 179" class="a-default tree-edge tree-edge-trunk" data-animate="edge" style="--step:1" stroke-width="1.8"/>
+        <path data-edge-from="n3" data-edge-to="n3a" data-edge-key="5" data-tree-ancestors="n3 raiz" data-composition-points="656,255;656,283;542,283;542,311" d="M 656 255 L 656 273 Q 656 283 646 283 L 552 283 Q 542 283 542 293 L 542 311" class="a-default tree-edge tree-edge-hued tree-hue-cloud" data-animate="edge" style="--step:2" stroke-width="1.5"/>
+        <path data-edge-from="n3" data-edge-to="n3b" data-edge-key="6" data-tree-ancestors="n3 raiz" data-composition-points="656,255;656,283;770,283;770,311" d="M 656 255 L 656 273 Q 656 283 666 283 L 760 283 Q 770 283 770 293 L 770 311" class="a-default tree-edge tree-edge-hued tree-hue-cloud" data-animate="edge" style="--step:2" stroke-width="1.5"/>
+        <path data-edge-from="raiz" data-edge-to="n4" data-edge-key="7" data-tree-ancestors="raiz" data-composition-points="567,123;567,151;1008,151;1008,179" d="M 567 123 L 567 141 Q 567 151 577 151 L 998 151 Q 1008 151 1008 161 L 1008 179" class="a-default tree-edge tree-edge-trunk" data-animate="edge" style="--step:1" stroke-width="1.8"/>
+        <path data-edge-from="n4" data-edge-to="n4a" data-edge-key="8" data-tree-ancestors="n4 raiz" data-composition-points="1008,255;1008,311" d="M 1008 255 L 1008 311" class="a-default tree-edge tree-edge-hued tree-hue-frontend" data-animate="edge" style="--step:2" stroke-width="1.5"/>
+
+        <!-- Nodes -->
+        <g id="node-raiz" data-node-id="raiz" data-node-label="¿Hasta dónde llegó?" tabindex="0" role="button" aria-label="Enfocar ¿Hasta dónde llegó?, empieza siempre por aquí, Raíz" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="empieza siempre por aquí" data-node-context="Raíz" data-tree-depth="0" class="tree-hue-root">
+          <title>¿Hasta dónde llegó? · empieza siempre por aquí · Raíz</title>
+          <rect data-tree-stack="" x="470" y="69" width="204" height="59" rx="10" class="tree-stack-frontend" stroke-width="1.2"/>
+          <rect x="465" y="64" width="204" height="59" rx="10" class="c-mask"/>
+          <rect x="465" y="64" width="204" height="59" rx="10" class="c-frontend tree-root" data-animate="node" style="--step:0" stroke-width="0"/>
+
+
+          <text data-node-label="" x="567" class="t-primary tree-label" font-size="14.5" font-weight="750" text-anchor="middle"><tspan x="567" y="88.5">¿Hasta dónde llegó?</tspan></text>
+          <text data-detail="context" x="567" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="567" y="107.5">empieza siempre por aquí</tspan></text>
+        </g>
+        <g id="node-n1" data-node-id="n1" data-node-label="Solo lo editaste" tabindex="0" role="button" aria-label="Enfocar Solo lo editaste, ni add ni commit, Rama" aria-pressed="false" data-node-kind="backend" data-node-sublabel="ni add ni commit" data-node-context="Rama" data-tree-depth="1" data-tree-ancestors="raiz" class="tree-hue-backend">
+          <title>Solo lo editaste · ni add ni commit · Rama</title>
+          <rect data-tree-stack="" x="50" y="184" width="163" height="76" rx="10" class="tree-stack-backend" stroke-width="1.2"/>
+          <rect x="45" y="179" width="163" height="76" rx="10" class="c-mask"/>
+          <rect x="45" y="179" width="163" height="76" rx="10" class="c-backend tree-branch" data-animate="node" style="--step:1" stroke-width="1.2"/>
+
+          <circle cx="126.5" cy="179" r="2.6" class="tree-socket" stroke-width="1.4"/>
+          <text data-node-label="" x="126.5" class="t-primary tree-label" font-size="13" font-weight="700" text-anchor="middle"><tspan x="126.5" y="212">Solo lo editaste</tspan></text>
+          <text data-detail="context" x="126.5" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="126.5" y="231">ni add ni commit</tspan></text>
+        </g>
+        <g id="node-n1a" data-node-id="n1a" data-node-label="git restore archivo" tabindex="0" role="button" aria-label="Enfocar git restore archivo, vuelve a como estaba · y aquí SÍ se pierde, Hoja" aria-pressed="false" data-node-kind="external" data-node-sublabel="vuelve a como estaba · y aquí SÍ se pierde" data-node-context="Hoja" data-tree-depth="2" data-tree-ancestors="n1 raiz" class="tree-hue-backend">
+          <title>git restore archivo · vuelve a como estaba · y aquí SÍ se pierde · Hoja</title>
+
+          <rect x="32" y="311" width="188" height="90" rx="10" class="c-mask"/>
+          <rect x="32" y="311" width="188" height="90" rx="10" class="c-external tree-leaf" data-animate="node" style="--step:2" stroke-width="1"/>
+
+          <circle cx="126" cy="311" r="2.6" class="tree-socket" stroke-width="1.4"/>
+          <text data-node-label="" x="126" class="t-primary tree-label" font-size="13" font-weight="560" text-anchor="middle"><tspan x="126" y="344">git restore archivo</tspan></text>
+          <text data-detail="context" x="126" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="126" y="363">vuelve a como estaba · y</tspan><tspan x="126" y="377">aquí SÍ se pierde</tspan></text>
+        </g>
+        <g id="node-n2" data-node-id="n2" data-node-label="Hiciste git add" tabindex="0" role="button" aria-label="Enfocar Hiciste git add, elegido, sin confirmar, Rama" aria-pressed="false" data-node-kind="backend" data-node-sublabel="elegido, sin confirmar" data-node-context="Rama" data-tree-depth="1" data-tree-ancestors="raiz" class="tree-hue-database">
+          <title>Hiciste git add · elegido, sin confirmar · Rama</title>
+          <rect data-tree-stack="" x="253" y="184" width="176" height="76" rx="10" class="tree-stack-backend" stroke-width="1.2"/>
+          <rect x="248" y="179" width="176" height="76" rx="10" class="c-mask"/>
+          <rect x="248" y="179" width="176" height="76" rx="10" class="c-backend tree-branch" data-animate="node" style="--step:1" stroke-width="1.2"/>
+
+          <circle cx="336" cy="179" r="2.6" class="tree-socket" stroke-width="1.4"/>
+          <text data-node-label="" x="336" class="t-primary tree-label" font-size="13" font-weight="700" text-anchor="middle"><tspan x="336" y="212">Hiciste git add</tspan></text>
+          <text data-detail="context" x="336" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="336" y="231">elegido, sin confirmar</tspan></text>
+        </g>
+        <g id="node-n2a" data-node-id="n2a" data-node-label="git restore --staged archivo" tabindex="0" role="button" aria-label="Enfocar git restore --staged archivo, sale de la lista y el cambio se queda, Hoja" aria-pressed="false" data-node-kind="external" data-node-sublabel="sale de la lista y el cambio se queda" data-node-context="Hoja" data-tree-depth="2" data-tree-ancestors="n2 raiz" class="tree-hue-database">
+          <title>git restore --staged archivo · sale de la lista y el cambio se queda · Hoja</title>
+
+          <rect x="254" y="311" width="164" height="90" rx="10" class="c-mask"/>
+          <rect x="254" y="311" width="164" height="90" rx="10" class="c-external tree-leaf" data-animate="node" style="--step:2" stroke-width="1"/>
+
+          <circle cx="336" cy="311" r="2.6" class="tree-socket" stroke-width="1.4"/>
+          <text data-node-label="" x="336" class="t-primary tree-label" font-size="13" font-weight="560" text-anchor="middle"><tspan x="336" y="335.5">git restore</tspan><tspan x="336" y="352.5">--staged archivo</tspan></text>
+          <text data-detail="context" x="336" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="336" y="371.5">sale de la lista y</tspan><tspan x="336" y="385.5">el cambio se queda</tspan></text>
+        </g>
+        <g id="node-n3" data-node-id="n3" data-node-label="Confirmaste, sin publicar" tabindex="0" role="button" aria-label="Enfocar Confirmaste, sin publicar, solo en tu equipo, Rama" aria-pressed="false" data-node-kind="backend" data-node-sublabel="solo en tu equipo" data-node-context="Rama" data-tree-depth="1" data-tree-ancestors="raiz" class="tree-hue-cloud">
+          <title>Confirmaste, sin publicar · solo en tu equipo · Rama</title>
+          <rect data-tree-stack="" x="589" y="184" width="144" height="76" rx="10" class="tree-stack-backend" stroke-width="1.2"/>
+          <rect x="584" y="179" width="144" height="76" rx="10" class="c-mask"/>
+          <rect x="584" y="179" width="144" height="76" rx="10" class="c-backend tree-branch" data-animate="node" style="--step:1" stroke-width="1.2"/>
+
+          <circle cx="656" cy="179" r="2.6" class="tree-socket" stroke-width="1.4"/>
+          <text data-node-label="" x="656" class="t-primary tree-label" font-size="13" font-weight="700" text-anchor="middle"><tspan x="656" y="203.5">Confirmaste,</tspan><tspan x="656" y="220.5">sin publicar</tspan></text>
+          <text data-detail="context" x="656" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="656" y="239.5">solo en tu equipo</tspan></text>
+        </g>
+        <g id="node-n3a" data-node-id="n3a" data-node-label="git commit --amend" tabindex="0" role="button" aria-label="Enfocar git commit --amend, si solo es la nota, o falta un archivo, Hoja" aria-pressed="false" data-node-kind="external" data-node-sublabel="si solo es la nota, o falta un archivo" data-node-context="Hoja" data-tree-depth="2" data-tree-ancestors="n3 raiz" class="tree-hue-cloud">
+          <title>git commit --amend · si solo es la nota, o falta un archivo · Hoja</title>
+
+          <rect x="452" y="311" width="180" height="90" rx="10" class="c-mask"/>
+          <rect x="452" y="311" width="180" height="90" rx="10" class="c-external tree-leaf" data-animate="node" style="--step:2" stroke-width="1"/>
+
+          <circle cx="542" cy="311" r="2.6" class="tree-socket" stroke-width="1.4"/>
+          <text data-node-label="" x="542" class="t-primary tree-label" font-size="13" font-weight="560" text-anchor="middle"><tspan x="542" y="344">git commit --amend</tspan></text>
+          <text data-detail="context" x="542" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="542" y="363">si solo es la nota, o</tspan><tspan x="542" y="377">falta un archivo</tspan></text>
+        </g>
+        <g id="node-n3b" data-node-id="n3b" data-node-label="git reset --soft HEAD~1" tabindex="0" role="button" aria-label="Enfocar git reset --soft HEAD~1, deshace el commit y conserva lo que cambiaste, Hoja" aria-pressed="false" data-node-kind="external" data-node-sublabel="deshace el commit y conserva lo que cambiaste" data-node-context="Hoja" data-tree-depth="2" data-tree-ancestors="n3 raiz" class="tree-hue-cloud">
+          <title>git reset --soft HEAD~1 · deshace el commit y conserva lo que cambiaste · Hoja</title>
+
+          <rect x="660" y="311" width="220" height="90" rx="10" class="c-mask"/>
+          <rect x="660" y="311" width="220" height="90" rx="10" class="c-external tree-leaf" data-animate="node" style="--step:2" stroke-width="1"/>
+
+          <circle cx="770" cy="311" r="2.6" class="tree-socket" stroke-width="1.4"/>
+          <text data-node-label="" x="770" class="t-primary tree-label" font-size="13" font-weight="560" text-anchor="middle"><tspan x="770" y="344">git reset --soft HEAD~1</tspan></text>
+          <text data-detail="context" x="770" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="770" y="363">deshace el commit y conserva</tspan><tspan x="770" y="377">lo que cambiaste</tspan></text>
+        </g>
+        <g id="node-n4" data-node-id="n4" data-node-label="Ya lo publicaste" tabindex="0" role="button" aria-label="Enfocar Ya lo publicaste, otra persona puede tenerlo, Rama" aria-pressed="false" data-node-kind="backend" data-node-sublabel="otra persona puede tenerlo" data-node-context="Rama" data-tree-depth="1" data-tree-ancestors="raiz" class="tree-hue-frontend">
+          <title>Ya lo publicaste · otra persona puede tenerlo · Rama</title>
+          <rect data-tree-stack="" x="913" y="184" width="200" height="76" rx="10" class="tree-stack-backend" stroke-width="1.2"/>
+          <rect x="908" y="179" width="200" height="76" rx="10" class="c-mask"/>
+          <rect x="908" y="179" width="200" height="76" rx="10" class="c-backend tree-branch" data-animate="node" style="--step:1" stroke-width="1.2"/>
+
+          <circle cx="1008" cy="179" r="2.6" class="tree-socket" stroke-width="1.4"/>
+          <text data-node-label="" x="1008" class="t-primary tree-label" font-size="13" font-weight="700" text-anchor="middle"><tspan x="1008" y="212">Ya lo publicaste</tspan></text>
+          <text data-detail="context" x="1008" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="1008" y="231">otra persona puede tenerlo</tspan></text>
+        </g>
+        <g id="node-n4a" data-node-id="n4a" data-node-label="git revert id-del-commit" tabindex="0" role="button" aria-label="Enfocar git revert id-del-commit, un commit nuevo que lo deshace, sin borrar nada, Hoja" aria-pressed="false" data-node-kind="external" data-node-sublabel="un commit nuevo que lo deshace, sin borrar nada" data-node-context="Hoja" data-tree-depth="2" data-tree-ancestors="n4 raiz" class="tree-hue-frontend">
+          <title>git revert id-del-commit · un commit nuevo que lo deshace, sin borrar nada · Hoja</title>
+
+          <rect x="914" y="311" width="188" height="90" rx="10" class="c-mask"/>
+          <rect x="914" y="311" width="188" height="90" rx="10" class="c-external tree-leaf" data-animate="node" style="--step:2" stroke-width="1"/>
+
+          <circle cx="1008" cy="311" r="2.6" class="tree-socket" stroke-width="1.4"/>
+          <text data-node-label="" x="1008" class="t-primary tree-label" font-size="13" font-weight="560" text-anchor="middle"><tspan x="1008" y="335.5">git revert</tspan><tspan x="1008" y="352.5">id-del-commit</tspan></text>
+          <text data-detail="context" x="1008" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="1008" y="371.5">un commit nuevo que lo</tspan><tspan x="1008" y="385.5">deshace, sin borrar nada</tspan></text>
+        </g>
+
+        <!-- Branch toggles -->
+        <g data-tree-toggle="raiz" data-tree-count="9" data-tree-label-collapse="Contraer ¿Hasta dónde llegó? (9 debajo)" data-tree-label-expand="Expandir ¿Hasta dónde llegó? (9 ocultos)" role="button" tabindex="0" aria-expanded="true" aria-label="Contraer ¿Hasta dónde llegó? (9 debajo)" class="tree-hue-root">
+          <circle cx="567" cy="123" r="14.5" class="tree-toggle-hit"/>
+          <circle cx="567" cy="123" r="7.5" class="tree-toggle-disc" stroke-width="1.2"/>
+          <path class="tree-toggle-glyph" d="M 563.85 123 H 570.15" stroke-width="1.5" stroke-linecap="round"/>
+          <path class="tree-toggle-glyph tree-toggle-plus" d="M 567 119.85 V 126.15" stroke-width="1.5" stroke-linecap="round"/>
+          <g class="tree-toggle-count">
+            <rect x="577.5" y="115.5" width="17.2" height="15" rx="7.5" class="tree-count-pill"/>
+            <text x="586.1" y="126.6" class="t-primary" font-size="10" font-weight="700" text-anchor="middle">9</text>
+          </g>
+        </g>
+        <g data-tree-toggle="n1" data-tree-count="1" data-tree-ancestors="raiz" data-tree-label-collapse="Contraer Solo lo editaste (1 debajo)" data-tree-label-expand="Expandir Solo lo editaste (1 ocultos)" role="button" tabindex="0" aria-expanded="true" aria-label="Contraer Solo lo editaste (1 debajo)" class="tree-hue-backend">
+          <circle cx="126.5" cy="255" r="14.5" class="tree-toggle-hit"/>
+          <circle cx="126.5" cy="255" r="7.5" class="tree-toggle-disc" stroke-width="1.2"/>
+          <path class="tree-toggle-glyph" d="M 123.35 255 H 129.65" stroke-width="1.5" stroke-linecap="round"/>
+          <path class="tree-toggle-glyph tree-toggle-plus" d="M 126.5 251.85 V 258.15" stroke-width="1.5" stroke-linecap="round"/>
+          <g class="tree-toggle-count">
+            <rect x="137" y="247.5" width="17.2" height="15" rx="7.5" class="tree-count-pill"/>
+            <text x="145.6" y="258.6" class="t-primary" font-size="10" font-weight="700" text-anchor="middle">1</text>
+          </g>
+        </g>
+        <g data-tree-toggle="n2" data-tree-count="1" data-tree-ancestors="raiz" data-tree-label-collapse="Contraer Hiciste git add (1 debajo)" data-tree-label-expand="Expandir Hiciste git add (1 ocultos)" role="button" tabindex="0" aria-expanded="true" aria-label="Contraer Hiciste git add (1 debajo)" class="tree-hue-database">
+          <circle cx="336" cy="255" r="14.5" class="tree-toggle-hit"/>
+          <circle cx="336" cy="255" r="7.5" class="tree-toggle-disc" stroke-width="1.2"/>
+          <path class="tree-toggle-glyph" d="M 332.85 255 H 339.15" stroke-width="1.5" stroke-linecap="round"/>
+          <path class="tree-toggle-glyph tree-toggle-plus" d="M 336 251.85 V 258.15" stroke-width="1.5" stroke-linecap="round"/>
+          <g class="tree-toggle-count">
+            <rect x="346.5" y="247.5" width="17.2" height="15" rx="7.5" class="tree-count-pill"/>
+            <text x="355.1" y="258.6" class="t-primary" font-size="10" font-weight="700" text-anchor="middle">1</text>
+          </g>
+        </g>
+        <g data-tree-toggle="n3" data-tree-count="2" data-tree-ancestors="raiz" data-tree-label-collapse="Contraer Confirmaste, sin publicar (2 debajo)" data-tree-label-expand="Expandir Confirmaste, sin publicar (2 ocultos)" role="button" tabindex="0" aria-expanded="true" aria-label="Contraer Confirmaste, sin publicar (2 debajo)" class="tree-hue-cloud">
+          <circle cx="656" cy="255" r="14.5" class="tree-toggle-hit"/>
+          <circle cx="656" cy="255" r="7.5" class="tree-toggle-disc" stroke-width="1.2"/>
+          <path class="tree-toggle-glyph" d="M 652.85 255 H 659.15" stroke-width="1.5" stroke-linecap="round"/>
+          <path class="tree-toggle-glyph tree-toggle-plus" d="M 656 251.85 V 258.15" stroke-width="1.5" stroke-linecap="round"/>
+          <g class="tree-toggle-count">
+            <rect x="666.5" y="247.5" width="17.2" height="15" rx="7.5" class="tree-count-pill"/>
+            <text x="675.1" y="258.6" class="t-primary" font-size="10" font-weight="700" text-anchor="middle">2</text>
+          </g>
+        </g>
+        <g data-tree-toggle="n4" data-tree-count="1" data-tree-ancestors="raiz" data-tree-label-collapse="Contraer Ya lo publicaste (1 debajo)" data-tree-label-expand="Expandir Ya lo publicaste (1 ocultos)" role="button" tabindex="0" aria-expanded="true" aria-label="Contraer Ya lo publicaste (1 debajo)" class="tree-hue-frontend">
+          <circle cx="1008" cy="255" r="14.5" class="tree-toggle-hit"/>
+          <circle cx="1008" cy="255" r="7.5" class="tree-toggle-disc" stroke-width="1.2"/>
+          <path class="tree-toggle-glyph" d="M 1004.85 255 H 1011.15" stroke-width="1.5" stroke-linecap="round"/>
+          <path class="tree-toggle-glyph tree-toggle-plus" d="M 1008 251.85 V 258.15" stroke-width="1.5" stroke-linecap="round"/>
+          <g class="tree-toggle-count">
+            <rect x="1018.5" y="247.5" width="17.2" height="15" rx="7.5" class="tree-count-pill"/>
+            <text x="1027.1" y="258.6" class="t-primary" font-size="10" font-weight="700" text-anchor="middle">1</text>
+          </g>
+        </g>
+
+        <!-- Expand all (shown only while a branch is collapsed) -->
+        <g data-tree-expand-all="" role="button" tabindex="0" aria-label="Expandir todo">
+          <rect x="32" y="18" width="106" height="24" rx="12" stroke-width="1.2"/>
+          <text x="44" y="34" class="t-primary" font-size="10.5" font-weight="650">Expandir todo</text>
+        </g>
+      </svg>

@@ -46,6 +46,7 @@ export default defineConfig({
             { text: '4 · Nuestra estructura', link: '/git/estructura' },
             { text: '5 · El día a día', link: '/git/dia-a-dia' },
             { text: '6 · Conflictos', link: '/git/conflictos' },
+            { text: '7 · Deshacer', link: '/git/deshacer' },
           ],
         },
       ],

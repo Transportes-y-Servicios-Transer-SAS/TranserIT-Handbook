@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "diagram_type": "tree",
+  "meta": {
+    "title": "Qué comando deshace lo tuyo",
+    "subtitle": "La pregunta no es qué hiciste mal, sino hasta dónde llegó. Eso decide el comando y el precio.",
+    "output": "deshacer.html",
+    "locale": "es",
+    "animation": "trace",
+    "quality_profile": "showcase"
+  },
+  "layout": {
+    "direction": "down"
+  },
+  "nodes": [
+    {
+      "id": "raiz",
+      "label": "¿Hasta dónde llegó?",
+      "sublabel": "empieza siempre por aquí"
+    },
+
+    {
+      "id": "n1",
+      "label": "Solo lo editaste",
+      "parent": "raiz",
+      "sublabel": "ni add ni commit"
+    },
+    {
+      "id": "n1a",
+      "label": "git restore archivo",
+      "parent": "n1",
+      "sublabel": "vuelve a como estaba · y aquí SÍ se pierde"
+    },
+
+    {
+      "id": "n2",
+      "label": "Hiciste git add",
+      "parent": "raiz",
+      "sublabel": "elegido, sin confirmar"
+    },
+    {
+      "id": "n2a",
+      "label": "git restore --staged archivo",
+      "parent": "n2",
+      "sublabel": "sale de la lista y el cambio se queda"
+    },
+
+    {
+      "id": "n3",
+      "label": "Confirmaste, sin publicar",
+      "parent": "raiz",
+      "sublabel": "solo en tu equipo"
+    },
+    {
+      "id": "n3a",
+      "label": "git commit --amend",
+      "parent": "n3",
+      "sublabel": "si solo es la nota, o falta un archivo"
+    },
+    {
+      "id": "n3b",
+      "label": "git reset --soft HEAD~1",
+      "parent": "n3",
+      "sublabel": "deshace el commit y conserva lo que cambiaste"
+    },
+
+    {
+      "id": "n4",
+      "label": "Ya lo publicaste",
+      "parent": "raiz",
+      "sublabel": "otra persona puede tenerlo"
+    },
+    {
+      "id": "n4a",
+      "label": "git revert id-del-commit",
+      "parent": "n4",
+      "sublabel": "un commit nuevo que lo deshace, sin borrar nada"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "La frontera está en publicar",
+      "items": [
+        "Antes de publicar puedes reescribir lo que quieras: no existe para nadie más",
+        "Después, reescribir le cambia el suelo a quien ya lo trajo",
+        "Por eso lo publicado se deshace añadiendo, no borrando: git revert"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Casi nada se pierde de verdad",
+      "items": [
+        "Todo commit que existió alguna vez sigue ahí durante semanas, aunque ninguna rama lo nombre",
+        "git reflog los lista: es el historial de dónde estuvo HEAD, no el de la rama",
+        "Si creías haber perdido un commit, mira ahí antes de rehacer el trabajo"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Y lo que sí se pierde, sin vuelta atrás",
+      "items": [
+        "Lo que nunca llegó a un commit: git restore y git reset --hard lo borran de verdad",
+        "Un archivo que nunca añadiste no está en ningún sitio: Git no sigue lo que no le presentaste",
+        "Ante la duda, git stash aparta sin borrar y se recupera después"
+      ]
+    }
+  ]
+}

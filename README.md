@@ -36,7 +36,7 @@ bun run diagramas  # solo los diagramas
 | **Git · 4 · Nuestra estructura** | Escrito. Tres ramas largas, dos direcciones, y por qué |
 | **Git · 5 · El día a día** | Escrito. La rutina, el orden de la entrega y la compuerta de cada repositorio |
 | **Git · 6 · Conflictos** | Escrito. Incluidos los dos archivos con regla propia de fusión |
-| Git · 7 | Pendiente: deshacer |
+| **Git · 7 · Deshacer** | Escrito. El árbol de decisión según hasta dónde llegó el cambio |
 | Cómo trabaja el área | Pendiente. Sale del `ONBOARDING.md` de `vortice-specs` y de las *skills* |
 | Entornos | Pendiente. Son los manuales que hoy viven en el área de análisis |
 

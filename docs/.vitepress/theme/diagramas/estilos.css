@@ -1,4 +1,4 @@
-/* Generado por scripts/diagramas.mjs desde 7 diagrama(s). No se edita a mano. */
+/* Generado por scripts/diagramas.mjs desde 8 diagrama(s). No se edita a mano. */
 
 @keyframes pulse {
       0%, 100% { opacity: 1; }
@@ -731,6 +731,43 @@
 .archify .ambient-edge-flow[data-tree-hidden] { display: none !important; animation: none !important; }
 .archify svg[data-preset="blueprint"] .ambient-edge-flow { stroke-linecap: square; }
 .archify svg[data-preset="editorial"] { --flow-halo-peak: 0.07; --flow-glow-peak: 0.28; --flow-tail-peak: 0.2; --flow-head-peak: 0.7; --flow-wake-peak: 0.14; --flow-ripple-peak: 0.3; }
+.archify svg[data-tree-ui] .tree-hue-root { --tree-hue: var(--text-muted); --tree-wash: transparent; }
+.archify svg[data-tree-ui] .tree-hue-backend { --tree-hue: var(--backend-stroke); --tree-wash: var(--backend-fill); }
+.archify svg[data-tree-ui] .tree-hue-database { --tree-hue: var(--database-stroke); --tree-wash: var(--database-fill); }
+.archify svg[data-tree-ui] .tree-hue-cloud { --tree-hue: var(--cloud-stroke); --tree-wash: var(--cloud-fill); }
+.archify svg[data-tree-ui] .tree-hue-frontend { --tree-hue: var(--frontend-stroke); --tree-wash: var(--frontend-fill); }
+.archify svg[data-tree-ui] .tree-hue-messagebus { --tree-hue: var(--messagebus-stroke); --tree-wash: var(--messagebus-fill); }
+.archify svg[data-tree-ui] .tree-hue-external { --tree-hue: var(--external-stroke); --tree-wash: var(--external-fill); }
+.archify svg[data-tree-ui] .tree-edge { stroke-linejoin: round; stroke-linecap: round; }
+.archify svg[data-tree-ui] .tree-edge-trunk { stroke: color-mix(in srgb, var(--text) 18%, var(--arrow)); }
+.archify svg[data-tree-ui] .tree-edge-hued { stroke: color-mix(in srgb, var(--tree-hue) 42%, var(--arrow)); }
+.archify svg[data-tree-ui] .tree-root { fill: var(--text); stroke: none; }
+.archify svg[data-tree-ui] [data-tree-depth="0"] .tree-label { fill: var(--mask); }
+.archify svg[data-tree-ui] [data-tree-depth="0"] .tree-sublabel { fill: var(--mask); opacity: 0.68; }
+.archify svg[data-tree-ui] .tree-branch { fill: var(--tree-wash); stroke: color-mix(in srgb, var(--tree-hue) 48%, var(--lane-stroke)); }
+.archify svg[data-tree-ui] .tree-leaf { fill: var(--mask); stroke: color-mix(in srgb, var(--tree-hue) 22%, var(--lane-stroke)); }
+.archify svg[data-tree-ui] .tree-socket { fill: var(--mask); stroke: var(--tree-hue); pointer-events: none; }
+.archify svg[data-tree-ui] .tree-accent { stroke: var(--tree-hue); pointer-events: none; }
+.archify svg[data-tree-ui] [data-tree-stack] { display: none; fill: var(--mask); stroke: color-mix(in srgb, var(--tree-hue) 70%, var(--lane-stroke)); }
+.archify svg[data-tree-ui] [data-tree-collapsed] [data-tree-stack] { display: inline; }
+.archify svg[data-tree-ui] [data-tree-hidden] { display: none; }
+.archify svg[data-tree-ui] .tree-toggle-hit { fill: transparent; }
+.archify svg[data-tree-ui] .tree-toggle-disc { fill: var(--mask); stroke: color-mix(in srgb, var(--tree-hue) 55%, var(--lane-stroke)); transition: stroke 0.15s ease, fill 0.15s ease; }
+.archify svg[data-tree-ui] .tree-toggle-glyph { stroke: var(--text-muted); fill: none; transition: stroke 0.15s ease; }
+.archify svg[data-tree-ui] .tree-toggle-count { display: none; }
+.archify svg[data-tree-ui] .tree-count-pill { fill: var(--tree-hue); stroke: none; }
+.archify svg[data-tree-ui] .tree-toggle-count text { fill: var(--mask); }
+.archify svg[data-tree-ui] [data-tree-toggle] { cursor: pointer; outline: none; }
+.archify svg[data-tree-ui] [data-tree-toggle][aria-expanded="true"] .tree-toggle-plus { display: none; }
+.archify svg[data-tree-ui] [data-tree-toggle][aria-expanded="false"] .tree-toggle-count { display: inline; }
+.archify svg[data-tree-ui] [data-tree-toggle][aria-expanded="false"] .tree-toggle-disc { fill: var(--tree-hue); stroke: var(--tree-hue); }
+.archify svg[data-tree-ui] [data-tree-toggle][aria-expanded="false"] .tree-toggle-glyph { stroke: var(--mask); }
+.archify svg[data-tree-ui] [data-tree-toggle]:hover .tree-toggle-disc, .archify svg[data-tree-ui] [data-tree-toggle]:focus-visible .tree-toggle-disc { stroke: var(--tree-hue); stroke-width: 2; }
+.archify svg[data-tree-ui] [data-tree-toggle]:hover .tree-toggle-glyph, .archify svg[data-tree-ui] [data-tree-toggle]:focus-visible .tree-toggle-glyph { stroke: var(--text); }
+.archify svg[data-tree-ui] [data-tree-expand-all] { cursor: pointer; outline: none; }
+.archify svg[data-tree-ui] [data-tree-expand-all] rect { fill: var(--mask); stroke: var(--lane-stroke); }
+.archify svg[data-tree-ui] [data-tree-expand-all]:is(:hover, :focus-visible) rect { stroke: var(--arrow-emphasis); stroke-width: 2; }
+.archify svg[data-tree-ui]:not([data-tree-any-collapsed]) [data-tree-expand-all] { display: none; }
 .archify svg[data-node-ui] [data-node-id] > rect:not(.c-mask) { stroke-width: 1.25px; }
 .archify :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-frontend { fill: color-mix(in srgb, var(--frontend-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--frontend-stroke) 72%, var(--mask)); }
 .archify :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-backend { fill: color-mix(in srgb, var(--backend-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--backend-stroke) 72%, var(--mask)); }
