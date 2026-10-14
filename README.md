@@ -118,31 +118,16 @@ Lo aprendido al integrarlo, para no redescubrirlo:
 
 ## Publicación
 
-El flujo de `.github/workflows/publicar.yml` construye el sitio y lo despliega en GitHub Pages por
-artefacto —`actions/deploy-pages`, no una rama `gh-pages`—, al empujar a `master` o a mano.
+El manual se publica en **GitHub Pages**, y el sitio es público:
 
-**Hoy no puede desplegar, y conviene saber por qué.** Medido contra la API el 2026-10-14:
+**https://transportes-y-servicios-transer-sas.github.io/TranserIT-Handbook/**
 
-```
-POST /repos/.../pages  →  422
-"Your current plan does not support GitHub Pages for this repository."
-```
+El flujo de `.github/workflows/publicar.yml` lo construye y lo despliega por artefacto
+—`actions/deploy-pages`, no una rama `gh-pages`— al empujar a `master` o a mano.
 
-La organización está en plan `free`, y ahí **Pages solo sirve sitios desde repositorios públicos**.
-Este repositorio es privado a propósito: el manual nombra repositorios, ramas, compuertas, el
-bloqueo de la red corporativa, la guía interna de contraseñas y el estado de la autenticación de
-Vórtice. Nada de eso debería ser indexable.
-
-Las tres salidas, y ninguna es técnica:
-
-| | Qué implica |
-|---|---|
-| **Subir la organización a Team** | Pages desde repositorio privado, visible solo para miembros. Es la única que publica el manual completo sin exponerlo |
-| **Un segundo sitio público solo con la sección de Git** | Las siete partes son genéricas: no nombran un repositorio ni un ambiente |
-| **Servirlo como imagen de contenedor** | En infraestructura propia, sin depender del plan |
-
-**El flujo falla en el paso de despliegue mientras tanto, y es deliberado**: un flujo que se quedara
-en verde sin publicar sería exactamente el defecto que este manual enseña a reconocer.
+> **Que sea público es una decisión tomada con la lista delante.** El manual nombra los
+> repositorios, las ramas, lo que comprueba cada compuerta, el bloqueo de la red corporativa y el
+> estado de lo que todavía está abierto. Se publicó así a propósito, no por descuido.
 
 ### Dos cosas que el flujo da por hechas
 
