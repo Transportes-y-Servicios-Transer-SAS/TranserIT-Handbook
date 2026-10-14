@@ -1,0 +1,219 @@
+<svg viewBox="0 0 1099 528" data-layout-contract="readable-v2" role="img" lang="es" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase" data-node-ui="">
+        <title id="archify-diagram-title">De la pregunta al código</title>
+        <desc id="archify-diagram-description">Un diagrama de flujo de trabajo generado por Archify.</desc>
+        <!-- Definitions -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-default" />
+          </marker>
+          <marker id="arrowhead-emphasis" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-emphasis" />
+          </marker>
+          <marker id="arrowhead-security" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-security" />
+          </marker>
+          <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-dashed" />
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" class="c-grid" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <style>
+          svg[data-node-ui] [data-node-id] > rect:not(.c-mask) { stroke-width: 1.25px; }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-frontend { fill: color-mix(in srgb, var(--frontend-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--frontend-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-backend { fill: color-mix(in srgb, var(--backend-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--backend-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-database { fill: color-mix(in srgb, var(--database-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--database-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-cloud { fill: color-mix(in srgb, var(--cloud-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--cloud-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-security { fill: color-mix(in srgb, var(--security-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--security-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-messagebus { fill: color-mix(in srgb, var(--messagebus-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--messagebus-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-external { fill: color-mix(in srgb, var(--external-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--external-stroke) 72%, var(--mask)); }
+          svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-region { fill: color-mix(in srgb, var(--cloud-stroke) 3%, transparent); stroke: color-mix(in srgb, var(--cloud-stroke) 42%, var(--lane-stroke)); stroke-dasharray: none; }
+          svg[data-node-ui] .c-security-group { stroke: color-mix(in srgb, var(--security-stroke) 58%, var(--lane-stroke)); }
+          svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-security-group { stroke-dasharray: 4 3; }
+          svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-lane { stroke: var(--lane-stroke); stroke-dasharray: none; }
+          svg[data-node-ui] [data-graph-role="structural-frame-label-mask"] { rx: 5px; fill: color-mix(in srgb, var(--cloud-stroke) 10%, var(--mask)); stroke: color-mix(in srgb, var(--cloud-stroke) 38%, var(--mask)); stroke-width: .8px; }
+          svg[data-node-ui] [data-composition-frame-kind="security-group"] > [data-graph-role="structural-frame-label-mask"] { fill: color-mix(in srgb, var(--security-stroke) 9%, var(--mask)); stroke: color-mix(in srgb, var(--security-stroke) 36%, var(--mask)); }
+          svg[data-node-ui] .phase-rule { opacity: .5; stroke-dasharray: none; }
+          svg[data-node-ui] .phase-chip { stroke: var(--lane-stroke); stroke-width: .75px; }
+          svg[data-node-ui] g[data-edge-from] > rect.c-mask { rx: 7px; stroke: var(--lane-stroke); stroke-width: .75px; }
+          svg[data-node-ui][data-preset="blueprint"] :is([data-graph-role="structural-frame-label-mask"], g[data-edge-from] > rect.c-mask, .phase-chip) { rx: 2px; }
+          svg[data-node-ui][data-preset="editorial"] :is([data-graph-role="structural-frame-label-mask"], g[data-edge-from] > rect.c-mask, .phase-chip) { rx: 3px; }
+        </style>
+
+        <!-- Background Grid -->
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- Swimlanes -->
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-0" x="40" y="52" width="1043" height="104" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="54" y="74" class="t-muted" font-size="10" font-weight="600">01 / El negocio</text>
+
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-1" x="40" y="176" width="1043" height="104" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="54" y="198" class="t-muted" font-size="10" font-weight="600">02 / La especificación</text>
+
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-2" x="40" y="300" width="1043" height="104" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="54" y="322" class="t-muted" font-size="10" font-weight="600">03 / El código</text>
+
+        <!-- Phase headers -->
+        <path d="M 86 35 H 407.6" class="a-emphasis phase-rule" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <rect x="210.4" y="27" width="72.8" height="16" rx="8" class="c-mask phase-chip"/>
+        <text x="246.8" y="38.5" class="t-backend" font-size="8" font-weight="600" text-anchor="middle" letter-spacing=".04em">Se pregunta</text>
+        <path d="M 567.6 35 H 643.6" class="a-default phase-rule" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <rect x="566.8000000000001" y="27" width="77.6" height="16" rx="8" class="c-mask phase-chip"/>
+        <text x="605.6" y="38.5" class="t-muted" font-size="8" font-weight="600" text-anchor="middle" letter-spacing=".04em">Se planifica</text>
+        <path d="M 687.5999999999999 35 H 1062.4" class="a-default phase-rule" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <rect x="807.4" y="27" width="135.2" height="16" rx="8" class="c-mask phase-chip"/>
+        <text x="875" y="38.5" class="t-muted" font-size="8" font-weight="600" text-anchor="middle" letter-spacing=".04em">Se deriva y se comprueba</text>
+
+        <!-- Workflow groups -->
+
+
+        <!-- Edge paths -->
+        <path data-edge-from="siete" data-edge-to="specbe" data-edge-label="transer-spec-draft" data-edge-key="0" data-edge-id="e1" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="124,145;124,166;291.6,166;291.6,243;307.6,243" d="M 124 145 L 124 158 Q 124 166 132 166 L 283.6 166 Q 291.6 166 291.6 174 L 291.6 235 Q 291.6 243 299.6 243 L 307.6 243" class="a-default" data-animate="edge" style="--step:0" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="specbe" data-edge-to="specfe" data-edge-label="si hay pantalla" data-edge-key="1" data-edge-id="e2" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="431.6,243;521.6,243" d="M 431.6 243 L 521.6 243" class="a-default" data-animate="edge" style="--step:6" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="specbe" data-edge-to="tablero" data-edge-label="publicar-en-plane" data-edge-key="2" data-edge-id="e3" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="393.6,217;393.6,201;443.6,201;443.6,119;541.6,119" d="M 393.6 217 L 393.6 209 Q 393.6 201 401.6 201 L 435.6 201 Q 443.6 201 443.6 193 L 443.6 127 Q 443.6 119 451.6 119 L 541.6 119" class="a-default" data-animate="edge" style="--step:1" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="tablero" data-edge-to="deriva" data-edge-label="transer-spec" data-edge-key="3" data-edge-id="e4" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="669.6,119;725.6,119;725.6,341" d="M 669.6 119 L 717.6 119 Q 725.6 119 725.6 127 L 725.6 341" class="a-default" data-animate="edge" style="--step:2" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="deriva" data-edge-to="compuertas" data-edge-label="verify" data-edge-key="4" data-edge-id="e5" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="811.6,367;858.4000000000001,367" d="M 811.6 367 L 858.4000000000001 367" class="a-default" data-animate="edge" style="--step:3" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="specbe" data-edge-to="hueco" data-edge-label="un hueco" data-edge-key="5" data-edge-id="e6" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="369.6,217;369.6,145" d="M 369.6 217 L 369.6 145" class="a-dashed" data-animate="edge" style="--step:10" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="hueco" data-edge-to="siete" data-edge-label="vuelve al negocio" data-edge-key="6" data-edge-id="e7" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="299.6,119;200,119" d="M 299.6 119 L 200 119" class="a-security" data-animate="edge" style="--step:11" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
+
+        <!-- Nodes -->
+        <g id="node-siete" data-node-id="siete" data-node-label="Siete preguntas" tabindex="0" role="button" aria-label="Enfocar Siete preguntas, en un correo, no en un formato, El negocio › Se pregunta" aria-pressed="false" data-node-kind="external" data-node-sublabel="en un correo, no en un formato" data-node-context="El negocio › Se pregunta">
+          <title>Siete preguntas · en un correo, no en un formato · El negocio › Se pregunta</title>
+          <rect x="48" y="93" width="152" height="52" rx="8" class="c-mask"/>
+          <rect x="48" y="93" width="152" height="52" rx="8" class="c-external" data-animate="node" style="--step:0" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(54 99) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="124" y="114" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Siete preguntas</text>
+          <text data-detail="context" x="124" y="131" class="t-muted" font-size="8" text-anchor="middle">en un correo, no en un formato</text>
+        </g>
+
+        <g id="node-hueco" data-node-id="hueco" data-node-label="¿Falta una respuesta?" tabindex="0" role="button" aria-label="Enfocar ¿Falta una respuesta?, se pregunta, no se rellena, El negocio › Se pregunta" aria-pressed="false" data-node-kind="external" data-node-sublabel="se pregunta, no se rellena" data-node-context="El negocio › Se pregunta">
+          <title>¿Falta una respuesta? · se pregunta, no se rellena · El negocio › Se pregunta</title>
+          <rect x="299.6" y="93" width="140" height="52" rx="8" class="c-mask"/>
+          <rect x="299.6" y="93" width="140" height="52" rx="8" class="c-external" data-animate="node" style="--step:6" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(305.6 99) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="369.6" y="124.5" class="t-primary" font-size="10.4" font-weight="600" text-anchor="middle">¿Falta una respuesta?</text>
+          <text data-detail="context" x="369.6" y="139.3" class="t-muted" font-size="8" text-anchor="middle">se pregunta, no se rellena</text>
+        </g>
+
+        <g id="node-tablero" data-node-id="tablero" data-node-label="Historias" tabindex="0" role="button" aria-label="Enfocar Historias, la de pantalla, bloqueada, El negocio › Se planifica" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="la de pantalla, bloqueada" data-node-context="El negocio › Se planifica">
+          <title>Historias · la de pantalla, bloqueada · El negocio › Se planifica</title>
+          <rect x="541.6" y="93" width="128" height="52" rx="8" class="c-mask"/>
+          <rect x="541.6" y="93" width="128" height="52" rx="8" class="c-cloud" data-animate="node" style="--step:2" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(547.6 99) scale(0.6875)">
+            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="605.6" y="114" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Historias</text>
+          <text data-detail="context" x="605.6" y="131" class="t-muted" font-size="8" text-anchor="middle">la de pantalla, bloqueada</text>
+        </g>
+
+        <g id="node-specbe" data-node-id="specbe" data-node-label="Especificación" tabindex="0" role="button" aria-label="Enfocar Especificación, la del servidor, primero, La especificación › Se pregunta" aria-pressed="false" data-node-kind="security" data-node-sublabel="la del servidor, primero" data-node-context="La especificación › Se pregunta">
+          <title>Especificación · la del servidor, primero · La especificación › Se pregunta</title>
+          <rect x="307.6" y="217" width="124" height="52" rx="8" class="c-mask"/>
+          <rect x="307.6" y="217" width="124" height="52" rx="8" class="c-security" data-animate="node" style="--step:1" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(313.6 223) scale(0.6875)">
+            <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
+            <path d="m5.8 8 1.5 1.5 3-3"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="372.8" y="238" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Especificación</text>
+          <text data-detail="context" x="369.6" y="255" class="t-muted" font-size="8" text-anchor="middle">la del servidor, primero</text>
+        </g>
+
+        <g id="node-specfe" data-node-id="specfe" data-node-label="Y la de pantalla" tabindex="0" role="button" aria-label="Enfocar Y la de pantalla, sale del contrato, no del esquema, La especificación › Se planifica" aria-pressed="false" data-node-kind="security" data-node-sublabel="sale del contrato, no del esquema" data-node-context="La especificación › Se planifica">
+          <title>Y la de pantalla · sale del contrato, no del esquema · La especificación › Se planifica</title>
+          <rect x="521.6" y="217" width="168" height="52" rx="8" class="c-mask"/>
+          <rect x="521.6" y="217" width="168" height="52" rx="8" class="c-security" data-animate="node" style="--step:9" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(527.6 223) scale(0.6875)">
+            <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
+            <path d="m5.8 8 1.5 1.5 3-3"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="605.6" y="238" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Y la de pantalla</text>
+          <text data-detail="context" x="605.6" y="255" class="t-muted" font-size="8" text-anchor="middle">sale del contrato, no del esquema</text>
+        </g>
+
+        <g id="node-deriva" data-node-id="deriva" data-node-label="La derivación" tabindex="0" role="button" aria-label="Enfocar La derivación, esquema, código, contrato, pruebas, El código › Se deriva y se comprueba" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="esquema, código, contrato, pruebas" data-node-context="El código › Se deriva y se comprueba">
+          <title>La derivación · esquema, código, contrato, pruebas · El código › Se deriva y se comprueba</title>
+          <rect x="639.6" y="341" width="172" height="52" rx="8" class="c-mask"/>
+          <rect x="639.6" y="341" width="172" height="52" rx="8" class="c-frontend" data-animate="node" style="--step:3" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(645.6 347) scale(0.6875)">
+            <rect x="2" y="3" width="12" height="10" rx="2"/>
+            <path d="M2 6.5h12"/>
+            <circle cx="4.1" cy="4.8" r=".7" class="sigil-fill"/>
+            <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="725.6" y="362" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">La derivación</text>
+          <text data-detail="context" x="725.6" y="379" class="t-muted" font-size="8" text-anchor="middle">esquema, código, contrato, pruebas</text>
+        </g>
+
+        <g id="node-compuertas" data-node-id="compuertas" data-node-label="Las compuertas" tabindex="0" role="button" aria-label="Enfocar Las compuertas, en verde, o no sale, El código › Se deriva y se comprueba" aria-pressed="false" data-node-kind="backend" data-node-sublabel="en verde, o no sale" data-node-context="El código › Se deriva y se comprueba">
+          <title>Las compuertas · en verde, o no sale · El código › Se deriva y se comprueba</title>
+          <rect x="858.4000000000001" y="341" width="92" height="52" rx="8" class="c-mask"/>
+          <rect x="858.4000000000001" y="341" width="92" height="52" rx="8" class="c-backend" data-animate="node" style="--step:4" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(864.4000000000001 347) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="904.4000000000001" y="372" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">Las compuertas</text>
+          <text data-detail="context" x="904.4000000000001" y="385.8" class="t-muted" font-size="7.3" text-anchor="middle">en verde, o no sale</text>
+        </g>
+
+        <!-- Edge labels -->
+        <g data-detail="context" data-edge-from="siete" data-edge-to="specbe" data-edge-label="transer-spec-draft" data-edge-key="0" data-edge-id="e1">
+          <rect x="159.60000000000002" y="146" width="96.39999999999999" height="14" rx="3" class="c-mask"/>
+          <text x="207.8" y="156" class="t-muted" font-size="8" text-anchor="middle">transer-spec-draft</text>
+        </g>
+        <g data-detail="context" data-edge-from="specbe" data-edge-to="specfe" data-edge-label="si hay pantalla" data-edge-key="1" data-edge-id="e2">
+          <rect x="435.6" y="223" width="82" height="14" rx="3" class="c-mask"/>
+          <text x="476.6" y="233" class="t-muted" font-size="8" text-anchor="middle">si hay pantalla</text>
+        </g>
+        <g data-detail="context" data-edge-from="specbe" data-edge-to="tablero" data-edge-label="publicar-en-plane" data-edge-key="2" data-edge-id="e3">
+          <rect x="446.8" y="99" width="91.6" height="14" rx="3" class="c-mask"/>
+          <text x="492.6" y="109" class="t-muted" font-size="8" text-anchor="middle">publicar-en-plane</text>
+        </g>
+        <g data-detail="context" data-edge-from="tablero" data-edge-to="deriva" data-edge-label="transer-spec" data-edge-key="3" data-edge-id="e4">
+          <rect x="691.8000000000001" y="220" width="67.6" height="14" rx="3" class="c-mask"/>
+          <text x="725.6" y="230" class="t-muted" font-size="8" text-anchor="middle">transer-spec</text>
+        </g>
+        <g data-detail="context" data-edge-from="deriva" data-edge-to="compuertas" data-edge-label="verify" data-edge-key="4" data-edge-id="e5">
+          <rect x="815.6" y="347" width="38.8" height="14" rx="3" class="c-mask"/>
+          <text x="835" y="357" class="t-muted" font-size="8" text-anchor="middle">verify</text>
+        </g>
+        <g data-detail="context" data-edge-from="specbe" data-edge-to="hueco" data-edge-label="un hueco" data-edge-key="5" data-edge-id="e6">
+          <rect x="345.40000000000003" y="171" width="48.4" height="14" rx="3" class="c-mask"/>
+          <text x="369.6" y="181" class="t-edge-dashed" font-size="8" text-anchor="middle">un hueco</text>
+        </g>
+        <g data-detail="context" data-edge-from="hueco" data-edge-to="siete" data-edge-label="vuelve al negocio" data-edge-key="6" data-edge-id="e7">
+          <rect x="204" y="99" width="91.6" height="14" rx="3" class="c-mask"/>
+          <text x="249.8" y="109" class="t-edge-security" font-size="8" text-anchor="middle">vuelve al negocio</text>
+        </g>
+
+        <!-- Legend -->
+        <g data-legend="" data-legend-bridge="">
+          <text x="20" y="428" class="t-primary" font-size="12" font-weight="650">Leyenda</text>
+          <g data-legend-semantic-kind="frontend" data-legend-kind="frontend" data-legend-label="El código derivado" data-legend-x="20" data-legend-baseline="448" data-legend-width="127">
+            <rect x="20" y="440" width="14" height="9" rx="2" class="c-frontend" stroke-width="1"/>
+            <text x="42" y="448" class="t-muted" font-size="7.5" font-weight="500">El código derivado</text>
+          </g>
+          <g data-legend-semantic-kind="backend" data-legend-kind="backend" data-legend-label="Lo que comprueba" data-legend-x="154" data-legend-baseline="448" data-legend-width="118">
+            <rect x="154" y="440" width="14" height="9" rx="2" class="c-backend" stroke-width="1"/>
+            <text x="176" y="448" class="t-muted" font-size="7.5" font-weight="500">Lo que comprueba</text>
+          </g>
+          <g data-legend-semantic-kind="security" data-legend-kind="security" data-legend-label="La especificación, que gobierna" data-legend-x="279" data-legend-baseline="448" data-legend-width="188">
+            <rect x="279" y="440" width="14" height="9" rx="2" class="c-security" stroke-width="1"/>
+            <text x="301" y="448" class="t-muted" font-size="7.5" font-weight="500">La especificación, que gobierna</text>
+          </g>
+          <g data-legend-semantic-kind="cloud" data-legend-kind="cloud" data-legend-label="El tablero" data-legend-x="474" data-legend-baseline="448" data-legend-width="90">
+            <rect x="474" y="440" width="14" height="9" rx="2" class="c-cloud" stroke-width="1"/>
+            <text x="496" y="448" class="t-muted" font-size="7.5" font-weight="500">El tablero</text>
+          </g>
+          <g data-legend-semantic-kind="external" data-legend-kind="external" data-legend-label="Lo que solo sabe el negocio" data-legend-x="571" data-legend-baseline="448" data-legend-width="169">
+            <rect x="571" y="440" width="14" height="9" rx="2" class="c-external" stroke-width="1"/>
+            <text x="593" y="448" class="t-muted" font-size="7.5" font-weight="500">Lo que solo sabe el negocio</text>
+          </g>
+        </g>
+      </svg>

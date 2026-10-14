@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "diagram_type": "tree",
+  "meta": {
+    "title": "Las compuertas, y qué vigila cada una",
+    "subtitle": "Un comando por repositorio. Dentro, esto es lo que mira.",
+    "output": "compuertas.html",
+    "locale": "es",
+    "animation": "trace",
+    "quality_profile": "showcase"
+  },
+  "layout": {
+    "direction": "right"
+  },
+  "nodes": [
+    {
+      "id": "raiz",
+      "label": "Las compuertas",
+      "sublabel": "si una muerde, no sale"
+    },
+
+    {
+      "id": "be",
+      "label": "En el servidor",
+      "parent": "raiz",
+      "sublabel": "dentro de mvnw verify"
+    },
+    { "id": "arq", "label": "Arquitectura", "parent": "be", "sublabel": "las capas no se saltan" },
+    { "id": "mod", "label": "Modularidad", "parent": "be", "sublabel": "los módulos no se enredan" },
+    { "id": "idioma", "label": "Idioma", "parent": "be", "sublabel": "identificadores en inglés" },
+    { "id": "permisos", "label": "Catálogo de permisos", "parent": "be", "sublabel": "ninguno suelto" },
+    { "id": "captura", "label": "Captura del contrato", "parent": "be", "sublabel": "si cambió, se nota" },
+    { "id": "trazabe", "label": "Trazabilidad", "parent": "be", "sublabel": "un criterio, una prueba" },
+
+    {
+      "id": "fe",
+      "label": "En la pantalla",
+      "parent": "raiz",
+      "sublabel": "vitest run gates/"
+    },
+    { "id": "ejemplar", "label": "Adherencia al ejemplar", "parent": "fe", "sublabel": "el listón de verdad" },
+    { "id": "errores", "label": "Códigos de error", "parent": "fe", "sublabel": "contra el contrato" },
+    { "id": "obsoletos", "label": "Componentes obsoletos", "parent": "fe", "sublabel": "nada retirado" },
+    { "id": "contraste", "label": "Contraste", "parent": "fe", "sublabel": "se puede leer" },
+    { "id": "estados", "label": "Estados de pantalla", "parent": "fe", "sublabel": "vacío, carga, error" },
+    { "id": "trazafe", "label": "Trazabilidad", "parent": "fe", "sublabel": "la misma de allá" },
+    { "id": "vocab", "label": "Vocabulario", "parent": "fe", "sublabel": "lo que lee el usuario" },
+    { "id": "vulns", "label": "Vulnerabilidades", "parent": "fe", "sublabel": "en las dependencias" }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "La de trazabilidad es la que más te va a tocar",
+      "items": [
+        "Cada criterio de la especificación necesita una prueba que lo cite en su nombre visible",
+        "Y el criterio tiene que estar en el manifiesto, que es acumulativo: cada derivación añade el suyo",
+        "Se fusiona por unión de líneas, porque resolverlo a mano borraba los criterios de la otra funcionalidad"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Una compuerta no está lista hasta que se demuestra que muerde",
+      "items": [
+        "Se rompe algo a propósito y se comprueba que lo ve",
+        "Caso real: una de trazabilidad corría seis pruebas en verde contra un manifiesto que no existía",
+        "Comparar contra una lista vacía siempre sale bien"
+      ]
+    }
+  ]
+}

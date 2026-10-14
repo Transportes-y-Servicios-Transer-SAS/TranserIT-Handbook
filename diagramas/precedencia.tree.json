@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "diagram_type": "tree",
+  "meta": {
+    "title": "Dónde se decide qué, y qué manda sobre qué",
+    "subtitle": "Una especificación que contradice un ADR es un defecto de la especificación, no un permiso.",
+    "output": "precedencia.html",
+    "locale": "es",
+    "animation": "trace",
+    "quality_profile": "showcase"
+  },
+  "layout": {
+    "direction": "down"
+  },
+  "nodes": [
+    {
+      "id": "core",
+      "label": "Los ADR y las convenciones",
+      "sublabel": "TranserIT-Architecture · arquitectura y proceso"
+    },
+    {
+      "id": "spec",
+      "label": "La especificación",
+      "parent": "core",
+      "sublabel": "vortice-specs · el negocio de una funcionalidad"
+    },
+    {
+      "id": "esquema",
+      "label": "El esquema",
+      "parent": "spec",
+      "sublabel": "y sus migraciones"
+    },
+    {
+      "id": "codigo",
+      "label": "El código",
+      "parent": "spec",
+      "sublabel": "módulos y casos de uso"
+    },
+    {
+      "id": "contrato",
+      "label": "El contrato",
+      "parent": "spec",
+      "sublabel": "lo que el servidor expone"
+    },
+    {
+      "id": "pruebas",
+      "label": "Las pruebas",
+      "parent": "spec",
+      "sublabel": "una por criterio, citándolo"
+    },
+    {
+      "id": "pantalla",
+      "label": "La pantalla",
+      "parent": "contrato",
+      "sublabel": "sale del contrato, no del esquema"
+    },
+    {
+      "id": "tablero",
+      "label": "El tablero",
+      "parent": "core",
+      "sublabel": "qué se hace y cuándo, no qué dice"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "La precedencia, en una línea",
+      "items": [
+        "La especificación gobierna el código; los ADR y las convenciones gobiernan la especificación",
+        "Una especificación que contradice un ADR es un defecto de la especificación",
+        "Nunca un permiso para romper la decisión"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Por qué ninguna especificación te manda a leer un ADR",
+      "items": [
+        "El repositorio de arquitectura NO se clona con el proyecto, y es deliberado",
+        "Lo que un ADR decide va transcrito en la especificación, con el número al lado como rastro",
+        "Una que obligara a abrir otro repositorio sería una que media parte del equipo no puede ejecutar"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "El tablero manda cuándo, no qué",
+      "items": [
+        "Dice qué se hace y en qué orden; no dice qué tiene que decir una funcionalidad",
+        "Y no se integra con git: el identificador de la historia se escribe a mano en el nombre de la rama",
+        "Es la única pista que conecta un cambio con lo que lo pidió"
+      ]
+    }
+  ]
+}

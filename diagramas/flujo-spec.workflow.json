@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "De la pregunta al código",
+    "output": "docs/public/diagramas/flujo-spec.html",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "locale": "es",
+    "translations": {
+      "viewer.kind.external": "Lo que solo sabe el negocio",
+      "viewer.kind.security": "La especificación, que gobierna",
+      "viewer.kind.cloud": "El tablero",
+      "viewer.kind.frontend": "El código derivado",
+      "viewer.kind.backend": "Lo que comprueba"
+    },
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "external": { "label": "Lo que solo sabe el negocio" },
+        "security": { "label": "La especificación, que gobierna" },
+        "cloud": { "label": "El tablero" },
+        "frontend": { "label": "El código derivado" },
+        "backend": { "label": "Lo que comprueba" }
+      }
+    }
+  },
+  "lanes": [
+    { "id": "negocio", "label": "El negocio" },
+    { "id": "spec", "label": "La especificación" },
+    { "id": "codigo", "label": "El código" }
+  ],
+  "phases": [
+    { "id": "preguntar", "label": "Se pregunta", "fromCol": 0, "toCol": 1, "variant": "emphasis" },
+    { "id": "planear", "label": "Se planifica", "fromCol": 2, "toCol": 2 },
+    { "id": "derivar", "label": "Se deriva y se comprueba", "fromCol": 3, "toCol": 5 }
+  ],
+  "mainPath": ["siete", "specbe", "tablero", "deriva", "compuertas"],
+  "nodes": [
+    {
+      "id": "siete",
+      "lane": "negocio",
+      "col": 0,
+      "type": "external",
+      "label": "Siete preguntas",
+      "sublabel": "en un correo, no en un formato"
+    },
+    {
+      "id": "specbe",
+      "lane": "spec",
+      "col": 1,
+      "type": "security",
+      "label": "Especificación",
+      "sublabel": "la del servidor, primero"
+    },
+    {
+      "id": "specfe",
+      "lane": "spec",
+      "col": 2,
+      "type": "security",
+      "label": "Y la de pantalla",
+      "sublabel": "sale del contrato, no del esquema"
+    },
+    {
+      "id": "tablero",
+      "lane": "negocio",
+      "col": 2,
+      "type": "cloud",
+      "label": "Historias",
+      "sublabel": "la de pantalla, bloqueada"
+    },
+    {
+      "id": "deriva",
+      "lane": "codigo",
+      "col": 3,
+      "type": "frontend",
+      "label": "La derivación",
+      "sublabel": "esquema, código, contrato, pruebas"
+    },
+    {
+      "id": "compuertas",
+      "lane": "codigo",
+      "col": 4,
+      "type": "backend",
+      "label": "Las compuertas",
+      "sublabel": "en verde, o no sale"
+    },
+    {
+      "id": "hueco",
+      "lane": "negocio",
+      "col": 1,
+      "type": "external",
+      "label": "¿Falta una respuesta?",
+      "sublabel": "se pregunta, no se rellena"
+    }
+  ],
+  "edges": [
+    { "id": "e1", "from": "siete", "to": "specbe", "label": "transer-spec-draft" },
+    { "id": "e2", "from": "specbe", "to": "specfe", "label": "si hay pantalla" },
+    { "id": "e3", "from": "specbe", "to": "tablero", "label": "publicar-en-plane" },
+    { "id": "e4", "from": "tablero", "to": "deriva", "label": "transer-spec" },
+    { "id": "e5", "from": "deriva", "to": "compuertas", "label": "verify" },
+    { "id": "e6", "from": "specbe", "to": "hueco", "label": "un hueco", "variant": "dashed" },
+    { "id": "e7", "from": "hueco", "to": "siete", "label": "vuelve al negocio", "variant": "security" }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Si la especificación no dice algo, eso no es permiso para decidirlo",
+      "items": [
+        "Es un hueco, y se pregunta. La skill pregunta: no rellena",
+        "Una especificación con reglas inventadas es peor que no tenerla, porque se ve igual de bien",
+        "Once códigos ante la autoridad tributaria estuvieron inventados meses; los corrigió una reunión de una hora"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Dos especificaciones cuando hay pantalla. Siempre",
+      "items": [
+        "No tienen la misma fuente: la de servidor sale del esquema, la de pantalla del contrato que la primera publica",
+        "Y la de pantalla NO reenuncia reglas de negocio: escribe su consecuencia visible",
+        "No «la dirección va completa o no va», sino «el error va junto al campo»"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Al negocio se le piden respuestas, no documentos",
+      "items": [
+        "Nadie le pide al dueño de producto que escriba una especificación",
+        "Responde siete preguntas y el resto se arma con sus respuestas delante",
+        "Medido: el 43 % del contenido solo lo tiene el negocio; el 57 % se deriva de ese 43 %"
+      ]
+    }
+  ]
+}

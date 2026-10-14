@@ -1,0 +1,195 @@
+<svg viewBox="0 0 1054 571" role="img" lang="es" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase" data-tree-ui="" data-tree-direction="down" data-reader-fit="intrinsic-height" data-reader-min-text="7.5">
+        <title id="archify-diagram-title">Dónde se decide qué, y qué manda sobre qué</title>
+        <desc id="archify-diagram-description">Una especificación que contradice un ADR es un defecto de la especificación, no un permiso.</desc>
+        <!-- Definitions -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-default" />
+          </marker>
+          <marker id="arrowhead-emphasis" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-emphasis" />
+          </marker>
+          <marker id="arrowhead-security" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-security" />
+          </marker>
+          <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-dashed" />
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" class="c-grid" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <style>
+          svg[data-tree-ui] .tree-hue-root { --tree-hue: var(--text-muted); --tree-wash: transparent; }
+          svg[data-tree-ui] .tree-hue-backend { --tree-hue: var(--backend-stroke); --tree-wash: var(--backend-fill); }
+          svg[data-tree-ui] .tree-hue-database { --tree-hue: var(--database-stroke); --tree-wash: var(--database-fill); }
+          svg[data-tree-ui] .tree-hue-cloud { --tree-hue: var(--cloud-stroke); --tree-wash: var(--cloud-fill); }
+          svg[data-tree-ui] .tree-hue-frontend { --tree-hue: var(--frontend-stroke); --tree-wash: var(--frontend-fill); }
+          svg[data-tree-ui] .tree-hue-messagebus { --tree-hue: var(--messagebus-stroke); --tree-wash: var(--messagebus-fill); }
+          svg[data-tree-ui] .tree-hue-external { --tree-hue: var(--external-stroke); --tree-wash: var(--external-fill); }
+          svg[data-tree-ui] .tree-edge { stroke-linejoin: round; stroke-linecap: round; }
+          svg[data-tree-ui] .tree-edge-trunk { stroke: color-mix(in srgb, var(--text) 18%, var(--arrow)); }
+          svg[data-tree-ui] .tree-edge-hued { stroke: color-mix(in srgb, var(--tree-hue) 42%, var(--arrow)); }
+          svg[data-tree-ui] .tree-root { fill: var(--text); stroke: none; }
+          svg[data-tree-ui] [data-tree-depth="0"] .tree-label { fill: var(--mask); }
+          svg[data-tree-ui] [data-tree-depth="0"] .tree-sublabel { fill: var(--mask); opacity: 0.68; }
+          svg[data-tree-ui] .tree-branch { fill: var(--tree-wash); stroke: color-mix(in srgb, var(--tree-hue) 48%, var(--lane-stroke)); }
+          svg[data-tree-ui] .tree-leaf { fill: var(--mask); stroke: color-mix(in srgb, var(--tree-hue) 22%, var(--lane-stroke)); }
+          svg[data-tree-ui] .tree-socket { fill: var(--mask); stroke: var(--tree-hue); pointer-events: none; }
+          svg[data-tree-ui] .tree-accent { stroke: var(--tree-hue); pointer-events: none; }
+          svg[data-tree-ui] [data-tree-stack] { display: none; fill: var(--mask); stroke: color-mix(in srgb, var(--tree-hue) 70%, var(--lane-stroke)); }
+          svg[data-tree-ui] [data-tree-collapsed] [data-tree-stack] { display: inline; }
+          svg[data-tree-ui] [data-tree-hidden] { display: none; }
+          svg[data-tree-ui] .tree-toggle-hit { fill: transparent; }
+          svg[data-tree-ui] .tree-toggle-disc { fill: var(--mask); stroke: color-mix(in srgb, var(--tree-hue) 55%, var(--lane-stroke)); transition: stroke 0.15s ease, fill 0.15s ease; }
+          svg[data-tree-ui] .tree-toggle-glyph { stroke: var(--text-muted); fill: none; transition: stroke 0.15s ease; }
+          svg[data-tree-ui] .tree-toggle-count { display: none; }
+          svg[data-tree-ui] .tree-count-pill { fill: var(--tree-hue); stroke: none; }
+          svg[data-tree-ui] .tree-toggle-count text { fill: var(--mask); }
+          svg[data-tree-ui] [data-tree-toggle] { cursor: pointer; outline: none; }
+          svg[data-tree-ui] [data-tree-toggle][aria-expanded="true"] .tree-toggle-plus { display: none; }
+          svg[data-tree-ui] [data-tree-toggle][aria-expanded="false"] .tree-toggle-count { display: inline; }
+          svg[data-tree-ui] [data-tree-toggle][aria-expanded="false"] .tree-toggle-disc { fill: var(--tree-hue); stroke: var(--tree-hue); }
+          svg[data-tree-ui] [data-tree-toggle][aria-expanded="false"] .tree-toggle-glyph { stroke: var(--mask); }
+          svg[data-tree-ui] [data-tree-toggle]:hover .tree-toggle-disc,
+          svg[data-tree-ui] [data-tree-toggle]:focus-visible .tree-toggle-disc { stroke: var(--tree-hue); stroke-width: 2; }
+          svg[data-tree-ui] [data-tree-toggle]:hover .tree-toggle-glyph,
+          svg[data-tree-ui] [data-tree-toggle]:focus-visible .tree-toggle-glyph { stroke: var(--text); }
+          svg[data-tree-ui] [data-tree-expand-all] { cursor: pointer; outline: none; }
+          svg[data-tree-ui] [data-tree-expand-all] rect { fill: var(--mask); stroke: var(--lane-stroke); }
+          svg[data-tree-ui] [data-tree-expand-all]:is(:hover, :focus-visible) rect { stroke: var(--arrow-emphasis); stroke-width: 2; }
+          svg[data-tree-ui]:not([data-tree-any-collapsed]) [data-tree-expand-all] { display: none; }
+        </style>
+
+        <!-- Background Grid -->
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- Containment links -->
+        <path data-edge-from="core" data-edge-to="spec" data-edge-key="0" data-tree-ancestors="core" data-composition-points="681.5,154;681.5,182;419,182;419,210" d="M 681.5 154 L 681.5 172 Q 681.5 182 671.5 182 L 429 182 Q 419 182 419 192 L 419 210" class="a-default tree-edge tree-edge-trunk" data-animate="edge" style="--step:1" stroke-width="1.8"/>
+        <path data-edge-from="spec" data-edge-to="esquema" data-edge-key="1" data-tree-ancestors="spec core" data-composition-points="419,283;419,311;103.5,311;103.5,339" d="M 419 283 L 419 301 Q 419 311 409 311 L 113.5 311 Q 103.5 311 103.5 321 L 103.5 339" class="a-default tree-edge tree-edge-hued tree-hue-backend" data-animate="edge" style="--step:2" stroke-width="1.5"/>
+        <path data-edge-from="spec" data-edge-to="codigo" data-edge-key="2" data-tree-ancestors="spec core" data-composition-points="419,283;419,311;291,311;291,339" d="M 419 283 L 419 301 Q 419 311 409 311 L 301 311 Q 291 311 291 321 L 291 339" class="a-default tree-edge tree-edge-hued tree-hue-backend" data-animate="edge" style="--step:2" stroke-width="1.5"/>
+        <path data-edge-from="spec" data-edge-to="contrato" data-edge-key="3" data-tree-ancestors="spec core" data-composition-points="419,283;419,311;505.5,311;505.5,339" d="M 419 283 L 419 301 Q 419 311 429 311 L 495.5 311 Q 505.5 311 505.5 321 L 505.5 339" class="a-default tree-edge tree-edge-hued tree-hue-backend" data-animate="edge" style="--step:2" stroke-width="1.5"/>
+        <path data-edge-from="spec" data-edge-to="pruebas" data-edge-key="4" data-tree-ancestors="spec core" data-composition-points="419,283;419,311;734,311;734,339" d="M 419 283 L 419 301 Q 419 311 429 311 L 724 311 Q 734 311 734 321 L 734 339" class="a-default tree-edge tree-edge-hued tree-hue-backend" data-animate="edge" style="--step:2" stroke-width="1.5"/>
+        <path data-edge-from="contrato" data-edge-to="pantalla" data-edge-key="5" data-tree-ancestors="contrato spec core" data-composition-points="505,398;505,454" d="M 505 398 L 505 454" class="a-default tree-edge tree-edge-hued tree-hue-backend" data-animate="edge" style="--step:3" stroke-width="1.5"/>
+        <path data-edge-from="core" data-edge-to="tablero" data-edge-key="6" data-tree-ancestors="core" data-composition-points="681.5,154;681.5,182;944,182;944,210" d="M 681.5 154 L 681.5 172 Q 681.5 182 691.5 182 L 934 182 Q 944 182 944 192 L 944 210" class="a-default tree-edge tree-edge-trunk" data-animate="edge" style="--step:1" stroke-width="1.8"/>
+
+        <!-- Nodes -->
+        <g id="node-core" data-node-id="core" data-node-label="Los ADR y las convenciones" tabindex="0" role="button" aria-label="Enfocar Los ADR y las convenciones, TranserIT-Architecture · arquitectura y proceso, Raíz" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="TranserIT-Architecture · arquitectura y proceso" data-node-context="Raíz" data-tree-depth="0" class="tree-hue-root">
+          <title>Los ADR y las convenciones · TranserIT-Architecture · arquitectura y proceso · Raíz</title>
+          <rect data-tree-stack="" x="592" y="69" width="189" height="90" rx="10" class="tree-stack-frontend" stroke-width="1.2"/>
+          <rect x="587" y="64" width="189" height="90" rx="10" class="c-mask"/>
+          <rect x="587" y="64" width="189" height="90" rx="10" class="c-frontend tree-root" data-animate="node" style="--step:0" stroke-width="0"/>
+
+
+          <text data-node-label="" x="681.5" class="t-primary tree-label" font-size="14.5" font-weight="750" text-anchor="middle"><tspan x="681.5" y="88.5">Los ADR y las</tspan><tspan x="681.5" y="105.5">convenciones</tspan></text>
+          <text data-detail="context" x="681.5" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="681.5" y="124.5">TranserIT-Architecture ·</tspan><tspan x="681.5" y="138.5">arquitectura y proceso</tspan></text>
+        </g>
+        <g id="node-spec" data-node-id="spec" data-node-label="La especificación" tabindex="0" role="button" aria-label="Enfocar La especificación, vortice-specs · el negocio de una funcionalidad, Rama" aria-pressed="false" data-node-kind="backend" data-node-sublabel="vortice-specs · el negocio de una funcionalidad" data-node-context="Rama" data-tree-depth="1" data-tree-ancestors="core" class="tree-hue-backend">
+          <title>La especificación · vortice-specs · el negocio de una funcionalidad · Rama</title>
+          <rect data-tree-stack="" x="323" y="215" width="202" height="73" rx="10" class="tree-stack-backend" stroke-width="1.2"/>
+          <rect x="318" y="210" width="202" height="73" rx="10" class="c-mask"/>
+          <rect x="318" y="210" width="202" height="73" rx="10" class="c-backend tree-branch" data-animate="node" style="--step:1" stroke-width="1.2"/>
+
+          <circle cx="419" cy="210" r="2.6" class="tree-socket" stroke-width="1.4"/>
+          <text data-node-label="" x="419" class="t-primary tree-label" font-size="13" font-weight="700" text-anchor="middle"><tspan x="419" y="234.5">La especificación</tspan></text>
+          <text data-detail="context" x="419" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="419" y="253.5">vortice-specs · el negocio</tspan><tspan x="419" y="267.5">de una funcionalidad</tspan></text>
+        </g>
+        <g id="node-esquema" data-node-id="esquema" data-node-label="El esquema" tabindex="0" role="button" aria-label="Enfocar El esquema, y sus migraciones, Hoja" aria-pressed="false" data-node-kind="external" data-node-sublabel="y sus migraciones" data-node-context="Hoja" data-tree-depth="2" data-tree-ancestors="spec core" class="tree-hue-backend">
+          <title>El esquema · y sus migraciones · Hoja</title>
+
+          <rect x="32" y="339" width="143" height="59" rx="10" class="c-mask"/>
+          <rect x="32" y="339" width="143" height="59" rx="10" class="c-external tree-leaf" data-animate="node" style="--step:2" stroke-width="1"/>
+
+          <circle cx="103.5" cy="339" r="2.6" class="tree-socket" stroke-width="1.4"/>
+          <text data-node-label="" x="103.5" class="t-primary tree-label" font-size="13" font-weight="560" text-anchor="middle"><tspan x="103.5" y="363.5">El esquema</tspan></text>
+          <text data-detail="context" x="103.5" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="103.5" y="382.5">y sus migraciones</tspan></text>
+        </g>
+        <g id="node-codigo" data-node-id="codigo" data-node-label="El código" tabindex="0" role="button" aria-label="Enfocar El código, módulos y casos de uso, Hoja" aria-pressed="false" data-node-kind="external" data-node-sublabel="módulos y casos de uso" data-node-context="Hoja" data-tree-depth="2" data-tree-ancestors="spec core" class="tree-hue-backend">
+          <title>El código · módulos y casos de uso · Hoja</title>
+
+          <rect x="203" y="339" width="176" height="59" rx="10" class="c-mask"/>
+          <rect x="203" y="339" width="176" height="59" rx="10" class="c-external tree-leaf" data-animate="node" style="--step:2" stroke-width="1"/>
+
+          <circle cx="291" cy="339" r="2.6" class="tree-socket" stroke-width="1.4"/>
+          <text data-node-label="" x="291" class="t-primary tree-label" font-size="13" font-weight="560" text-anchor="middle"><tspan x="291" y="363.5">El código</tspan></text>
+          <text data-detail="context" x="291" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="291" y="382.5">módulos y casos de uso</tspan></text>
+        </g>
+        <g id="node-contrato" data-node-id="contrato" data-node-label="El contrato" tabindex="0" role="button" aria-label="Enfocar El contrato, lo que el servidor expone, Rama" aria-pressed="false" data-node-kind="backend" data-node-sublabel="lo que el servidor expone" data-node-context="Rama" data-tree-depth="2" data-tree-ancestors="spec core" class="tree-hue-backend">
+          <title>El contrato · lo que el servidor expone · Rama</title>
+          <rect data-tree-stack="" x="413" y="344" width="195" height="59" rx="10" class="tree-stack-backend" stroke-width="1.2"/>
+          <rect x="408" y="339" width="195" height="59" rx="10" class="c-mask"/>
+          <rect x="408" y="339" width="195" height="59" rx="10" class="c-backend tree-branch" data-animate="node" style="--step:2" stroke-width="1.2"/>
+
+          <circle cx="505.5" cy="339" r="2.6" class="tree-socket" stroke-width="1.4"/>
+          <text data-node-label="" x="505.5" class="t-primary tree-label" font-size="13" font-weight="700" text-anchor="middle"><tspan x="505.5" y="363.5">El contrato</tspan></text>
+          <text data-detail="context" x="505.5" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="505.5" y="382.5">lo que el servidor expone</tspan></text>
+        </g>
+        <g id="node-pruebas" data-node-id="pruebas" data-node-label="Las pruebas" tabindex="0" role="button" aria-label="Enfocar Las pruebas, una por criterio, citándolo, Hoja" aria-pressed="false" data-node-kind="external" data-node-sublabel="una por criterio, citándolo" data-node-context="Hoja" data-tree-depth="2" data-tree-ancestors="spec core" class="tree-hue-backend">
+          <title>Las pruebas · una por criterio, citándolo · Hoja</title>
+
+          <rect x="630" y="339" width="208" height="59" rx="10" class="c-mask"/>
+          <rect x="630" y="339" width="208" height="59" rx="10" class="c-external tree-leaf" data-animate="node" style="--step:2" stroke-width="1"/>
+
+          <circle cx="734" cy="339" r="2.6" class="tree-socket" stroke-width="1.4"/>
+          <text data-node-label="" x="734" class="t-primary tree-label" font-size="13" font-weight="560" text-anchor="middle"><tspan x="734" y="363.5">Las pruebas</tspan></text>
+          <text data-detail="context" x="734" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="734" y="382.5">una por criterio, citándolo</tspan></text>
+        </g>
+        <g id="node-pantalla" data-node-id="pantalla" data-node-label="La pantalla" tabindex="0" role="button" aria-label="Enfocar La pantalla, sale del contrato, no del esquema, Hoja" aria-pressed="false" data-node-kind="external" data-node-sublabel="sale del contrato, no del esquema" data-node-context="Hoja" data-tree-depth="3" data-tree-ancestors="contrato spec core" class="tree-hue-backend">
+          <title>La pantalla · sale del contrato, no del esquema · Hoja</title>
+
+          <rect x="431" y="454" width="148" height="73" rx="10" class="c-mask"/>
+          <rect x="431" y="454" width="148" height="73" rx="10" class="c-external tree-leaf" data-animate="node" style="--step:3" stroke-width="1"/>
+
+          <circle cx="505" cy="454" r="2.6" class="tree-socket" stroke-width="1.4"/>
+          <text data-node-label="" x="505" class="t-primary tree-label" font-size="13" font-weight="560" text-anchor="middle"><tspan x="505" y="478.5">La pantalla</tspan></text>
+          <text data-detail="context" x="505" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="505" y="497.5">sale del contrato,</tspan><tspan x="505" y="511.5">no del esquema</tspan></text>
+        </g>
+        <g id="node-tablero" data-node-id="tablero" data-node-label="El tablero" tabindex="0" role="button" aria-label="Enfocar El tablero, qué se hace y cuándo, no qué dice, Hoja" aria-pressed="false" data-node-kind="external" data-node-sublabel="qué se hace y cuándo, no qué dice" data-node-context="Hoja" data-tree-depth="1" data-tree-ancestors="core" class="tree-hue-database">
+          <title>El tablero · qué se hace y cuándo, no qué dice · Hoja</title>
+
+          <rect x="866" y="210" width="156" height="73" rx="10" class="c-mask"/>
+          <rect x="866" y="210" width="156" height="73" rx="10" class="c-external tree-leaf" data-animate="node" style="--step:1" stroke-width="1"/>
+
+          <circle cx="944" cy="210" r="2.6" class="tree-socket" stroke-width="1.4"/>
+          <text data-node-label="" x="944" class="t-primary tree-label" font-size="13" font-weight="560" text-anchor="middle"><tspan x="944" y="234.5">El tablero</tspan></text>
+          <text data-detail="context" x="944" class="t-muted tree-sublabel" font-size="11" text-anchor="middle"><tspan x="944" y="253.5">qué se hace y</tspan><tspan x="944" y="267.5">cuándo, no qué dice</tspan></text>
+        </g>
+
+        <!-- Branch toggles -->
+        <g data-tree-toggle="core" data-tree-count="7" data-tree-label-collapse="Contraer Los ADR y las convenciones (7 debajo)" data-tree-label-expand="Expandir Los ADR y las convenciones (7 ocultos)" role="button" tabindex="0" aria-expanded="true" aria-label="Contraer Los ADR y las convenciones (7 debajo)" class="tree-hue-root">
+          <circle cx="681.5" cy="154" r="14.5" class="tree-toggle-hit"/>
+          <circle cx="681.5" cy="154" r="7.5" class="tree-toggle-disc" stroke-width="1.2"/>
+          <path class="tree-toggle-glyph" d="M 678.35 154 H 684.65" stroke-width="1.5" stroke-linecap="round"/>
+          <path class="tree-toggle-glyph tree-toggle-plus" d="M 681.5 150.85 V 157.15" stroke-width="1.5" stroke-linecap="round"/>
+          <g class="tree-toggle-count">
+            <rect x="692" y="146.5" width="17.2" height="15" rx="7.5" class="tree-count-pill"/>
+            <text x="700.6" y="157.6" class="t-primary" font-size="10" font-weight="700" text-anchor="middle">7</text>
+          </g>
+        </g>
+        <g data-tree-toggle="spec" data-tree-count="5" data-tree-ancestors="core" data-tree-label-collapse="Contraer La especificación (5 debajo)" data-tree-label-expand="Expandir La especificación (5 ocultos)" role="button" tabindex="0" aria-expanded="true" aria-label="Contraer La especificación (5 debajo)" class="tree-hue-backend">
+          <circle cx="419" cy="283" r="14.5" class="tree-toggle-hit"/>
+          <circle cx="419" cy="283" r="7.5" class="tree-toggle-disc" stroke-width="1.2"/>
+          <path class="tree-toggle-glyph" d="M 415.85 283 H 422.15" stroke-width="1.5" stroke-linecap="round"/>
+          <path class="tree-toggle-glyph tree-toggle-plus" d="M 419 279.85 V 286.15" stroke-width="1.5" stroke-linecap="round"/>
+          <g class="tree-toggle-count">
+            <rect x="429.5" y="275.5" width="17.2" height="15" rx="7.5" class="tree-count-pill"/>
+            <text x="438.1" y="286.6" class="t-primary" font-size="10" font-weight="700" text-anchor="middle">5</text>
+          </g>
+        </g>
+        <g data-tree-toggle="contrato" data-tree-count="1" data-tree-ancestors="spec core" data-tree-label-collapse="Contraer El contrato (1 debajo)" data-tree-label-expand="Expandir El contrato (1 ocultos)" role="button" tabindex="0" aria-expanded="true" aria-label="Contraer El contrato (1 debajo)" class="tree-hue-backend">
+          <circle cx="505.5" cy="398" r="14.5" class="tree-toggle-hit"/>
+          <circle cx="505.5" cy="398" r="7.5" class="tree-toggle-disc" stroke-width="1.2"/>
+          <path class="tree-toggle-glyph" d="M 502.35 398 H 508.65" stroke-width="1.5" stroke-linecap="round"/>
+          <path class="tree-toggle-glyph tree-toggle-plus" d="M 505.5 394.85 V 401.15" stroke-width="1.5" stroke-linecap="round"/>
+          <g class="tree-toggle-count">
+            <rect x="516" y="390.5" width="17.2" height="15" rx="7.5" class="tree-count-pill"/>
+            <text x="524.6" y="401.6" class="t-primary" font-size="10" font-weight="700" text-anchor="middle">1</text>
+          </g>
+        </g>
+
+        <!-- Expand all (shown only while a branch is collapsed) -->
+        <g data-tree-expand-all="" role="button" tabindex="0" aria-label="Expandir todo">
+          <rect x="32" y="18" width="106" height="24" rx="12" stroke-width="1.2"/>
+          <text x="44" y="34" class="t-primary" font-size="10.5" font-weight="650">Expandir todo</text>
+        </g>
+      </svg>

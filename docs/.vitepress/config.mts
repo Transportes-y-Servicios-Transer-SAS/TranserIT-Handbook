@@ -33,6 +33,7 @@ export default defineConfig({
     nav: [
       { text: 'Git, de cero', link: '/git/que-es' },
       { text: 'Preparar el equipo', link: '/equipo/herramientas' },
+      { text: 'Vórtice', link: '/vortice/que-es' },
       { text: 'Sobre este manual', link: '/sobre' },
     ],
 
@@ -45,6 +46,17 @@ export default defineConfig({
             { text: '2 · Las llaves de GitHub', link: '/equipo/llaves' },
             { text: '3 · El entorno del servidor', link: '/equipo/servidor' },
             { text: '4 · El entorno de la pantalla', link: '/equipo/pantalla' },
+          ],
+        },
+      ],
+
+      '/vortice/': [
+        {
+          text: 'Incorporación a Vórtice',
+          items: [
+            { text: '1 · Qué estás construyendo', link: '/vortice/que-es' },
+            { text: '2 · De la pregunta al código', link: '/vortice/flujo' },
+            { text: '3 · Las compuertas', link: '/vortice/compuertas' },
           ],
         },
       ],
