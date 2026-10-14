@@ -1,0 +1,113 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Lo que pasa cuando Git para",
+    "subtitle": "Un conflicto es un estado del que se sale por dos sitios: resolviéndolo o deshaciéndolo.",
+    "output": "conflicto.html",
+    "locale": "es",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "translations": {
+      "legend.lifecycle.start": "Antes de fusionar",
+      "legend.lifecycle.decision": "Git para y pregunta",
+      "legend.lifecycle.active": "Lo resuelves tú",
+      "legend.lifecycle.success": "Queda fusionado",
+      "legend.lifecycle.neutral": "Deshecho, sin rastro",
+      "viewer.kind.start": "Antes de fusionar",
+      "viewer.kind.decision": "Git para y pregunta",
+      "viewer.kind.active": "Lo resuelves tú",
+      "viewer.kind.success": "Queda fusionado",
+      "viewer.kind.neutral": "Deshecho, sin rastro"
+    }
+  },
+  "mainPath": ["antes", "parado", "decides", "marcado", "hecho"],
+  "states": [
+    {
+      "id": "antes",
+      "type": "start",
+      "label": "Trabajando",
+      "sublabel": "sin fusión en curso",
+      "step": "01"
+    },
+    {
+      "id": "parado",
+      "type": "decision",
+      "label": "Git para",
+      "sublabel": "y no toca nada más",
+      "tag": "MERGING",
+      "step": "02"
+    },
+    {
+      "id": "decides",
+      "type": "active",
+      "label": "Decides tú",
+      "sublabel": "en el archivo, a mano",
+      "step": "03"
+    },
+    {
+      "id": "marcado",
+      "type": "active",
+      "label": "Resuelto",
+      "sublabel": "se lo dices con add",
+      "step": "04"
+    },
+    {
+      "id": "hecho",
+      "type": "success",
+      "label": "Fusionado",
+      "sublabel": "con su commit de fusión",
+      "step": "05"
+    },
+    {
+      "id": "deshecho",
+      "type": "neutral",
+      "label": "Como si nada",
+      "sublabel": "ni rastro de la fusión"
+    }
+  ],
+  "transitions": [
+    { "id": "t1", "from": "antes", "to": "parado", "label": "git merge" },
+    { "id": "t2", "from": "parado", "to": "decides", "label": "abres el archivo" },
+    { "id": "t3", "from": "decides", "to": "marcado", "label": "git add" },
+    { "id": "t4", "from": "marcado", "to": "hecho", "label": "git commit" },
+    {
+      "id": "t5",
+      "from": "parado",
+      "to": "deshecho",
+      "label": "git merge --abort",
+      "note": "se puede en cualquier momento, antes de confirmar",
+      "variant": "dashed"
+    },
+    { "id": "t6", "from": "deshecho", "to": "antes", "label": "sigues igual", "variant": "dashed" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Un conflicto no es un error",
+      "items": [
+        "Es Git diciendo que dos personas cambiaron las mismas líneas y no va a elegir por ustedes",
+        "Lo contrario —que eligiera solo— sería mucho peor: perderías trabajo sin enterarte",
+        "Mientras dura, Git no toca nada: queda a la espera de que decidas"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "git add es lo que significa resuelto",
+      "items": [
+        "No hay un comando llamado resolver: añadir el archivo ES decir que ya está",
+        "Por eso hay que quitar los marcadores antes; Git no comprueba si quedó alguno",
+        "Un marcador olvidado entra al commit y rompe el archivo sin que nada avise"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Siempre se puede deshacer",
+      "items": [
+        "git merge --abort deja todo como antes de empezar, en cualquier momento",
+        "Deja de valer en cuanto confirmas la fusión",
+        "Si te perdiste a mitad, abortar y volver a empezar con calma es una salida legítima"
+      ]
+    }
+  ]
+}

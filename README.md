@@ -35,7 +35,8 @@ bun run diagramas  # solo los diagramas
 | **Git · 3 · Ramas** | Escrito. Qué es una rama de verdad, y el primer comando que sale del equipo |
 | **Git · 4 · Nuestra estructura** | Escrito. Tres ramas largas, dos direcciones, y por qué |
 | **Git · 5 · El día a día** | Escrito. La rutina, el orden de la entrega y la compuerta de cada repositorio |
-| Git · 6 y 7 | Pendientes: conflictos, deshacer |
+| **Git · 6 · Conflictos** | Escrito. Incluidos los dos archivos con regla propia de fusión |
+| Git · 7 | Pendiente: deshacer |
 | Cómo trabaja el área | Pendiente. Sale del `ONBOARDING.md` de `vortice-specs` y de las *skills* |
 | Entornos | Pendiente. Son los manuales que hoy viven en el área de análisis |
 
