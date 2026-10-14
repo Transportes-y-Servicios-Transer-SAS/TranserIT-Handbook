@@ -6,10 +6,10 @@
  * columnas de navegación estrujando una de texto. En un manual con diagramas no funciona.
  *
  * Lo que se hace aquí:
- *   · se retira el índice derecho (se configura con outline:false; esto solo recupera su ancho)
+ *   · se recupera el ancho de la columna del índice, que `outline:false` deja VACÍA pero reservada
  *   · el contenedor se ensancha
  *   · la PROSA se queda en medida legible, porque una línea de 1000px no se lee
- *   · las FIGURAS se salen de esa medida y usan el ancho completo
+ *   · las FIGURAS y las TABLAS se salen de esa medida y usan el ancho completo
  *
  * Esa última es la razón de todo: un diagrama necesita ancho y un párrafo necesita lo contrario.
  */
@@ -17,8 +17,17 @@
 :root {
   --vp-layout-max-width: 1520px;
 
-  /* La medida de lectura. Unos 72 caracteres con la tipografía del tema. */
-  --tr-medida: 46rem;
+  /*
+   * La medida de lectura.
+   *
+   * Medida, no estimada: con Inter a 16px el carácter medio de estas páginas ocupa 7.81px, así que
+   * 40rem son 82 caracteres por línea. Los 46rem que había antes eran 94, por encima de lo que se
+   * lee cómodo; subirla para «aprovechar» el ancho la habría llevado a 102.
+   *
+   * El ancho que sobraba a la derecha no era de la prosa: era una columna vacía. Se recupera abajo
+   * y se la llevan las figuras y las tablas, que sí leen mejor anchas.
+   */
+  --tr-medida: 40rem;
   /* Lo que pueden ocupar las figuras. */
   --tr-ancho-figura: 74rem;
 }
@@ -27,6 +36,24 @@
 .VPDoc .container,
 .VPDoc.has-aside .content-container {
   max-width: var(--tr-ancho-figura) !important;
+}
+
+/*
+ * `outline: false` quita el índice de la derecha, PERO NO SU COLUMNA.
+ *
+ * Medido en una ventana de 1536px: `.VPDoc` conserva la clase `has-aside`, su `.container` sigue
+ * siendo un flex de dos columnas, y el `.aside` —vacío, sin un solo nodo de texto— se queda con
+ * 256px. Ese era todo el margen de la derecha; no venía del relleno.
+ */
+.VPDoc .aside {
+  display: none !important;
+}
+.VPDoc.has-aside .container {
+  display: block;
+}
+.VPDoc.has-aside .content {
+  max-width: none;
+  margin: 0;
 }
 
 /* Menos aire lateral: el tema reserva sitio para el índice que ya no está */
@@ -50,13 +77,9 @@
   max-width: var(--tr-medida);
 }
 
-/* Las tablas respiran un poco más que el texto, sin llegar al ancho de figura */
-.vp-doc > div > table {
-  max-width: 56rem;
-}
-
-/* Y lo que es figura usa todo lo que hay */
+/* Y lo que es figura o tabla usa todo lo que hay: ahí el ancho se lee mejor, no peor */
 .vp-doc > div > figure,
+.vp-doc > div > table,
 .vp-doc > div > .caos,
 .vp-doc > div > .siguiente {
   max-width: none;
