@@ -7,6 +7,11 @@
     "animation": "trace",
     "quality_profile": "showcase",
     "locale": "es",
+    "translations": {
+      "viewer.kind.cloud": "Lo que está publicado",
+      "viewer.kind.frontend": "Un cambio tuyo, en tu rama",
+      "viewer.kind.security": "La revisión antes de entrar"
+    },
     "legend": {
       "mode": "auto",
       "entries": {

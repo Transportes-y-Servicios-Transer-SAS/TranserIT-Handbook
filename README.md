@@ -20,9 +20,10 @@ Hacerlo «más fácil» no lo arreglaba, porque no sobraba dificultad: faltaba e
 
 ```bash
 bun install
-bun run dev        # servidor de desarrollo, recarga al guardar
-bun run build      # genera docs/.vitepress/dist
+bun run dev        # regenera los diagramas y levanta el servidor de desarrollo
+bun run build      # regenera los diagramas y genera docs/.vitepress/dist
 bun run preview    # sirve lo construido
+bun run diagramas  # solo los diagramas
 ```
 
 ## Qué hay hoy
@@ -54,35 +55,56 @@ a ejecutar nada, que es justo el lector que falló la vez anterior.
 | **VitePress y no Nuxt** | Markdown entra, sitio sale. Los manuales a migrar ya son markdown. Nuxt traería servidor, enrutado y ciclo de vida que una documentación no necesita |
 | **VitePress 1.x** | La 2.0 está en alpha |
 | **Sin la marca de Vórtice** | El público es el área entera, de gerencia a practicante, no un proyecto |
-| **Diagramas: archify para los interactivos, SVG a mano para los conceptuales** | Un diagrama de flujo —ramas, fusión— gana con zoom, foco y tarjetas: eso es archify. Una comparación de dos ideas —«guardar» frente a «commit»— no gana nada siendo interactiva, y en línea pesa 2 KB en vez de 800 |
-| **Los SVG a mano usan las variables de tema de VitePress** | Siguen el modo claro y el oscuro sin duplicarse. Comprobado en los dos |
+| **Ningún diagrama se dibuja a mano** | Todo lo que es un diagrama sale de archify. Lo que no es un diagrama —una comparación de dos ideas, «guardar» frente a «*commit*»— es una tabla, no un dibujo: se lee igual, se busca, y no hay SVG que mantener |
+| **La paleta del sitio es la de archify** | Si la página usa los grises de VitePress y el diagrama los de archify, se ven dos documentos superpuestos. Con una sola paleta el diagrama es una ilustración de la página y no una lámina encima. Está en `theme/paleta.css`, sacada del preset «classic» |
+| **Vista previa en la página, visor en un diálogo** | El SVG en línea hereda tema, ancho y tipografía, pero no lleva JavaScript: no es explorable. El visor completo sí lo es, pero incrustado en el texto se ve apretado y con dos temas peleando. Se dan los dos |
 
-## Los diagramas interactivos
+## Los diagramas
 
 Se generan con [archify](https://github.com/tt-a1i/archify). **La fuente es el JSON de
-`diagramas/`**; el HTML de `docs/public/diagramas/` es el resultado.
+`diagramas/`**; todo lo demás es resultado.
+
+archify no está en el registro con ese nombre —el paquete «archify» de npm es otro proyecto— y su
+repositorio no es instalable como dependencia, así que se clona al lado:
 
 ```bash
-# archify no está en npm con ese nombre —el paquete «archify» del registro es otro—,
-# así que se clona y se usa su CLI:
-git clone --depth 1 https://github.com/tt-a1i/archify.git /tmp/archify
-
-node /tmp/archify/archify/bin/archify.mjs validate workflow diagramas/rama.workflow.json
-node /tmp/archify/archify/bin/archify.mjs render   workflow diagramas/rama.workflow.json docs/public/diagramas/rama.html
+git clone https://github.com/tt-a1i/archify.git ../archify   # o apuntar ARCHIFY_HOME
+bun run diagramas                                            # regenera los dos resultados
 ```
 
-**El HTML generado SÍ se versiona, y es una excepción deliberada.** La regla del área es que lo
-generado no se versiona, porque versionarlo convierte la copia en la fuente. Aquí se hace porque
-**la herramienta no es una dependencia instalable**: sin el HTML confirmado, quien clone no puede
+`bun run dev` y `bun run build` lo ejecutan solos, así que en el día a día no hay que acordarse.
+
+De cada `diagramas/<nombre>.<tipo>.json` salen **dos cosas, con dos trabajos distintos**:
+
+| | Para qué |
+|---|---|
+| `docs/public/diagramas/<nombre>.html` | El visor completo, el que abre el diálogo: foco por nodo, lente, rutas, mapa, exportar |
+| `docs/.vitepress/theme/diagramas/<nombre>.svg` | La vista previa dibujada **dentro** del documento, que hereda tema, ancho y tipografía |
+
+El estilo de todas las vistas previas va junto en `theme/diagramas/estilos.css`: las reglas de
+archify son casi las mismas entre tipos —medido: de 207 y 196, 176 coinciden—, así que un archivo
+por diagrama repetiría unos 36 KB por cada uno que se añada.
+
+**Lo generado SÍ se versiona, y es una excepción deliberada.** La regla del área es que lo generado
+no se versiona, porque versionarlo convierte la copia en la fuente. Aquí se hace porque **la
+herramienta no es una dependencia instalable**: sin esos archivos confirmados, quien clone no puede
 construir el sitio. Si algún día archify se publica en el registro, esto se revierte.
 
-Tres cosas aprendidas al integrarlo, para no redescubrirlas:
+Lo aprendido al integrarlo, para no redescubrirlo:
 
 - **`meta.locale: "es"`** pone en español la interfaz del visor. Sin eso sale en inglés.
-- **`meta.legend.entries`** renombra la leyenda. Hace falta: los siete tipos de nodo traen etiquetas
-  de arquitectura —«Interfaz de usuario», «Política»— que en un manual de Git confunden.
+- **`meta.legend.entries`** renombra la leyenda y **`meta.translations` con las claves
+  `viewer.kind.*`** renombra lo mismo dentro del pasaporte semántico. Hacen falta las dos: son dos
+  textos distintos para el mismo tipo de nodo, y con una sola el diagrama dice «Lo que está
+  publicado» en la leyenda y «NUBE» al pulsarlo.
+- Los tipos de nodo traen etiquetas de arquitectura —«Interfaz de usuario», «Frontend»,
+  «Política»— que en un manual de Git no significan nada. El mapeo del `timeline` está en su
+  renderizador: `change → frontend`, `alert → security`, `action → messagebus`,
+  `recovery → backend`, `default → external`.
 - **`meta.legend.mode: "auto"`** muestra solo los tipos que el diagrama usa. Con `"all"` aparecen los
   siete, incluidos cuatro vacíos.
+- **El extractor descarta los bloques `@media` enteros.** Sacar sus reglas y dejarlas sueltas
+  colaba la paleta de impresión de archify —papel blanco— dentro de la página oscura.
 
 ## Publicación
 

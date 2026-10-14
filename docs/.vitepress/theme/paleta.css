@@ -1,0 +1,111 @@
+/**
+ * La paleta del sitio es la de archify.
+ *
+ * El motivo es que los diagramas no parezcan pegados: si la página usa los grises de VitePress y
+ * el diagrama los de archify, se ven dos documentos superpuestos aunque los dos sean sobrios. Con
+ * una sola paleta, el diagrama es una ilustración de la página y no una lámina encima.
+ *
+ * Los valores salen del preset «classic» de archify —`:root` y `[data-theme="light"]`— y se mapean
+ * sobre las variables del tema por defecto. Si archify cambia su paleta, se vuelven a sacar.
+ *
+ * Qué significa cada acento, para que no se usen por bonitos:
+ *   cian   (--frontend-stroke)  lo que hace la persona: su rama, sus cambios
+ *   ámbar  (--cloud-stroke)     lo que está publicado y compartido
+ *   rosa   (--security-stroke)  donde hay control: revisión, permiso, compuerta
+ */
+
+/* ───────────────────────── oscuro ───────────────────────── */
+:root {
+  --ar-bg: #020617;
+  --ar-panel: #0f172a;
+  --ar-panel-borde: #1e293b;
+  --ar-texto: #ffffff;
+  --ar-texto-suave: #94a3b8;
+  --ar-texto-tenue: #475569;
+  --ar-rejilla: #1e293b;
+  --ar-punto: rgba(148, 163, 184, 0.16);
+  --ar-cian: #22d3ee;
+  --ar-ambar: #fbbf24;
+  --ar-rosa: #fb7185;
+  --ar-flecha: #94a3b8;
+
+  /* Fondos */
+  --vp-c-bg: var(--ar-bg);
+  --vp-c-bg-alt: #060d1c;
+  --vp-c-bg-elv: var(--ar-panel);
+  --vp-c-bg-soft: #0b1324;
+
+  /* Texto */
+  --vp-c-text-1: var(--ar-texto);
+  --vp-c-text-2: var(--ar-texto-suave);
+  --vp-c-text-3: var(--ar-texto-tenue);
+
+  /* Líneas */
+  --vp-c-divider: var(--ar-panel-borde);
+  --vp-c-border: var(--ar-panel-borde);
+  --vp-c-gutter: var(--ar-panel-borde);
+
+  /* El acento es el cian de archify, que ahí significa «lo que hace la persona» */
+  --vp-c-brand-1: var(--ar-cian);
+  --vp-c-brand-2: #67e8f9;
+  --vp-c-brand-3: #0e7490;
+  --vp-c-brand-soft: rgba(34, 211, 238, 0.14);
+
+  /* El resto de tonos, con el mismo significado que en los diagramas */
+  --vp-c-tip-1: var(--ar-cian);
+  --vp-c-tip-soft: rgba(34, 211, 238, 0.14);
+  --vp-c-warning-1: var(--ar-ambar);
+  --vp-c-warning-soft: rgba(251, 191, 36, 0.14);
+  --vp-c-danger-1: var(--ar-rosa);
+  --vp-c-danger-soft: rgba(251, 113, 133, 0.14);
+
+  /* Los botones de la portada */
+  --vp-button-brand-bg: var(--ar-cian);
+  --vp-button-brand-text: #04121a;
+  --vp-button-brand-hover-bg: #67e8f9;
+  --vp-button-brand-hover-text: #04121a;
+  --vp-button-brand-border: transparent;
+
+  /* El degradado del título, con los tres acentos */
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(120deg, var(--ar-cian), var(--ar-ambar));
+
+  /* Código: el panel de archify, para que un bloque y un diagrama pesen igual */
+  --vp-code-block-bg: var(--ar-panel);
+  --vp-code-block-divider-color: var(--ar-panel-borde);
+}
+
+/* ───────────────────────── claro ───────────────────────── */
+html:not(.dark) {
+  --ar-bg: #f4f5f7;
+  --ar-panel: #ffffff;
+  --ar-panel-borde: #e5e7eb;
+  --ar-texto: #111827;
+  --ar-texto-suave: #5b6474;
+  --ar-texto-tenue: #9aa3b2;
+  --ar-rejilla: #e9edf2;
+  --ar-punto: #e2e7ec;
+  --ar-cian: #0891b2;
+  --ar-ambar: #d97706;
+  --ar-rosa: #e11d48;
+  --ar-flecha: #64748b;
+
+  --vp-c-bg: var(--ar-panel);
+  --vp-c-bg-alt: var(--ar-bg);
+  --vp-c-bg-elv: var(--ar-panel);
+  --vp-c-bg-soft: #f8f9fb;
+
+  --vp-c-brand-2: #06b6d4;
+  --vp-c-brand-3: #0e7490;
+  --vp-c-brand-soft: rgba(8, 145, 178, 0.1);
+
+  --vp-c-tip-soft: rgba(8, 145, 178, 0.1);
+  --vp-c-warning-soft: rgba(217, 119, 6, 0.1);
+  --vp-c-danger-soft: rgba(225, 29, 72, 0.1);
+
+  --vp-button-brand-text: #ffffff;
+  --vp-button-brand-hover-bg: #06b6d4;
+  --vp-button-brand-hover-text: #ffffff;
+
+  --vp-code-block-bg: #f3f4f6;
+}

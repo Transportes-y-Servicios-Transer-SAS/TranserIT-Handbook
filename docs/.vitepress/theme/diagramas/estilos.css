@@ -1,4 +1,4 @@
-/* Generado por scripts/extraer-diagrama.mjs desde docs/public/diagramas/rama.html. No se edita a mano. */
+/* Generado por scripts/diagramas.mjs desde 2 diagrama(s). No se edita a mano. */
 
 @keyframes pulse {
       0%, 100% { opacity: 1; }
@@ -394,13 +394,6 @@
 .archify .diagram-container.is-panning svg { transition: none; }
 .archify .reader-rail { display: contents; }
 .archify .node-outline { display: none; }
-.archify[data-reader-rail="overlay"]) .node-outline:not([hidden]) { display: flex;
-      flex: 1 0 min(13rem, 55%);
-      flex-direction: column;
-      min-height: 0;
-      margin-top: 0.25rem;
-      overflow: hidden;
-      border-top: 1px solid var(--panel-border); }
 .archify .node-outline-head { display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -729,22 +722,52 @@
 .archify .ambient-edge-flow[data-tree-hidden] { display: none !important; animation: none !important; }
 .archify svg[data-preset="blueprint"] .ambient-edge-flow { stroke-linecap: square; }
 .archify svg[data-preset="editorial"] { --flow-halo-peak: 0.07; --flow-glow-peak: 0.28; --flow-tail-peak: 0.2; --flow-head-peak: 0.7; --flow-wake-peak: 0.14; --flow-ripple-peak: 0.3; }
+.archify svg[data-timeline-ui] .tl-grid { stroke: var(--lane-stroke); stroke-dasharray: 2 4; opacity: .7; }
+.archify svg[data-timeline-ui] .tl-axis { stroke: var(--text-dim); }
+.archify svg[data-timeline-ui] .tl-lane { fill: var(--lane-fill); stroke: none; opacity: .75; }
+.archify svg[data-timeline-ui] .tl-lane-alt { opacity: 0; }
+.archify svg[data-timeline-ui] .tl-lane-line { stroke: var(--lane-stroke); }
+.archify svg[data-timeline-ui] .tl-stem { stroke: var(--text-dim); }
+.archify svg[data-timeline-ui] .tl-card { fill-opacity: .55; stroke-opacity: .5; }
+.archify svg[data-timeline-ui] .tl-card.c-external { fill: var(--mask); stroke: var(--lane-stroke); stroke-opacity: 1; }
+.archify svg[data-timeline-ui] .tl-dot { stroke: var(--mask); }
+.archify svg[data-timeline-ui] .tl-halo { fill: var(--mask); }
+.archify svg[data-timeline-ui] .tl-break-band { opacity: .55; }
+.archify svg[data-timeline-ui] .tl-break-chip { fill: var(--mask); stroke: var(--lane-stroke); stroke-width: 1; }
+.archify svg[data-timeline-ui] .tl-hatch { stroke: var(--lane-stroke); }
+.archify svg[data-timeline-ui] .tl-break-zig { stroke: var(--text-dim); }
+.archify svg[data-timeline-ui] .tl-accent-external { stroke: var(--external-stroke); }
+.archify svg[data-timeline-ui] .tl-stem-external { stroke: color-mix(in srgb, var(--external-stroke) 45%, var(--lane-stroke)); }
+.archify svg[data-timeline-ui] .tl-pin-external { fill: var(--external-fill); stroke: color-mix(in srgb, var(--external-stroke) 35%, transparent); stroke-width: 1; }
+.archify svg[data-timeline-ui] .tl-accent-frontend { stroke: var(--frontend-stroke); }
+.archify svg[data-timeline-ui] .tl-stem-frontend { stroke: color-mix(in srgb, var(--frontend-stroke) 45%, var(--lane-stroke)); }
+.archify svg[data-timeline-ui] .tl-pin-frontend { fill: var(--frontend-fill); stroke: color-mix(in srgb, var(--frontend-stroke) 35%, transparent); stroke-width: 1; }
+.archify svg[data-timeline-ui] .tl-accent-security { stroke: var(--security-stroke); }
+.archify svg[data-timeline-ui] .tl-stem-security { stroke: color-mix(in srgb, var(--security-stroke) 45%, var(--lane-stroke)); }
+.archify svg[data-timeline-ui] .tl-pin-security { fill: var(--security-fill); stroke: color-mix(in srgb, var(--security-stroke) 35%, transparent); stroke-width: 1; }
+.archify svg[data-timeline-ui] .tl-accent-messagebus { stroke: var(--messagebus-stroke); }
+.archify svg[data-timeline-ui] .tl-stem-messagebus { stroke: color-mix(in srgb, var(--messagebus-stroke) 45%, var(--lane-stroke)); }
+.archify svg[data-timeline-ui] .tl-pin-messagebus { fill: var(--messagebus-fill); stroke: color-mix(in srgb, var(--messagebus-stroke) 35%, transparent); stroke-width: 1; }
+.archify svg[data-timeline-ui] .tl-accent-backend { stroke: var(--backend-stroke); }
+.archify svg[data-timeline-ui] .tl-stem-backend { stroke: color-mix(in srgb, var(--backend-stroke) 45%, var(--lane-stroke)); }
+.archify svg[data-timeline-ui] .tl-pin-backend { fill: var(--backend-fill); stroke: color-mix(in srgb, var(--backend-stroke) 35%, transparent); stroke-width: 1; }
+.archify svg[data-timeline-ui] .tl-tick, .archify svg[data-timeline-ui] .tl-time { font-variant-numeric: tabular-nums; }
 .archify svg[data-node-ui] [data-node-id] > rect:not(.c-mask) { stroke-width: 1.25px; }
-.archify :is([data-theme="dark"] svg[data-node-ui], .archify svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-frontend { fill: color-mix(in srgb, var(--frontend-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--frontend-stroke) 72%, var(--mask)); }
-.archify :is([data-theme="dark"] svg[data-node-ui], .archify svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-backend { fill: color-mix(in srgb, var(--backend-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--backend-stroke) 72%, var(--mask)); }
-.archify :is([data-theme="dark"] svg[data-node-ui], .archify svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-database { fill: color-mix(in srgb, var(--database-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--database-stroke) 72%, var(--mask)); }
-.archify :is([data-theme="dark"] svg[data-node-ui], .archify svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-cloud { fill: color-mix(in srgb, var(--cloud-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--cloud-stroke) 72%, var(--mask)); }
-.archify :is([data-theme="dark"] svg[data-node-ui], .archify svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-security { fill: color-mix(in srgb, var(--security-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--security-stroke) 72%, var(--mask)); }
-.archify :is([data-theme="dark"] svg[data-node-ui], .archify svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-messagebus { fill: color-mix(in srgb, var(--messagebus-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--messagebus-stroke) 72%, var(--mask)); }
-.archify :is([data-theme="dark"] svg[data-node-ui], .archify svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-external { fill: color-mix(in srgb, var(--external-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--external-stroke) 72%, var(--mask)); }
-.archify svg[data-node-ui]:is([data-preset="classic"], .archify[data-preset="signal-flow"], .archify[data-preset="editorial"]) .c-region { fill: color-mix(in srgb, var(--cloud-stroke) 3%, transparent); stroke: color-mix(in srgb, var(--cloud-stroke) 42%, var(--lane-stroke)); stroke-dasharray: none; }
+.archify :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-frontend { fill: color-mix(in srgb, var(--frontend-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--frontend-stroke) 72%, var(--mask)); }
+.archify :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-backend { fill: color-mix(in srgb, var(--backend-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--backend-stroke) 72%, var(--mask)); }
+.archify :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-database { fill: color-mix(in srgb, var(--database-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--database-stroke) 72%, var(--mask)); }
+.archify :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-cloud { fill: color-mix(in srgb, var(--cloud-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--cloud-stroke) 72%, var(--mask)); }
+.archify :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-security { fill: color-mix(in srgb, var(--security-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--security-stroke) 72%, var(--mask)); }
+.archify :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-messagebus { fill: color-mix(in srgb, var(--messagebus-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--messagebus-stroke) 72%, var(--mask)); }
+.archify :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-external { fill: color-mix(in srgb, var(--external-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--external-stroke) 72%, var(--mask)); }
+.archify svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-region { fill: color-mix(in srgb, var(--cloud-stroke) 3%, transparent); stroke: color-mix(in srgb, var(--cloud-stroke) 42%, var(--lane-stroke)); stroke-dasharray: none; }
 .archify svg[data-node-ui] .c-security-group { stroke: color-mix(in srgb, var(--security-stroke) 58%, var(--lane-stroke)); }
-.archify svg[data-node-ui]:is([data-preset="classic"], .archify[data-preset="signal-flow"], .archify[data-preset="editorial"]) .c-security-group { stroke-dasharray: 4 3; }
-.archify svg[data-node-ui]:is([data-preset="classic"], .archify[data-preset="signal-flow"], .archify[data-preset="editorial"]) .c-lane { stroke: var(--lane-stroke); stroke-dasharray: none; }
+.archify svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-security-group { stroke-dasharray: 4 3; }
+.archify svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-lane { stroke: var(--lane-stroke); stroke-dasharray: none; }
 .archify svg[data-node-ui] [data-graph-role="structural-frame-label-mask"] { rx: 5px; fill: color-mix(in srgb, var(--cloud-stroke) 10%, var(--mask)); stroke: color-mix(in srgb, var(--cloud-stroke) 38%, var(--mask)); stroke-width: .8px; }
 .archify svg[data-node-ui] [data-composition-frame-kind="security-group"] > [data-graph-role="structural-frame-label-mask"] { fill: color-mix(in srgb, var(--security-stroke) 9%, var(--mask)); stroke: color-mix(in srgb, var(--security-stroke) 36%, var(--mask)); }
 .archify svg[data-node-ui] .phase-rule { opacity: .5; stroke-dasharray: none; }
 .archify svg[data-node-ui] .phase-chip { stroke: var(--lane-stroke); stroke-width: .75px; }
 .archify svg[data-node-ui] g[data-edge-from] > rect.c-mask { rx: 7px; stroke: var(--lane-stroke); stroke-width: .75px; }
-.archify svg[data-node-ui][data-preset="blueprint"] :is([data-graph-role="structural-frame-label-mask"], .archify g[data-edge-from] > rect.c-mask, .archify .phase-chip) { rx: 2px; }
-.archify svg[data-node-ui][data-preset="editorial"] :is([data-graph-role="structural-frame-label-mask"], .archify g[data-edge-from] > rect.c-mask, .archify .phase-chip) { rx: 3px; }
+.archify svg[data-node-ui][data-preset="blueprint"] :is([data-graph-role="structural-frame-label-mask"], g[data-edge-from] > rect.c-mask, .phase-chip) { rx: 2px; }
+.archify svg[data-node-ui][data-preset="editorial"] :is([data-graph-role="structural-frame-label-mask"], g[data-edge-from] > rect.c-mask, .phase-chip) { rx: 3px; }

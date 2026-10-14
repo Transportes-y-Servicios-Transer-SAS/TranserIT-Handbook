@@ -1,0 +1,185 @@
+<svg viewBox="0 0 1173 594" role="img" lang="es" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase" data-motion-choreography="sweep" data-timeline-ui="" data-reader-fit="intrinsic-height" data-reader-min-text="7.5">
+        <title id="archify-diagram-title">La historia del mismo informe</title>
+        <desc id="archify-diagram-description">Un solo archivo. Cada punto dice qué cambió, quién lo cambió y por qué.</desc>
+        <!-- Definitions -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-default" />
+          </marker>
+          <marker id="arrowhead-emphasis" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-emphasis" />
+          </marker>
+          <marker id="arrowhead-security" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-security" />
+          </marker>
+          <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-dashed" />
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" class="c-grid" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <style>
+          svg[data-timeline-ui] .tl-grid { stroke: var(--lane-stroke); stroke-dasharray: 2 4; opacity: .7; }
+          svg[data-timeline-ui] .tl-axis { stroke: var(--text-dim); }
+          svg[data-timeline-ui] .tl-lane { fill: var(--lane-fill); stroke: none; opacity: .75; }
+          svg[data-timeline-ui] .tl-lane-alt { opacity: 0; }
+          svg[data-timeline-ui] .tl-lane-line { stroke: var(--lane-stroke); }
+          svg[data-timeline-ui] .tl-stem { stroke: var(--text-dim); }
+          svg[data-timeline-ui] .tl-card { fill-opacity: .55; stroke-opacity: .5; }
+          svg[data-timeline-ui] .tl-card.c-external { fill: var(--mask); stroke: var(--lane-stroke); stroke-opacity: 1; }
+          svg[data-timeline-ui] .tl-dot { stroke: var(--mask); }
+          svg[data-timeline-ui] .tl-halo { fill: var(--mask); }
+          svg[data-timeline-ui] .tl-break-band { opacity: .55; }
+          svg[data-timeline-ui] .tl-break-chip { fill: var(--mask); stroke: var(--lane-stroke); stroke-width: 1; }
+          svg[data-timeline-ui] .tl-hatch { stroke: var(--lane-stroke); }
+          svg[data-timeline-ui] .tl-break-zig { stroke: var(--text-dim); }
+          svg[data-timeline-ui] .tl-accent-external { stroke: var(--external-stroke); }
+          svg[data-timeline-ui] .tl-stem-external { stroke: color-mix(in srgb, var(--external-stroke) 45%, var(--lane-stroke)); }
+          svg[data-timeline-ui] .tl-pin-external { fill: var(--external-fill); stroke: color-mix(in srgb, var(--external-stroke) 35%, transparent); stroke-width: 1; }
+          svg[data-timeline-ui] .tl-accent-frontend { stroke: var(--frontend-stroke); }
+          svg[data-timeline-ui] .tl-stem-frontend { stroke: color-mix(in srgb, var(--frontend-stroke) 45%, var(--lane-stroke)); }
+          svg[data-timeline-ui] .tl-pin-frontend { fill: var(--frontend-fill); stroke: color-mix(in srgb, var(--frontend-stroke) 35%, transparent); stroke-width: 1; }
+          svg[data-timeline-ui] .tl-accent-security { stroke: var(--security-stroke); }
+          svg[data-timeline-ui] .tl-stem-security { stroke: color-mix(in srgb, var(--security-stroke) 45%, var(--lane-stroke)); }
+          svg[data-timeline-ui] .tl-pin-security { fill: var(--security-fill); stroke: color-mix(in srgb, var(--security-stroke) 35%, transparent); stroke-width: 1; }
+          svg[data-timeline-ui] .tl-accent-messagebus { stroke: var(--messagebus-stroke); }
+          svg[data-timeline-ui] .tl-stem-messagebus { stroke: color-mix(in srgb, var(--messagebus-stroke) 45%, var(--lane-stroke)); }
+          svg[data-timeline-ui] .tl-pin-messagebus { fill: var(--messagebus-fill); stroke: color-mix(in srgb, var(--messagebus-stroke) 35%, transparent); stroke-width: 1; }
+          svg[data-timeline-ui] .tl-accent-backend { stroke: var(--backend-stroke); }
+          svg[data-timeline-ui] .tl-stem-backend { stroke: color-mix(in srgb, var(--backend-stroke) 45%, var(--lane-stroke)); }
+          svg[data-timeline-ui] .tl-pin-backend { fill: var(--backend-fill); stroke: color-mix(in srgb, var(--backend-stroke) 35%, transparent); stroke-width: 1; }
+          svg[data-timeline-ui] .tl-tick, svg[data-timeline-ui] .tl-time { font-variant-numeric: tabular-nums; }
+        </style>
+
+        <!-- Background Grid -->
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <g data-timeline-evidence="illustrative">
+          <rect x="28" y="14" width="138" height="22" rx="11" class="c-messagebus" stroke-width="1"/>
+          <circle cx="39" cy="25" r="3" class="t-messagebus"/>
+          <text x="102" y="29" class="t-messagebus" font-size="10.5" font-weight="700" text-anchor="middle">Datos ilustrativos</text>
+        </g>
+        <text data-timeline-axis-caption="" x="180" y="29.5" class="t-muted" font-size="11.5">Fecha: America/Bogota (UTC-05:00)</text>
+
+        <!-- Lanes -->
+        <g data-timeline-lane="autor">
+          <rect x="20" y="112" width="1125" height="112" rx="10" class="tl-lane"/>
+          <line x1="193" y1="136" x2="1137" y2="136" class="tl-lane-line" stroke-width="1.5" stroke-linecap="round"/>
+          <text x="28" y="140.5" class="t-primary" font-size="13" font-weight="700">Quien lo escribe</text>
+        </g>
+        <g data-timeline-lane="contabilidad">
+          <rect x="20" y="234" width="1125" height="112" rx="10" class="tl-lane tl-lane-alt"/>
+          <line x1="193" y1="258" x2="1137" y2="258" class="tl-lane-line" stroke-width="1.5" stroke-linecap="round"/>
+          <text x="28" y="262.5" class="t-primary" font-size="13" font-weight="700">Contabilidad</text>
+        </g>
+        <g data-timeline-lane="gerencia">
+          <rect x="20" y="356" width="1125" height="176" rx="10" class="tl-lane"/>
+          <line x1="193" y1="429" x2="1137" y2="429" class="tl-lane-line" stroke-width="1.5" stroke-linecap="round"/>
+          <text x="28" y="433.5" class="t-primary" font-size="13" font-weight="700">Gerencia</text>
+        </g>
+
+        <!-- Time axis (proportional within each segment; breaks are disclosed) -->
+          <line x1="320.3" y1="102" x2="320.3" y2="532" class="tl-grid" stroke-width="1"/>
+          <line x1="320.3" y1="98" x2="320.3" y2="102" class="tl-axis" stroke-width="1"/>
+          <text x="320.3" y="92" class="t-muted tl-tick" font-size="10.5" text-anchor="middle">09-02 00:00</text>
+          <line x1="478.07" y1="102" x2="478.07" y2="532" class="tl-grid" stroke-width="1"/>
+          <line x1="478.07" y1="98" x2="478.07" y2="102" class="tl-axis" stroke-width="1"/>
+          <text x="478.07" y="92" class="t-muted tl-tick" font-size="10.5" text-anchor="middle">09-04 00:00</text>
+          <line x1="635.83" y1="102" x2="635.83" y2="532" class="tl-grid" stroke-width="1"/>
+          <line x1="635.83" y1="98" x2="635.83" y2="102" class="tl-axis" stroke-width="1"/>
+          <text x="635.83" y="92" class="t-muted tl-tick" font-size="10.5" text-anchor="middle">09-06 00:00</text>
+          <line x1="793.59" y1="102" x2="793.59" y2="532" class="tl-grid" stroke-width="1"/>
+          <line x1="793.59" y1="98" x2="793.59" y2="102" class="tl-axis" stroke-width="1"/>
+          <text x="793.59" y="92" class="t-muted tl-tick" font-size="10.5" text-anchor="middle">09-08 00:00</text>
+          <line x1="951.36" y1="102" x2="951.36" y2="532" class="tl-grid" stroke-width="1"/>
+          <line x1="951.36" y1="98" x2="951.36" y2="102" class="tl-axis" stroke-width="1"/>
+          <text x="951.36" y="92" class="t-muted tl-tick" font-size="10.5" text-anchor="middle">09-10 00:00</text>
+          <line x1="193" y1="102" x2="1137" y2="102" class="tl-axis" stroke-width="1"/>
+
+
+        <!-- Stems sit behind every card, so a stacked card is never crossed by
+             another event's connector -->
+        <line data-detail="context" data-timeline-stem="creado" x1="271" y1="136" x2="271" y2="152" class="tl-stem tl-stem-frontend" stroke-width="1"/>
+        <line data-detail="context" data-timeline-stem="cifras" x1="515.86" y1="258" x2="515.86" y2="274" class="tl-stem tl-stem-frontend" stroke-width="1"/>
+        <line data-detail="context" data-timeline-stem="revision" x1="925.06" y1="429" x2="925.06" y2="445" class="tl-stem tl-stem-security" stroke-width="1"/>
+        <line data-detail="context" data-timeline-stem="ajuste" x1="985.05" y1="136" x2="985.05" y2="152" class="tl-stem tl-stem-frontend" stroke-width="1"/>
+        <line data-detail="context" data-timeline-stem="aprobado" x1="1059" y1="429" x2="1059" y2="413" class="tl-stem tl-stem-backend" stroke-width="1"/>
+
+        <!-- One halo layer under every dot, so events seconds apart merge into
+             one outlined capsule instead of cutting crescents into each other -->
+        <circle data-detail="context" cx="271" cy="136" r="7.5" class="tl-halo"/>
+        <circle data-detail="context" cx="515.86" cy="258" r="7.5" class="tl-halo"/>
+        <circle data-detail="context" cx="925.06" cy="429" r="7.5" class="tl-halo"/>
+        <circle data-detail="context" cx="985.05" cy="136" r="7.5" class="tl-halo"/>
+        <circle data-detail="context" cx="1059" cy="429" r="7.5" class="tl-halo"/>
+        <circle data-detail="context" cx="271" cy="136" r="6.5" class="tl-pin tl-pin-frontend"/>
+        <circle data-detail="context" cx="515.86" cy="258" r="6.5" class="tl-pin tl-pin-frontend"/>
+        <circle data-detail="context" cx="925.06" cy="429" r="6.5" class="tl-pin tl-pin-security"/>
+        <circle data-detail="context" cx="985.05" cy="136" r="6.5" class="tl-pin tl-pin-frontend"/>
+        <circle data-detail="context" cx="1059" cy="429" r="6.5" class="tl-pin tl-pin-backend"/>
+
+        <!-- Events in time order -->
+        <g id="node-creado" data-node-id="creado" data-node-label="Se crea el informe" tabindex="0" role="button" aria-label="Enfocar Se crea el informe, La estructura y los datos del trimestre anterior, para tener de dónde partir., Quien lo escribe › 09-01 09:00:00 UTC-05:00" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="La estructura y los datos del trimestre anterior, para tener de dónde partir." data-node-context="Quien lo escribe › 09-01 09:00:00 UTC-05:00" data-timeline-at="2026-09-01T09:00:00-05:00" data-timeline-ms="1788271200000" data-timeline-x="271">
+          <title>Se crea el informe · La estructura y los datos del trimestre anterior, para tener de dónde partir. · Quien lo escribe › 09-01 09:00:00 UTC-05:00</title>
+          <rect x="189" y="152" width="166" height="43" rx="7" class="c-mask"/>
+          <rect x="189" y="152" width="166" height="43" rx="7" class="c-frontend tl-card" data-animate="node" style="--step:0" stroke-width="1"/>
+          <line x1="195" y1="159" x2="195" y2="188" class="tl-accent tl-accent-frontend" stroke-width="3" stroke-linecap="round"/>
+          <text x="203" y="171" class="t-frontend tl-time" font-size="10.5" font-weight="600">09-01 09:00</text>
+          <text data-node-label="" class="t-primary" font-size="12.5" font-weight="650"><tspan x="203" y="188">Se crea el informe</tspan></text>
+          <circle cx="271" cy="136" r="4.75" class="t-frontend"/>
+        </g>
+        <g id="node-cifras" data-node-id="cifras" data-node-label="Entran las cifras reales" tabindex="0" role="button" aria-label="Enfocar Entran las cifras reales, Contabilidad reemplaza los datos de ejemplo por los del trimestre que se informa., Contabilidad › 09-04 11:30:00 UTC-05:00" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="Contabilidad reemplaza los datos de ejemplo por los del trimestre que se informa." data-node-context="Contabilidad › 09-04 11:30:00 UTC-05:00" data-timeline-at="2026-09-04T11:30:00-05:00" data-timeline-ms="1788539400000" data-timeline-x="515.86">
+          <title>Entran las cifras reales · Contabilidad reemplaza los datos de ejemplo por los del trimestre que se informa. · Contabilidad › 09-04 11:30:00 UTC-05:00</title>
+          <rect x="415.86" y="274" width="200" height="58" rx="7" class="c-mask"/>
+          <rect x="415.86" y="274" width="200" height="58" rx="7" class="c-frontend tl-card" data-animate="node" style="--step:1" stroke-width="1"/>
+          <line x1="421.86" y1="281" x2="421.86" y2="325" class="tl-accent tl-accent-frontend" stroke-width="3" stroke-linecap="round"/>
+          <text x="429.86" y="293" class="t-frontend tl-time" font-size="10.5" font-weight="600">09-04 11:30</text>
+          <text data-node-label="" class="t-primary" font-size="12.5" font-weight="650"><tspan x="429.86" y="310">Entran las cifras</tspan><tspan x="429.86" y="325">reales</tspan></text>
+          <circle cx="515.86" cy="258" r="4.75" class="t-frontend"/>
+        </g>
+        <g id="node-revision" data-node-id="revision" data-node-label="La revisión encuentra dos cuadros que no cuadran" tabindex="0" role="button" aria-label="Enfocar La revisión encuentra dos cuadros que no cuadran, Queda anotado qué cuadros y contra qué se comparó. Nadie tiene que acordarse., Gerencia › 09-09 16:00:00 UTC-05:00" aria-pressed="false" data-node-kind="security" data-node-sublabel="Queda anotado qué cuadros y contra qué se comparó. Nadie tiene que acordarse." data-node-context="Gerencia › 09-09 16:00:00 UTC-05:00" data-timeline-at="2026-09-09T16:00:00-05:00" data-timeline-ms="1788987600000" data-timeline-x="925.06">
+          <title>La revisión encuentra dos cuadros que no cuadran · Queda anotado qué cuadros y contra qué se comparó. Nadie tiene que acordarse. · Gerencia › 09-09 16:00:00 UTC-05:00</title>
+          <rect x="825.06" y="445" width="200" height="73" rx="7" class="c-mask"/>
+          <rect x="825.06" y="445" width="200" height="73" rx="7" class="c-security tl-card" data-animate="node" style="--step:2" stroke-width="1"/>
+          <line x1="831.06" y1="452" x2="831.06" y2="511" class="tl-accent tl-accent-security" stroke-width="3" stroke-linecap="round"/>
+          <text x="839.06" y="464" class="t-security tl-time" font-size="10.5" font-weight="600">09-09 16:00</text>
+          <text data-node-label="" class="t-primary" font-size="12.5" font-weight="650"><tspan x="839.06" y="481">La revisión encuentra</tspan><tspan x="839.06" y="496">dos cuadros que no</tspan><tspan x="839.06" y="511">cuadran</tspan></text>
+          <circle cx="925.06" cy="429" r="4.75" class="t-security"/>
+        </g>
+        <g id="node-ajuste" data-node-id="ajuste" data-node-label="Se corrigen los dos cuadros" tabindex="0" role="button" aria-label="Enfocar Se corrigen los dos cuadros, Solo esos dos. El resto del informe no se toca, y se puede comprobar que no se tocó., Quien lo escribe › 09-10 10:15:00 UTC-05:00" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="Solo esos dos. El resto del informe no se toca, y se puede comprobar que no se tocó." data-node-context="Quien lo escribe › 09-10 10:15:00 UTC-05:00" data-timeline-at="2026-09-10T10:15:00-05:00" data-timeline-ms="1789053300000" data-timeline-x="985.05">
+          <title>Se corrigen los dos cuadros · Solo esos dos. El resto del informe no se toca, y se puede comprobar que no se tocó. · Quien lo escribe › 09-10 10:15:00 UTC-05:00</title>
+          <rect x="885.05" y="152" width="200" height="58" rx="7" class="c-mask"/>
+          <rect x="885.05" y="152" width="200" height="58" rx="7" class="c-frontend tl-card" data-animate="node" style="--step:3" stroke-width="1"/>
+          <line x1="891.05" y1="159" x2="891.05" y2="203" class="tl-accent tl-accent-frontend" stroke-width="3" stroke-linecap="round"/>
+          <text x="899.05" y="171" class="t-frontend tl-time" font-size="10.5" font-weight="600">09-10 10:15</text>
+          <text data-node-label="" class="t-primary" font-size="12.5" font-weight="650"><tspan x="899.05" y="188">Se corrigen los dos</tspan><tspan x="899.05" y="203">cuadros</tspan></text>
+          <circle cx="985.05" cy="136" r="4.75" class="t-frontend"/>
+        </g>
+        <g id="node-aprobado" data-node-id="aprobado" data-node-label="Aprobado" tabindex="0" role="button" aria-label="Enfocar Aprobado, El archivo sigue llamándose igual que el 1 de septiembre. Lo que cambió está todo aquí., Gerencia › 09-11 08:45:00 UTC-05:00" aria-pressed="false" data-node-kind="backend" data-node-sublabel="El archivo sigue llamándose igual que el 1 de septiembre. Lo que cambió está todo aquí." data-node-context="Gerencia › 09-11 08:45:00 UTC-05:00" data-timeline-at="2026-09-11T08:45:00-05:00" data-timeline-ms="1789134300000" data-timeline-x="1059">
+          <title>Aprobado · El archivo sigue llamándose igual que el 1 de septiembre. Lo que cambió está todo aquí. · Gerencia › 09-11 08:45:00 UTC-05:00</title>
+          <rect x="1012" y="370" width="94" height="43" rx="7" class="c-mask"/>
+          <rect x="1012" y="370" width="94" height="43" rx="7" class="c-backend tl-card" data-animate="node" style="--step:4" stroke-width="1"/>
+          <line x1="1018" y1="377" x2="1018" y2="406" class="tl-accent tl-accent-backend" stroke-width="3" stroke-linecap="round"/>
+          <text x="1026" y="389" class="t-backend tl-time" font-size="10.5" font-weight="600">09-11 08:45</text>
+          <text data-node-label="" class="t-primary" font-size="12.5" font-weight="650"><tspan x="1026" y="406">Aprobado</tspan></text>
+          <circle cx="1059" cy="429" r="4.75" class="t-backend"/>
+        </g>
+
+        <!-- Legend -->
+        <g data-legend="">
+          <text x="28" y="558" class="t-primary" font-size="12" font-weight="650">Leyenda</text>
+          <g data-legend-semantic-kind="change" data-legend-x="28" data-legend-baseline="578" data-legend-width="200">
+            <circle cx="34" cy="574" r="4.5" class="t-frontend tl-dot" stroke-width="2"/>
+            <text x="50" y="578" class="t-muted" font-size="13" font-weight="500">Un cambio al documento</text>
+          </g>
+          <g data-legend-semantic-kind="alert" data-legend-x="250" data-legend-baseline="578" data-legend-width="256">
+            <circle cx="256" cy="574" r="4.5" class="t-security tl-dot" stroke-width="2"/>
+            <text x="272" y="578" class="t-muted" font-size="13" font-weight="500">Algo que la revisión encontró</text>
+          </g>
+          <g data-legend-semantic-kind="recovery" data-legend-x="528" data-legend-baseline="578" data-legend-width="135">
+            <circle cx="534" cy="574" r="4.5" class="t-backend tl-dot" stroke-width="2"/>
+            <text x="550" y="578" class="t-muted" font-size="13" font-weight="500">Queda aprobado</text>
+          </g>
+        </g>
+      </svg>
