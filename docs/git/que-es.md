@@ -130,30 +130,15 @@ Tener la historia completa te da tres cosas que, por separado, ya justificarían
 Una **rama** es tu copia de todo el expediente, para trabajar tranquilo. Lo que haces ahí **no lo ve
 nadie** hasta que tú lo entregas, y mientras tanto **lo que está publicado sigue funcionando**.
 
-<figure>
-<svg viewBox="0 0 700 164" role="img" aria-labelledby="t-rama" class="fig">
-  <title id="t-rama">Una rama se separa de la línea principal, acumula trabajo propio y se devuelve al final</title>
-
-  <line x1="110" y1="116" x2="672" y2="116" class="eje"/>
-  <text x="30" y="120" class="et">lo publicado</text>
-
-  <path d="M 230 116 C 262 116 268 56 300 56" class="eje-br"/>
-  <line x1="300" y1="56" x2="480" y2="56" class="eje-br"/>
-  <path d="M 480 56 C 512 56 518 116 550 116" class="eje-br"/>
-  <text x="300" y="34" class="et-br">tu rama</text>
-
-  <g class="punto">
-    <circle cx="130" cy="116" r="7"/><circle cx="230" cy="116" r="7"/>
-    <circle cx="430" cy="116" r="7"/><circle cx="550" cy="116" r="7"/><circle cx="660" cy="116" r="7"/>
-  </g>
-  <g class="punto-br">
-    <circle cx="340" cy="56" r="7"/><circle cx="400" cy="56" r="7"/><circle cx="460" cy="56" r="7"/>
-  </g>
-
-  <text x="230" y="144" class="nota-i">te separas</text>
-  <text x="550" y="144" class="nota-i">la devuelves</text>
-  <text x="400" y="86"  class="nota-i">trabajas aquí, sin molestar a nadie</text>
-</svg>
+<figure class="diagrama">
+  <iframe src="/diagramas/rama.html"
+          title="Diagrama interactivo: trabajar en una rama sin estorbar a nadie"
+          loading="lazy"></iframe>
+  <figcaption>
+    <strong>Este diagrama es interactivo:</strong> pasa el cursor por las cajas, acércate con los
+    controles de abajo, o
+    <a class="abrir" href="/diagramas/rama.html" target="_blank" rel="noopener">ábrelo en grande ↗</a>
+  </figcaption>
 </figure>
 
 **Esto es lo que permite que cinco personas trabajen a la vez sin pisarse.** Cada una en su rama;
@@ -227,6 +212,35 @@ parar acá sin perderte nada.
   line-height: 1.9;
 }
 figure { margin: 1.75rem 0; }
+.diagrama { margin: 2rem 0; }
+.diagrama iframe {
+  width: 100%;
+  /* Alto fijo y no aspect-ratio: el diagrama tiene su propia relación y recortarlo por los lados
+     es peor que dejar aire abajo. En pantalla estrecha el visor hace su propio desplazamiento. */
+  height: 680px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  background: var(--vp-c-bg-soft);
+  display: block;
+}
+.diagrama figcaption {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.6rem;
+  margin-top: 0.6rem;
+  font-size: 0.86rem;
+  color: var(--vp-c-text-3);
+  line-height: 1.6;
+}
+.diagrama .abrir {
+  font-weight: 600;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--vp-c-brand-1);
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .diagrama iframe { height: 500px; }
+}
 .fig { width: 100%; height: auto; overflow: visible; }
 .fig .et      { font: 600 13px var(--vp-font-family-base); fill: var(--vp-c-text-1); }
 .fig .et-br   { font: 600 13px var(--vp-font-family-base); fill: var(--vp-c-brand-1); }

@@ -1,0 +1,204 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Trabajar en una rama, sin estorbar a nadie",
+    "output": "docs/public/diagramas/rama.html",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "locale": "es",
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "cloud": {
+          "label": "Lo que está publicado"
+        },
+        "frontend": {
+          "label": "Un cambio tuyo, en tu rama"
+        },
+        "security": {
+          "label": "La revisión antes de entrar"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "publicado",
+      "label": "Lo publicado"
+    },
+    {
+      "id": "rama",
+      "label": "Tu rama"
+    }
+  ],
+  "phases": [
+    {
+      "id": "antes",
+      "label": "Antes",
+      "fromCol": 0,
+      "toCol": 1
+    },
+    {
+      "id": "aparte",
+      "label": "Trabajas aparte",
+      "fromCol": 2,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "despues",
+      "label": "Lo devuelves",
+      "fromCol": 4,
+      "toCol": 5
+    }
+  ],
+  "mainPath": [
+    "p1",
+    "p2",
+    "r1",
+    "r2",
+    "r3",
+    "fusion",
+    "p4"
+  ],
+  "nodes": [
+    {
+      "id": "p1",
+      "lane": "publicado",
+      "col": 0,
+      "type": "cloud",
+      "label": "Lo publicado",
+      "sublabel": "lo que la gente usa"
+    },
+    {
+      "id": "p2",
+      "lane": "publicado",
+      "col": 1,
+      "type": "cloud",
+      "label": "Te separas",
+      "sublabel": "tu rama sale de aquí"
+    },
+    {
+      "id": "r1",
+      "lane": "rama",
+      "col": 2,
+      "type": "frontend",
+      "label": "Primer cambio",
+      "sublabel": "con su nota: por qué"
+    },
+    {
+      "id": "r2",
+      "lane": "rama",
+      "col": 3,
+      "type": "frontend",
+      "label": "Segundo cambio",
+      "sublabel": "nadie lo ve aún"
+    },
+    {
+      "id": "r3",
+      "lane": "rama",
+      "col": 4,
+      "type": "frontend",
+      "label": "Listo",
+      "sublabel": "pides que lo revisen"
+    },
+    {
+      "id": "p3",
+      "lane": "publicado",
+      "col": 3,
+      "type": "cloud",
+      "label": "Sigue igual",
+      "sublabel": "tu trabajo no lo toca"
+    },
+    {
+      "id": "fusion",
+      "lane": "publicado",
+      "col": 4,
+      "type": "security",
+      "label": "Alguien revisa",
+      "sublabel": "y se fusiona"
+    },
+    {
+      "id": "p4",
+      "lane": "publicado",
+      "col": 5,
+      "type": "cloud",
+      "label": "Publicado + tu cambio",
+      "sublabel": "y tu nota en la historia"
+    }
+  ],
+  "edges": [
+    {
+      "from": "p1",
+      "to": "p2",
+      "label": "pasa el tiempo"
+    },
+    {
+      "from": "p2",
+      "to": "r1",
+      "label": "te separas",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "from": "r1",
+      "to": "r2"
+    },
+    {
+      "from": "r2",
+      "to": "r3"
+    },
+    {
+      "from": "p2",
+      "to": "p3",
+      "label": "mientras tanto, intacto"
+    },
+    {
+      "from": "p3",
+      "to": "fusion"
+    },
+    {
+      "from": "r3",
+      "to": "fusion",
+      "label": "la devuelves",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "from": "fusion",
+      "to": "p4"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Para qué sirve una rama",
+      "items": [
+        "Para que cinco personas trabajen a la vez sin pisarse",
+        "Cada una en la suya; al final, cada una devuelve lo suyo",
+        "Lo que está publicado sigue funcionando todo ese tiempo"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Mientras trabajas, nadie te ve",
+      "items": [
+        "Lo de tu rama no afecta a nadie hasta que lo entregas",
+        "Puedes equivocarte y arreglarlo sin que nadie lo note",
+        "Y puedes dejarlo a medias y volver mañana"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "La revisión no es un trámite",
+      "items": [
+        "Entre tu rama y lo publicado hay una persona que mira",
+        "Es el único punto por donde algo entra a lo que todos usan",
+        "Por eso se llama «solicitud» de cambio y no «envío»"
+      ]
+    }
+  ]
+}

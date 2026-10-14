@@ -54,7 +54,35 @@ a ejecutar nada, que es justo el lector que falló la vez anterior.
 | **VitePress y no Nuxt** | Markdown entra, sitio sale. Los manuales a migrar ya son markdown. Nuxt traería servidor, enrutado y ciclo de vida que una documentación no necesita |
 | **VitePress 1.x** | La 2.0 está en alpha |
 | **Sin la marca de Vórtice** | El público es el área entera, de gerencia a practicante, no un proyecto |
-| **Diagramas en SVG propio** | Van en línea en el markdown y usan las variables de tema de VitePress, así que siguen el modo claro y el oscuro sin duplicarse. Comprobado en los dos |
+| **Diagramas: archify para los interactivos, SVG a mano para los conceptuales** | Un diagrama de flujo —ramas, fusión— gana con zoom, foco y tarjetas: eso es archify. Una comparación de dos ideas —«guardar» frente a «commit»— no gana nada siendo interactiva, y en línea pesa 2 KB en vez de 800 |
+| **Los SVG a mano usan las variables de tema de VitePress** | Siguen el modo claro y el oscuro sin duplicarse. Comprobado en los dos |
+
+## Los diagramas interactivos
+
+Se generan con [archify](https://github.com/tt-a1i/archify). **La fuente es el JSON de
+`diagramas/`**; el HTML de `docs/public/diagramas/` es el resultado.
+
+```bash
+# archify no está en npm con ese nombre —el paquete «archify» del registro es otro—,
+# así que se clona y se usa su CLI:
+git clone --depth 1 https://github.com/tt-a1i/archify.git /tmp/archify
+
+node /tmp/archify/archify/bin/archify.mjs validate workflow diagramas/rama.workflow.json
+node /tmp/archify/archify/bin/archify.mjs render   workflow diagramas/rama.workflow.json docs/public/diagramas/rama.html
+```
+
+**El HTML generado SÍ se versiona, y es una excepción deliberada.** La regla del área es que lo
+generado no se versiona, porque versionarlo convierte la copia en la fuente. Aquí se hace porque
+**la herramienta no es una dependencia instalable**: sin el HTML confirmado, quien clone no puede
+construir el sitio. Si algún día archify se publica en el registro, esto se revierte.
+
+Tres cosas aprendidas al integrarlo, para no redescubrirlas:
+
+- **`meta.locale: "es"`** pone en español la interfaz del visor. Sin eso sale en inglés.
+- **`meta.legend.entries`** renombra la leyenda. Hace falta: los siete tipos de nodo traen etiquetas
+  de arquitectura —«Interfaz de usuario», «Política»— que en un manual de Git confunden.
+- **`meta.legend.mode: "auto"`** muestra solo los tipos que el diagrama usa. Con `"all"` aparecen los
+  siete, incluidos cuatro vacíos.
 
 ## Publicación
 
