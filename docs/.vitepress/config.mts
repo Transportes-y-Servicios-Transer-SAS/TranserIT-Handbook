@@ -26,7 +26,9 @@ export default defineConfig({
   head: [['meta', { name: 'theme-color', content: '#1f6f54' }]],
 
   themeConfig: {
-    outline: { label: 'En esta página', level: [2, 3] },
+    // Sin índice lateral derecho: con la barra de la izquierda eran dos columnas de
+    // navegación estrujando una de texto, y estas páginas no son tan largas.
+    outline: false,
 
     nav: [
       { text: 'Git, de cero', link: '/git/que-es' },

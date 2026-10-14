@@ -1,0 +1,215 @@
+<svg viewBox="0 0 894 404" data-layout-contract="readable-v2" role="img" lang="es" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase" data-node-ui="">
+        <title id="archify-diagram-title">Trabajar en una rama, sin estorbar a nadie</title>
+        <desc id="archify-diagram-description">Un diagrama de flujo de trabajo generado por Archify.</desc>
+        <!-- Definitions -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-default" />
+          </marker>
+          <marker id="arrowhead-emphasis" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-emphasis" />
+          </marker>
+          <marker id="arrowhead-security" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-security" />
+          </marker>
+          <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-dashed" />
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" class="c-grid" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <style>
+          svg[data-node-ui] [data-node-id] > rect:not(.c-mask) { stroke-width: 1.25px; }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-frontend { fill: color-mix(in srgb, var(--frontend-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--frontend-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-backend { fill: color-mix(in srgb, var(--backend-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--backend-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-database { fill: color-mix(in srgb, var(--database-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--database-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-cloud { fill: color-mix(in srgb, var(--cloud-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--cloud-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-security { fill: color-mix(in srgb, var(--security-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--security-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-messagebus { fill: color-mix(in srgb, var(--messagebus-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--messagebus-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-external { fill: color-mix(in srgb, var(--external-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--external-stroke) 72%, var(--mask)); }
+          svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-region { fill: color-mix(in srgb, var(--cloud-stroke) 3%, transparent); stroke: color-mix(in srgb, var(--cloud-stroke) 42%, var(--lane-stroke)); stroke-dasharray: none; }
+          svg[data-node-ui] .c-security-group { stroke: color-mix(in srgb, var(--security-stroke) 58%, var(--lane-stroke)); }
+          svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-security-group { stroke-dasharray: 4 3; }
+          svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-lane { stroke: var(--lane-stroke); stroke-dasharray: none; }
+          svg[data-node-ui] [data-graph-role="structural-frame-label-mask"] { rx: 5px; fill: color-mix(in srgb, var(--cloud-stroke) 10%, var(--mask)); stroke: color-mix(in srgb, var(--cloud-stroke) 38%, var(--mask)); stroke-width: .8px; }
+          svg[data-node-ui] [data-composition-frame-kind="security-group"] > [data-graph-role="structural-frame-label-mask"] { fill: color-mix(in srgb, var(--security-stroke) 9%, var(--mask)); stroke: color-mix(in srgb, var(--security-stroke) 36%, var(--mask)); }
+          svg[data-node-ui] .phase-rule { opacity: .5; stroke-dasharray: none; }
+          svg[data-node-ui] .phase-chip { stroke: var(--lane-stroke); stroke-width: .75px; }
+          svg[data-node-ui] g[data-edge-from] > rect.c-mask { rx: 7px; stroke: var(--lane-stroke); stroke-width: .75px; }
+          svg[data-node-ui][data-preset="blueprint"] :is([data-graph-role="structural-frame-label-mask"], g[data-edge-from] > rect.c-mask, .phase-chip) { rx: 2px; }
+          svg[data-node-ui][data-preset="editorial"] :is([data-graph-role="structural-frame-label-mask"], g[data-edge-from] > rect.c-mask, .phase-chip) { rx: 3px; }
+        </style>
+
+        <!-- Background Grid -->
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- Swimlanes -->
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-0" x="40" y="52" width="826" height="104" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="54" y="74" class="t-muted" font-size="10" font-weight="600">01 / Lo publicado</text>
+
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-1" x="40" y="176" width="826" height="104" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="54" y="198" class="t-muted" font-size="10" font-weight="600">02 / Tu rama</text>
+
+        <!-- Phase headers -->
+        <path d="M 56 35 H 309.2" class="a-default phase-rule" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <rect x="160.6" y="27" width="44" height="16" rx="8" class="c-mask phase-chip"/>
+        <text x="182.6" y="38.5" class="t-muted" font-size="8" font-weight="600" text-anchor="middle" letter-spacing=".04em">Antes</text>
+        <path d="M 353.20000000000005 35 H 553.2" class="a-emphasis phase-rule" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <rect x="407.20000000000005" y="27" width="92" height="16" rx="8" class="c-mask phase-chip"/>
+        <text x="453.20000000000005" y="38.5" class="t-backend" font-size="8" font-weight="600" text-anchor="middle" letter-spacing=".04em">Trabajas aparte</text>
+        <path d="M 601.2 35 H 825.2" class="a-default phase-rule" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <rect x="674.4000000000001" y="27" width="77.6" height="16" rx="8" class="c-mask phase-chip"/>
+        <text x="713.2" y="38.5" class="t-muted" font-size="8" font-weight="600" text-anchor="middle" letter-spacing=".04em">Lo devuelves</text>
+
+        <!-- Workflow groups -->
+
+
+        <!-- Edge paths -->
+        <path data-edge-from="fusion" data-edge-to="p4" data-edge-key="0" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="685.2,119;717.2,119" d="M 685.2 119 L 717.2 119" class="a-default" data-animate="edge" style="--step:5" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="p1" data-edge-to="p2" data-edge-label="pasa el tiempo" data-edge-key="1" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="140,119;225.2,119" d="M 140 119 L 225.2 119" class="a-default" data-animate="edge" style="--step:0" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="p2" data-edge-to="p3" data-edge-label="mientras tanto, intacto" data-edge-key="2" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="317.2,119;469.20000000000005,119" d="M 317.2 119 L 469.20000000000005 119" class="a-default" data-animate="edge" style="--step:9" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="p2" data-edge-to="r1" data-edge-label="te separas" data-edge-key="3" data-edge-role="" data-composition-points="271.2,145;271.2,166;391.2,166;391.2,217" d="M 271.2 145 L 271.2 158 Q 271.2 166 279.2 166 L 383.2 166 Q 391.2 166 391.2 174 L 391.2 217" class="a-emphasis" data-animate="edge" style="--step:1" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="p3" data-edge-to="fusion" data-edge-key="4" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="561.2,119;593.2,119" d="M 561.2 119 L 593.2 119" class="a-default" data-animate="edge" style="--step:11" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="r1" data-edge-to="r2" data-edge-key="5" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="437.2,243;469.20000000000005,243" d="M 437.2 243 L 469.20000000000005 243" class="a-default" data-animate="edge" style="--step:2" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="r2" data-edge-to="r3" data-edge-key="6" data-composition-routing="workflow-v2-auto" data-edge-role="" data-composition-points="561.2,243;593.2,243" d="M 561.2 243 L 593.2 243" class="a-default" data-animate="edge" style="--step:3" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="r3" data-edge-to="fusion" data-edge-label="la devuelves" data-edge-key="7" data-edge-role="" data-composition-points="639.2,269;639.2,285;878,285;878,77;639.2,77;639.2,93" d="M 639.2 269 L 639.2 277 Q 639.2 285 647.2 285 L 870 285 Q 878 285 878 277 L 878 85 Q 878 77 870 77 L 647.2 77 Q 639.2 77 639.2 85 L 639.2 93" class="a-emphasis" data-animate="edge" style="--step:4" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+
+        <!-- Nodes -->
+        <g id="node-p1" data-node-id="p1" data-node-label="Lo publicado" tabindex="0" role="button" aria-label="Enfocar Lo publicado, lo que la gente usa, Lo publicado › Antes" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="lo que la gente usa" data-node-context="Lo publicado › Antes">
+          <title>Lo publicado · lo que la gente usa · Lo publicado › Antes</title>
+          <rect x="48" y="93" width="92" height="52" rx="8" class="c-mask"/>
+          <rect x="48" y="93" width="92" height="52" rx="8" class="c-cloud" data-animate="node" style="--step:0" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(54 99) scale(0.6875)">
+            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="94" y="125.2" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Lo publicado</text>
+          <text data-detail="context" x="94" y="139.3" class="t-muted" font-size="7.3" text-anchor="middle">lo que la gente usa</text>
+        </g>
+
+        <g id="node-p2" data-node-id="p2" data-node-label="Te separas" tabindex="0" role="button" aria-label="Enfocar Te separas, tu rama sale de aquí, Lo publicado › Antes" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="tu rama sale de aquí" data-node-context="Lo publicado › Antes">
+          <title>Te separas · tu rama sale de aquí · Lo publicado › Antes</title>
+          <rect x="225.2" y="93" width="92" height="52" rx="8" class="c-mask"/>
+          <rect x="225.2" y="93" width="92" height="52" rx="8" class="c-cloud" data-animate="node" style="--step:1" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(231.2 99) scale(0.6875)">
+            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="277.2" y="114" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Te separas</text>
+          <text data-detail="context" x="271.2" y="131" class="t-muted" font-size="7" text-anchor="middle">tu rama sale de aquí</text>
+        </g>
+
+        <g id="node-p3" data-node-id="p3" data-node-label="Sigue igual" tabindex="0" role="button" aria-label="Enfocar Sigue igual, tu trabajo no lo toca, Lo publicado › Trabajas aparte" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="tu trabajo no lo toca" data-node-context="Lo publicado › Trabajas aparte">
+          <title>Sigue igual · tu trabajo no lo toca · Lo publicado › Trabajas aparte</title>
+          <rect x="469.20000000000005" y="93" width="92" height="52" rx="8" class="c-mask"/>
+          <rect x="469.20000000000005" y="93" width="92" height="52" rx="8" class="c-cloud" data-animate="node" style="--step:9" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(475.20000000000005 99) scale(0.6875)">
+            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="515.2" y="125.2" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Sigue igual</text>
+          <text data-detail="context" x="515.2" y="138.5" class="t-muted" font-size="6.6" text-anchor="middle">tu trabajo no lo toca</text>
+        </g>
+
+        <g id="node-fusion" data-node-id="fusion" data-node-label="Alguien revisa" tabindex="0" role="button" aria-label="Enfocar Alguien revisa, y se fusiona, Lo publicado › Lo devuelves" aria-pressed="false" data-node-kind="security" data-node-sublabel="y se fusiona" data-node-context="Lo publicado › Lo devuelves">
+          <title>Alguien revisa · y se fusiona · Lo publicado › Lo devuelves</title>
+          <rect x="593.2" y="93" width="92" height="52" rx="8" class="c-mask"/>
+          <rect x="593.2" y="93" width="92" height="52" rx="8" class="c-security" data-animate="node" style="--step:5" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(599.2 99) scale(0.6875)">
+            <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
+            <path d="m5.8 8 1.5 1.5 3-3"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="639.2" y="124" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">Alguien revisa</text>
+          <text data-detail="context" x="639.2" y="138.6" class="t-muted" font-size="8" text-anchor="middle">y se fusiona</text>
+        </g>
+
+        <g id="node-p4" data-node-id="p4" data-node-label="Publicado + tu cambio" tabindex="0" role="button" aria-label="Enfocar Publicado + tu cambio, y tu nota en la historia, Lo publicado › Lo devuelves" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="y tu nota en la historia" data-node-context="Lo publicado › Lo devuelves">
+          <title>Publicado + tu cambio · y tu nota en la historia · Lo publicado › Lo devuelves</title>
+          <rect x="717.2" y="93" width="140" height="52" rx="8" class="c-mask"/>
+          <rect x="717.2" y="93" width="140" height="52" rx="8" class="c-cloud" data-animate="node" style="--step:6" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(723.2 99) scale(0.6875)">
+            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="787.2" y="124.5" class="t-primary" font-size="10.4" font-weight="600" text-anchor="middle">Publicado + tu cambio</text>
+          <text data-detail="context" x="787.2" y="139.3" class="t-muted" font-size="8" text-anchor="middle">y tu nota en la historia</text>
+        </g>
+
+        <g id="node-r1" data-node-id="r1" data-node-label="Primer cambio" tabindex="0" role="button" aria-label="Enfocar Primer cambio, con su nota: por qué, Tu rama › Trabajas aparte" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="con su nota: por qué" data-node-context="Tu rama › Trabajas aparte">
+          <title>Primer cambio · con su nota: por qué · Tu rama › Trabajas aparte</title>
+          <rect x="345.2" y="217" width="92" height="52" rx="8" class="c-mask"/>
+          <rect x="345.2" y="217" width="92" height="52" rx="8" class="c-frontend" data-animate="node" style="--step:2" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(351.2 223) scale(0.6875)">
+            <rect x="2" y="3" width="12" height="10" rx="2"/>
+            <path d="M2 6.5h12"/>
+            <circle cx="4.1" cy="4.8" r=".7" class="sigil-fill"/>
+            <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="391.2" y="248.9" class="t-primary" font-size="10.7" font-weight="600" text-anchor="middle">Primer cambio</text>
+          <text data-detail="context" x="391.2" y="262.6" class="t-muted" font-size="7" text-anchor="middle">con su nota: por qué</text>
+        </g>
+
+        <g id="node-r2" data-node-id="r2" data-node-label="Segundo cambio" tabindex="0" role="button" aria-label="Enfocar Segundo cambio, nadie lo ve aún, Tu rama › Trabajas aparte" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="nadie lo ve aún" data-node-context="Tu rama › Trabajas aparte">
+          <title>Segundo cambio · nadie lo ve aún · Tu rama › Trabajas aparte</title>
+          <rect x="469.20000000000005" y="217" width="92" height="52" rx="8" class="c-mask"/>
+          <rect x="469.20000000000005" y="217" width="92" height="52" rx="8" class="c-frontend" data-animate="node" style="--step:3" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(475.20000000000005 223) scale(0.6875)">
+            <rect x="2" y="3" width="12" height="10" rx="2"/>
+            <path d="M2 6.5h12"/>
+            <circle cx="4.1" cy="4.8" r=".7" class="sigil-fill"/>
+            <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="515.2" y="248" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">Segundo cambio</text>
+          <text data-detail="context" x="515.2" y="262.6" class="t-muted" font-size="8" text-anchor="middle">nadie lo ve aún</text>
+        </g>
+
+        <g id="node-r3" data-node-id="r3" data-node-label="Listo" tabindex="0" role="button" aria-label="Enfocar Listo, pides que lo revisen, Tu rama › Lo devuelves" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="pides que lo revisen" data-node-context="Tu rama › Lo devuelves">
+          <title>Listo · pides que lo revisen · Tu rama › Lo devuelves</title>
+          <rect x="593.2" y="217" width="92" height="52" rx="8" class="c-mask"/>
+          <rect x="593.2" y="217" width="92" height="52" rx="8" class="c-frontend" data-animate="node" style="--step:4" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(599.2 223) scale(0.6875)">
+            <rect x="2" y="3" width="12" height="10" rx="2"/>
+            <path d="M2 6.5h12"/>
+            <circle cx="4.1" cy="4.8" r=".7" class="sigil-fill"/>
+            <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="639.2" y="238" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Listo</text>
+          <text data-detail="context" x="639.2" y="255" class="t-muted" font-size="7" text-anchor="middle">pides que lo revisen</text>
+        </g>
+
+        <!-- Edge labels -->
+
+        <g data-detail="context" data-edge-from="p1" data-edge-to="p2" data-edge-label="pasa el tiempo" data-edge-key="1">
+          <rect x="144" y="99" width="77.2" height="14" rx="3" class="c-mask"/>
+          <text x="182.6" y="109" class="t-muted" font-size="8" text-anchor="middle">pasa el tiempo</text>
+        </g>
+        <g data-detail="context" data-edge-from="p2" data-edge-to="p3" data-edge-label="mientras tanto, intacto" data-edge-key="2">
+          <rect x="333.00000000000006" y="99" width="120.39999999999999" height="14" rx="3" class="c-mask"/>
+          <text x="393.20000000000005" y="109" class="t-muted" font-size="8" text-anchor="middle">mientras tanto, intacto</text>
+        </g>
+        <g data-detail="context" data-edge-from="p2" data-edge-to="r1" data-edge-label="te separas" data-edge-key="3">
+          <rect x="302.2" y="146" width="58" height="14" rx="3" class="c-mask"/>
+          <text x="331.2" y="156" class="t-edge-emphasis" font-size="8" text-anchor="middle">te separas</text>
+        </g>
+
+
+
+        <g data-detail="context" data-edge-from="r3" data-edge-to="fusion" data-edge-label="la devuelves" data-edge-key="7">
+          <rect x="724.8000000000001" y="265" width="67.6" height="14" rx="3" class="c-mask"/>
+          <text x="758.6" y="275" class="t-edge-emphasis" font-size="8" text-anchor="middle">la devuelves</text>
+        </g>
+
+        <!-- Legend -->
+        <g data-legend="" data-legend-bridge="">
+          <text x="20" y="304" class="t-primary" font-size="12" font-weight="650">Leyenda</text>
+          <g data-legend-semantic-kind="frontend" data-legend-kind="frontend" data-legend-label="Un cambio tuyo, en tu rama" data-legend-x="20" data-legend-baseline="324" data-legend-width="164">
+            <rect x="20" y="316" width="14" height="9" rx="2" class="c-frontend" stroke-width="1"/>
+            <text x="42" y="324" class="t-muted" font-size="7.5" font-weight="500">Un cambio tuyo, en tu rama</text>
+          </g>
+          <g data-legend-semantic-kind="security" data-legend-kind="security" data-legend-label="La revisión antes de entrar" data-legend-x="191" data-legend-baseline="324" data-legend-width="169">
+            <rect x="191" y="316" width="14" height="9" rx="2" class="c-security" stroke-width="1"/>
+            <text x="213" y="324" class="t-muted" font-size="7.5" font-weight="500">La revisión antes de entrar</text>
+          </g>
+          <g data-legend-semantic-kind="cloud" data-legend-kind="cloud" data-legend-label="Lo que está publicado" data-legend-x="367" data-legend-baseline="324" data-legend-width="141">
+            <rect x="367" y="316" width="14" height="9" rx="2" class="c-cloud" stroke-width="1"/>
+            <text x="389" y="324" class="t-muted" font-size="7.5" font-weight="500">Lo que está publicado</text>
+          </g>
+        </g>
+      </svg>

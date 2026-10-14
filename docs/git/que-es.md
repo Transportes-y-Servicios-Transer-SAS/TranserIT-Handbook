@@ -130,16 +130,9 @@ Tener la historia completa te da tres cosas que, por separado, ya justificarían
 Una **rama** es tu copia de todo el expediente, para trabajar tranquilo. Lo que haces ahí **no lo ve
 nadie** hasta que tú lo entregas, y mientras tanto **lo que está publicado sigue funcionando**.
 
-<figure class="diagrama">
-  <iframe src="/diagramas/rama.html"
-          title="Diagrama interactivo: trabajar en una rama sin estorbar a nadie"
-          loading="lazy"></iframe>
-  <figcaption>
-    <strong>Este diagrama es interactivo:</strong> pasa el cursor por las cajas, acércate con los
-    controles de abajo, o
-    <a class="abrir" href="/diagramas/rama.html" target="_blank" rel="noopener">ábrelo en grande ↗</a>
-  </figcaption>
-</figure>
+<Diagrama
+  nombre="rama"
+  titulo="Trabajar en una rama: te separas de lo publicado, haces tus cambios aparte, y alguien los revisa antes de devolverlos" />
 
 **Esto es lo que permite que cinco personas trabajen a la vez sin pisarse.** Cada una en su rama;
 al final, cada una devuelve lo suyo.
@@ -212,35 +205,6 @@ parar acá sin perderte nada.
   line-height: 1.9;
 }
 figure { margin: 1.75rem 0; }
-.diagrama { margin: 2rem 0; }
-.diagrama iframe {
-  width: 100%;
-  /* Alto fijo y no aspect-ratio: el diagrama tiene su propia relación y recortarlo por los lados
-     es peor que dejar aire abajo. En pantalla estrecha el visor hace su propio desplazamiento. */
-  height: 680px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 10px;
-  background: var(--vp-c-bg-soft);
-  display: block;
-}
-.diagrama figcaption {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.6rem;
-  margin-top: 0.6rem;
-  font-size: 0.86rem;
-  color: var(--vp-c-text-3);
-  line-height: 1.6;
-}
-.diagrama .abrir {
-  font-weight: 600;
-  padding: 0.15rem 0.6rem;
-  border: 1px solid var(--vp-c-brand-1);
-  border-radius: 999px;
-  text-decoration: none;
-  white-space: nowrap;
-}
-@media (max-width: 640px) {
-  .diagrama iframe { height: 500px; }
-}
 .fig { width: 100%; height: auto; overflow: visible; }
 .fig .et      { font: 600 13px var(--vp-font-family-base); fill: var(--vp-c-text-1); }
 .fig .et-br   { font: 600 13px var(--vp-font-family-base); fill: var(--vp-c-brand-1); }

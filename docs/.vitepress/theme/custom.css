@@ -1,0 +1,66 @@
+/**
+ * Ajustes de disposición sobre el tema por defecto.
+ *
+ * El tema deja el contenido en 688px cuando hay índice lateral derecho
+ * (.VPDoc.has-aside .content-container), y con la barra de navegación a la izquierda eso son DOS
+ * columnas de navegación estrujando una de texto. En un manual con diagramas no funciona.
+ *
+ * Lo que se hace aquí:
+ *   · se retira el índice derecho (se configura con outline:false; esto solo recupera su ancho)
+ *   · el contenedor se ensancha
+ *   · la PROSA se queda en medida legible, porque una línea de 1000px no se lee
+ *   · las FIGURAS se salen de esa medida y usan el ancho completo
+ *
+ * Esa última es la razón de todo: un diagrama necesita ancho y un párrafo necesita lo contrario.
+ */
+
+:root {
+  --vp-layout-max-width: 1520px;
+
+  /* La medida de lectura. Unos 72 caracteres con la tipografía del tema. */
+  --tr-medida: 46rem;
+  /* Lo que pueden ocupar las figuras. */
+  --tr-ancho-figura: 74rem;
+}
+
+/* El contenedor deja de estar limitado a 688px */
+.VPDoc .container,
+.VPDoc.has-aside .content-container {
+  max-width: var(--tr-ancho-figura) !important;
+}
+
+/* Menos aire lateral: el tema reserva sitio para el índice que ya no está */
+@media (min-width: 960px) {
+  .VPDoc:not(.has-sidebar) { padding-left: 1.75rem; padding-right: 1.75rem; }
+  .VPDoc.has-sidebar       { padding-left: 2rem;    padding-right: 2rem; }
+}
+
+/*
+ * La prosa vuelve a medida legible, PERO solo la prosa.
+ * No se aplica a la raíz de .vp-doc para que las figuras puedan salirse.
+ */
+.vp-doc > div > p,
+.vp-doc > div > ul,
+.vp-doc > div > ol,
+.vp-doc > div > blockquote,
+.vp-doc > div > h1,
+.vp-doc > div > h2,
+.vp-doc > div > h3,
+.vp-doc > div > h4 {
+  max-width: var(--tr-medida);
+}
+
+/* Las tablas respiran un poco más que el texto, sin llegar al ancho de figura */
+.vp-doc > div > table {
+  max-width: 56rem;
+}
+
+/* Y lo que es figura usa todo lo que hay */
+.vp-doc > div > figure,
+.vp-doc > div > .caos,
+.vp-doc > div > .siguiente {
+  max-width: none;
+}
+
+/* La página de inicio no necesita nada de esto */
+.VPHome .vp-doc > div > p { max-width: none; }
