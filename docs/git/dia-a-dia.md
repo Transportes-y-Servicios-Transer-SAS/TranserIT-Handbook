@@ -209,7 +209,7 @@ git switch feature/vort-123-tu-rama
 
 | Lo que dice Git | Causa y salida |
 |---|---|
-| `Permission denied (publickey)` | No encuentra tu llave de GitHub. Compruébalo con `ssh -T git@github.com` |
+| `Permission denied (publickey)` | No encuentra tu llave de GitHub. Compruébalo con `ssh -T git@github.com`, y si falla, [revisa la llave](/equipo/llaves) |
 | `fatal: Not possible to fast-forward, aborting` | Tu rama y el remoto se separaron. Mira la fila de `pull --ff-only` de arriba |
 | `Updates were rejected because the remote contains work` | Alguien publicó algo que tú no tienes. `git pull --ff-only` y vuelve a intentarlo |
 | `CONFLICT (content): Merge conflict in …` | Dos cambios sobre las mismas líneas. Es la parte 6 |

@@ -112,8 +112,8 @@ comprueba cada compuerta y con qué comando cambia según el repositorio**, y es
 
 ## Los *commits* van firmados
 
-**Sin firma, el autor de un cambio es un texto que cualquiera puede escribir.** Se configura una vez
-por repositorio:
+**Sin firma, el autor de un cambio es un texto que cualquiera puede escribir.** La llave se crea una
+sola vez, en [preparar el equipo](/equipo/llaves); dentro de cada repositorio se activa así:
 
 ```powershell
 git config commit.gpgsign true

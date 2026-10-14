@@ -32,10 +32,21 @@ export default defineConfig({
 
     nav: [
       { text: 'Git, de cero', link: '/git/que-es' },
+      { text: 'Preparar el equipo', link: '/equipo/herramientas' },
       { text: 'Sobre este manual', link: '/sobre' },
     ],
 
     sidebar: {
+      '/equipo/': [
+        {
+          text: 'Preparar el equipo',
+          items: [
+            { text: '1 · Las herramientas base', link: '/equipo/herramientas' },
+            { text: '2 · Las llaves de GitHub', link: '/equipo/llaves' },
+          ],
+        },
+      ],
+
       '/git/': [
         {
           text: 'Git, de cero',

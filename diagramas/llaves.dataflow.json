@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "Dos llaves, dos trabajos distintos",
+    "subtitle": "Una abre la puerta. La otra pone tu nombre en lo que escribes. No se sustituyen.",
+    "output": "llaves.html",
+    "locale": "es",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "translations": {
+      "viewer.kind.frontend": "Tu equipo",
+      "viewer.kind.security": "Tu llave privada, que no sale de aquí",
+      "viewer.kind.cloud": "GitHub",
+      "viewer.kind.backend": "Lo que viaja"
+    }
+  },
+  "stages": [
+    {
+      "label": "En tu equipo"
+    },
+    {
+      "label": "Tus dos llaves"
+    },
+    {
+      "label": "Lo que sale"
+    },
+    {
+      "label": "Y lo que GitHub hace con ello"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "tu",
+      "type": "frontend",
+      "label": "Tú, trabajando",
+      "sublabel": "git push · git commit",
+      "stage": 0,
+      "row": 1
+    },
+    {
+      "id": "ssh",
+      "type": "security",
+      "label": "Llave SSH",
+      "sublabel": "para entrar",
+      "stage": 1,
+      "row": 0,
+      "tag": "~/.ssh/id_ed25519"
+    },
+    {
+      "id": "gpg",
+      "type": "security",
+      "label": "Llave GPG",
+      "sublabel": "para firmar",
+      "stage": 1,
+      "row": 2,
+      "tag": "~/.gnupg"
+    },
+    {
+      "id": "conexion",
+      "type": "backend",
+      "label": "La conexión",
+      "sublabel": "traer y publicar",
+      "stage": 2,
+      "row": 0
+    },
+    {
+      "id": "commit",
+      "type": "backend",
+      "label": "El commit, firmado",
+      "sublabel": "la firma viaja dentro",
+      "stage": 2,
+      "row": 2
+    },
+    {
+      "id": "puerta",
+      "type": "cloud",
+      "label": "Te deja pasar",
+      "sublabel": "sin pedirte contraseña",
+      "stage": 3,
+      "row": 0
+    },
+    {
+      "id": "verified",
+      "type": "cloud",
+      "label": "Verified",
+      "sublabel": "la etiqueta verde",
+      "stage": 3,
+      "row": 2
+    }
+  ],
+  "flows": [
+    {
+      "from": "tu",
+      "to": "ssh",
+      "label": "al traer o publicar",
+      "variant": "emphasis"
+    },
+    {
+      "from": "tu",
+      "to": "gpg",
+      "label": "al confirmar",
+      "variant": "emphasis"
+    },
+    {
+      "from": "ssh",
+      "to": "conexion",
+      "label": "prueba quién eres",
+      "classification": "la privada no sale"
+    },
+    {
+      "from": "gpg",
+      "to": "commit",
+      "label": "firma el contenido",
+      "classification": "la privada no sale"
+    },
+    {
+      "from": "conexion",
+      "to": "puerta",
+      "label": "autenticado"
+    },
+    {
+      "from": "commit",
+      "to": "verified",
+      "label": "comprueba con tu pública"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Para qué sirve cada una",
+      "items": [
+        "SSH es la que abre la puerta: sin ella, cada traer y cada publicar te pide credenciales",
+        "GPG es la que pone tu nombre: sin ella, el autor de un commit es un texto que cualquiera puede escribir",
+        "Comprometer una no compromete la otra, y por eso son dos y no una"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "La mitad privada no sale de tu equipo. Nunca",
+      "items": [
+        "Ni por correo, ni por chat, ni copiada a una memoria",
+        "A GitHub sube solo la mitad pública, que no sirve para suplantarte",
+        "Si necesitas trabajar desde otro equipo, se genera una llave nueva ahí: tener varias es lo correcto"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "El correo es lo que las ata a ti",
+      "items": [
+        "Tiene que ser el mismo en Git, en la llave GPG y verificado en GitHub",
+        "Si no coincide, el commit sale sin verificar aunque la firma sea perfecta",
+        "Es el error más común de toda la configuración"
+      ]
+    }
+  ]
+}

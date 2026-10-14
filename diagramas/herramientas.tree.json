@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "diagram_type": "tree",
+  "meta": {
+    "title": "Qué instala cada cosa, y qué trae dentro",
+    "subtitle": "Dos paquetes bastan para empezar. Lo importante es lo que viene dentro de uno de ellos.",
+    "output": "herramientas.html",
+    "locale": "es",
+    "animation": "trace",
+    "quality_profile": "showcase"
+  },
+  "layout": {
+    "direction": "down"
+  },
+  "nodes": [
+    {
+      "id": "choco",
+      "label": "Chocolatey",
+      "sublabel": "el gestor de paquetes · se instala primero"
+    },
+
+    {
+      "id": "git",
+      "label": "git",
+      "parent": "choco",
+      "sublabel": "choco install git"
+    },
+    {
+      "id": "keygen",
+      "label": "ssh-keygen",
+      "parent": "git",
+      "sublabel": "crea la llave con la que entras"
+    },
+    {
+      "id": "gnupg",
+      "label": "su propio GnuPG",
+      "parent": "git",
+      "sublabel": "crea la llave con la que firmas"
+    },
+    {
+      "id": "bash",
+      "label": "Git Bash",
+      "parent": "git",
+      "sublabel": "una terminal al estilo Unix"
+    },
+
+    {
+      "id": "gh",
+      "label": "gh",
+      "parent": "choco",
+      "sublabel": "choco install gh · la línea de comandos de GitHub"
+    },
+    {
+      "id": "subir",
+      "label": "Subir las llaves",
+      "parent": "gh",
+      "sublabel": "sin pegarlas a mano en el navegador"
+    },
+
+    {
+      "id": "resto",
+      "label": "Lo demás, según a qué llegaste",
+      "parent": "choco",
+      "sublabel": "el equipo del servidor o el de la pantalla"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Por qué un gestor de paquetes y no instaladores sueltos",
+      "items": [
+        "Todos instalamos lo mismo con el mismo comando, y se puede fijar la versión",
+        "Actualizar es un comando y no una búsqueda en una página de descargas",
+        "Y una guía que dice choco install se puede seguir igual en cualquier equipo"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Git trae su propio GnuPG, y por eso no instalamos Gpg4win",
+      "items": [
+        "Los dos guardan las llaves en carpetas DISTINTAS",
+        "Teniendo ambos, es fácil crear la llave con uno y pedirle a Git que firme con el otro",
+        "Y entonces falla con secret key not available sin que nada explique por qué"
+      ]
+    }
+  ]
+}

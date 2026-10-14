@@ -173,7 +173,7 @@ tarda más que descargar una carpeta, y por eso después puedes consultar cualqu
 conexión.
 
 > La dirección exacta de cada repositorio y la llave que hace falta para acceder están en el manual
-> de llaves de GitHub. Si `git clone` responde `Permission denied (publickey)`, es eso: Git no
+> de [llaves de GitHub](/equipo/llaves). Si `git clone` responde `Permission denied (publickey)`, es eso: Git no
 > encuentra tu llave, no es que el repositorio no exista.
 
 ### Mirar antes de tocar
@@ -231,7 +231,7 @@ que no estaba ahí.
 | Lo que dice Git | Qué pasó |
 |---|---|
 | `not a git repository` | Estás fuera de la carpeta del repositorio. `cd` a ella |
-| `Permission denied (publickey)` | Git no encuentra tu llave de GitHub. Está en el manual de llaves |
+| `Permission denied (publickey)` | Git no encuentra tu llave de GitHub. Está en [preparar el equipo](/equipo/llaves) |
 | `nothing to commit, working tree clean` | No hay nada que confirmar: o no cambiaste nada, o ya lo confirmaste |
 | `Please tell me who you are` | Falta la configuración de nombre y correo de más arriba |
 | `Your branch is behind` | Hay cosas publicadas que tú no tienes. `git pull` |
