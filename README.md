@@ -32,7 +32,8 @@ bun run diagramas  # solo los diagramas
 |---|---|
 | **Git · 1 · Qué es y qué problema resuelve** | Escrito. **Cero comandos**, a propósito |
 | **Git · 2 · El flujo básico** | Escrito. Los primeros comandos, con una carpeta de práctica |
-| Git · 3 a 7 | Pendientes: ramificaciones, trunk based, día a día, conflictos, deshacer |
+| **Git · 3 · Ramas** | Escrito. Qué es una rama de verdad, y el primer comando que sale del equipo |
+| Git · 4 a 7 | Pendientes: trunk based, día a día, conflictos, deshacer |
 | Cómo trabaja el área | Pendiente. Sale del `ONBOARDING.md` de `vortice-specs` y de las *skills* |
 | Entornos | Pendiente. Son los manuales que hoy viven en el área de análisis |
 

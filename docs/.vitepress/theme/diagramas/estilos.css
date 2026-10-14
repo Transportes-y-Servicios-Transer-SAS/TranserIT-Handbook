@@ -1,4 +1,4 @@
-/* Generado por scripts/diagramas.mjs desde 3 diagrama(s). No se edita a mano. */
+/* Generado por scripts/diagramas.mjs desde 4 diagrama(s). No se edita a mano. */
 
 @keyframes pulse {
       0%, 100% { opacity: 1; }
@@ -560,6 +560,15 @@
 .archify .t-edge-emphasis { fill: var(--arrow-emphasis); }
 .archify .t-edge-security { fill: var(--security-stroke); }
 .archify .t-edge-dashed { fill: var(--database-stroke); }
+.archify svg .semantic-sigil { fill: none;
+      stroke: currentColor;
+      stroke-width: 1.35;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.76;
+      pointer-events: none; }
+.archify svg .semantic-sigil > * { vector-effect: non-scaling-stroke; }
+.archify svg .semantic-sigil .sigil-fill { fill: currentColor; stroke: none; }
 .archify svg .s-frontend { color: var(--frontend-stroke); }
 .archify svg .s-backend { color: var(--backend-stroke); }
 .archify svg .s-database { color: var(--database-stroke); }

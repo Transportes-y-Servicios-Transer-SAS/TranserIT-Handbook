@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Una rama es un nombre pegado a un commit",
+    "output": "docs/public/diagramas/puntero.html",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "locale": "es",
+    "translations": {
+      "viewer.kind.cloud": "Un commit: no se mueve nunca",
+      "viewer.kind.frontend": "Un commit tuyo, en tu rama",
+      "viewer.kind.messagebus": "Un nombre: esto sí se mueve"
+    },
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "cloud": { "label": "Un commit: no se mueve nunca" },
+        "frontend": { "label": "Un commit tuyo, en tu rama" },
+        "messagebus": { "label": "Un nombre: esto sí se mueve" }
+      }
+    }
+  },
+  "lanes": [
+    { "id": "tronco", "label": "El tronco" },
+    { "id": "nombres", "label": "Los nombres" },
+    { "id": "rama", "label": "Tu rama" }
+  ],
+  "phases": [
+    { "id": "comun", "label": "Historia común", "fromCol": 0, "toCol": 1 },
+    { "id": "aparte", "label": "Desde aquí, cada uno por su lado", "fromCol": 2, "toCol": 3, "variant": "emphasis" }
+  ],
+  "mainPath": ["c1", "c2", "c3", "c4"],
+  "nodes": [
+    {
+      "id": "c1",
+      "lane": "tronco",
+      "col": 0,
+      "type": "cloud",
+      "label": "a3f91c2",
+      "sublabel": "el primero"
+    },
+    {
+      "id": "c2",
+      "lane": "tronco",
+      "col": 1,
+      "type": "cloud",
+      "label": "7b2e1d9",
+      "sublabel": "de aquí sale tu rama"
+    },
+    {
+      "id": "c3",
+      "lane": "tronco",
+      "col": 2,
+      "type": "cloud",
+      "label": "e4c8f02",
+      "sublabel": "lo que entró mientras"
+    },
+    {
+      "id": "c4",
+      "lane": "tronco",
+      "col": 3,
+      "type": "cloud",
+      "label": "1d77ab5",
+      "sublabel": "y lo que entró después"
+    },
+    {
+      "id": "r1",
+      "lane": "rama",
+      "col": 2,
+      "type": "frontend",
+      "label": "9c02e31",
+      "sublabel": "tu primer commit"
+    },
+    {
+      "id": "r2",
+      "lane": "rama",
+      "col": 3,
+      "type": "frontend",
+      "label": "b58d4a0",
+      "sublabel": "tu segundo commit"
+    },
+    {
+      "id": "nTronco",
+      "lane": "nombres",
+      "col": 3,
+      "type": "messagebus",
+      "label": "develop",
+      "sublabel": "apunta al último del tronco"
+    },
+    {
+      "id": "nRama",
+      "lane": "nombres",
+      "col": 2,
+      "type": "messagebus",
+      "label": "feat/vort-142-…",
+      "sublabel": "apunta al último tuyo"
+    },
+    {
+      "id": "nHead",
+      "lane": "nombres",
+      "col": 0,
+      "type": "messagebus",
+      "label": "HEAD",
+      "sublabel": "en cuál estás parado"
+    }
+  ],
+  "edges": [
+    { "id": "e1", "from": "c1", "to": "c2", "label": "después de" },
+    { "id": "e2", "from": "c2", "to": "c3", "label": "después de" },
+    { "id": "e3", "from": "c3", "to": "c4", "label": "después de" },
+    { "id": "e4", "from": "c2", "to": "r1", "label": "git switch -c" },
+    { "id": "e5", "from": "r1", "to": "r2", "label": "git commit" },
+    { "id": "e6", "from": "nTronco", "to": "c4", "label": "apunta a", "variant": "dashed" },
+    { "id": "e7", "from": "nRama", "to": "r2", "label": "apunta a", "variant": "dashed" },
+    { "id": "e8", "from": "nHead", "to": "nRama", "label": "apunta a", "variant": "dashed" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Los commits no se mueven. Los nombres sí",
+      "items": [
+        "Un commit es fijo: su identificador sale de su contenido y nunca cambia",
+        "Una rama es solo un archivo con el identificador de un commit dentro",
+        "Cada vez que confirmas, ese archivo pasa a contener el identificador nuevo"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Por eso crear una rama es instantáneo",
+      "items": [
+        "No se copia nada: se escribe un identificador de 40 caracteres en un archivo",
+        "Da igual que el proyecto tenga diez archivos o diez mil",
+        "Y por eso tener ramas de más no cuesta: lo que cuesta es que vivan mucho"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "HEAD es dónde estás parado",
+      "items": [
+        "Casi siempre apunta a una rama, no a un commit",
+        "git switch lo mueve de una rama a otra y cambia los archivos de tu carpeta",
+        "Si git status dice algo raro, lo primero es mirar en qué rama estás"
+      ]
+    }
+  ]
+}

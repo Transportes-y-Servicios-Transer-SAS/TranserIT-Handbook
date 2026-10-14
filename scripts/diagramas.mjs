@@ -47,10 +47,15 @@ if (!cli) {
 // La lista es de exclusión y no de inclusión a propósito: si archify añade una clase nueva al
 // dibujo, entra sola; si añade una de interfaz, se ve y se añade aquí.
 const DE_LA_APLICACION = [
-  'toolbar', 'diagram-nav', 'overview-map', 'focus-chip', 'node-finder', 'semantic-',
+  'toolbar', 'diagram-nav', 'overview-map', 'focus-chip', 'node-finder',
+  'semantic-lens', 'semantic-passport', 'semantic-flow',
   'relationship-', 'route-', 'export-menu', 'preset-', 'motion-', 'rail-', 'header-row',
   'diagram-guide', 'pulse-dot', '.card', 'intent-trace', 'btn-', 'aria-live', 'sr-only',
 ]
+
+// Ojo con `semantic-`: a secas también excluía `semantic-sigil`, que es el ICONO del nodo —la nube,
+// la pantalla— y no la interfaz. Se veía: los iconos salían como cuadros oscuros sin color en la
+// vista previa, y bien en el visor. Por eso los tres de arriba van con su nombre completo.
 
 /**
  * Las reglas dentro de `@media`, `@supports` y compañía se retiran ANTES de recorrer las planas.
