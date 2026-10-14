@@ -1,0 +1,231 @@
+<svg viewBox="0 0 1060 560" role="img" lang="es" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase" data-node-ui="" data-diagram-type="architecture" data-reader-fit="authored-height">
+        <title id="archify-diagram-title">El entorno de la pantalla, pieza por pieza</title>
+        <desc id="archify-diagram-description">Arriba lo que instalas tú. Abajo lo que trae el repositorio y lo que acaba corriendo.</desc>
+        <!-- Definitions -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-default" />
+          </marker>
+          <marker id="arrowhead-emphasis" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-emphasis" />
+          </marker>
+          <marker id="arrowhead-security" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-security" />
+          </marker>
+          <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-dashed" />
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" class="c-grid" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <style>
+          svg[data-node-ui] [data-node-id] > rect:not(.c-mask) { stroke-width: 1.25px; }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-frontend { fill: color-mix(in srgb, var(--frontend-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--frontend-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-backend { fill: color-mix(in srgb, var(--backend-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--backend-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-database { fill: color-mix(in srgb, var(--database-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--database-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-cloud { fill: color-mix(in srgb, var(--cloud-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--cloud-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-security { fill: color-mix(in srgb, var(--security-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--security-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-messagebus { fill: color-mix(in srgb, var(--messagebus-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--messagebus-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-external { fill: color-mix(in srgb, var(--external-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--external-stroke) 72%, var(--mask)); }
+          svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-region { fill: color-mix(in srgb, var(--cloud-stroke) 3%, transparent); stroke: color-mix(in srgb, var(--cloud-stroke) 42%, var(--lane-stroke)); stroke-dasharray: none; }
+          svg[data-node-ui] .c-security-group { stroke: color-mix(in srgb, var(--security-stroke) 58%, var(--lane-stroke)); }
+          svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-security-group { stroke-dasharray: 4 3; }
+          svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-lane { stroke: var(--lane-stroke); stroke-dasharray: none; }
+          svg[data-node-ui] [data-graph-role="structural-frame-label-mask"] { rx: 5px; fill: color-mix(in srgb, var(--cloud-stroke) 10%, var(--mask)); stroke: color-mix(in srgb, var(--cloud-stroke) 38%, var(--mask)); stroke-width: .8px; }
+          svg[data-node-ui] [data-composition-frame-kind="security-group"] > [data-graph-role="structural-frame-label-mask"] { fill: color-mix(in srgb, var(--security-stroke) 9%, var(--mask)); stroke: color-mix(in srgb, var(--security-stroke) 36%, var(--mask)); }
+          svg[data-node-ui] .phase-rule { opacity: .5; stroke-dasharray: none; }
+          svg[data-node-ui] .phase-chip { stroke: var(--lane-stroke); stroke-width: .75px; }
+          svg[data-node-ui] g[data-edge-from] > rect.c-mask { rx: 7px; stroke: var(--lane-stroke); stroke-width: .75px; }
+          svg[data-node-ui][data-preset="blueprint"] :is([data-graph-role="structural-frame-label-mask"], g[data-edge-from] > rect.c-mask, .phase-chip) { rx: 2px; }
+          svg[data-node-ui][data-preset="editorial"] :is([data-graph-role="structural-frame-label-mask"], g[data-edge-from] > rect.c-mask, .phase-chip) { rx: 3px; }
+        </style>
+
+        <!-- Background Grid -->
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- Boundaries (behind everything) -->
+
+
+        <!-- Connection paths (before components for correct z-order) -->
+        <g data-graph-role="automatic-crossover" style="--step:0">
+          <path data-graph-role="automatic-crossover-underlay" d="M 125 120 L 125 136 Q 125 144 133 144 L 258 144 Q 266 144 266 152 L 266 260 Q 266 268 274 268 L 290 268" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="bun" data-edge-to="deps" data-edge-label="instala" data-edge-key="0" data-edge-id="c1" data-composition-points="125,120;125,144;266,144;266,268;290,268" data-composition-crossover="halo" data-composition-independent="true" d="M 125 120 L 125 136 Q 125 144 133 144 L 258 144 Q 266 144 266 152 L 266 260 Q 266 268 274 268 L 290 268" class="a-emphasis" data-animate="edge" style="--step:0" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:1">
+          <path data-graph-role="automatic-crossover-underlay" d="M 125 310 L 125 326 Q 125 334 133 334 L 258 334 Q 266 334 266 326 L 266 291.05 Q 266 283.05 274 283.05 L 290 283.05" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="manifiesto" data-edge-to="deps" data-edge-label="fija qué versión" data-edge-key="1" data-edge-id="c2" data-composition-points="125,310;125,334;266,334;266,283.05;290,283.05" data-composition-crossover="halo" data-composition-independent="true" d="M 125 310 L 125 326 Q 125 334 133 334 L 258 334 Q 266 334 266 326 L 266 291.05 Q 266 283.05 274 283.05 L 290 283.05" class="a-security" data-animate="edge" style="--step:1" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:2">
+          <path data-graph-role="automatic-crossover-underlay" d="M 210 92 L 279 92 Q 287 92 287 100 L 287 151.95 Q 287 159.95 295 159.95 L 687 159.95 Q 695 159.95 695 167.95 L 695 240" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="bun" data-edge-to="scripts" data-edge-label="ejecuta" data-edge-key="2" data-edge-id="c3" data-composition-points="210,92;287,92;287,159.95;695,159.95;695,240" data-composition-crossover="halo" data-composition-independent="true" d="M 210 92 L 279 92 Q 287 92 287 100 L 287 151.95 Q 287 159.95 295 159.95 L 687 159.95 Q 695 159.95 695 167.95 L 695 240" class="a-emphasis" data-animate="edge" style="--step:2" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:3">
+          <path data-graph-role="automatic-crossover-underlay" d="M 600 283.05 L 548 283.05 Q 540 283.05 540 291.05 L 540 443 Q 540 451 532 451 L 480 451" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="scripts" data-edge-to="dev" data-edge-label="levanta" data-edge-key="3" data-edge-id="c4" data-composition-points="600,283.05;540,283.05;540,451;480,451" data-composition-crossover="halo" data-composition-independent="true" d="M 600 283.05 L 548 283.05 Q 540 283.05 540 291.05 L 540 443 Q 540 451 532 451 L 480 451" class="a-default" data-animate="edge" style="--step:3" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:4">
+          <path data-graph-role="automatic-crossover-underlay" d="M 385 500 L 385 516 Q 385 524 393 524 L 568 524 Q 576 524 576 516 L 576 473 Q 576 465 584 465 L 600 465" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="dev" data-edge-to="backend" data-edge-label="pide los datos" data-edge-key="4" data-edge-id="c5" data-composition-points="385,500;385,524;576,524;576,465;600,465" data-composition-crossover="halo" data-composition-independent="true" d="M 385 500 L 385 516 Q 385 524 393 524 L 568 524 Q 576 524 576 516 L 576 473 Q 576 465 584 465 L 600 465" class="a-emphasis" data-animate="edge" style="--step:4" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:5">
+          <path data-graph-role="automatic-crossover-underlay" d="M 480 479 L 560 479 Q 568 479 568 471 L 568 435 Q 568 427 576 427 L 808 427 Q 816 427 816 435 L 816 457 Q 816 465 824 465 L 840 465" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="dev" data-edge-to="simulados" data-edge-label="o a estos" data-edge-key="5" data-edge-id="c6" data-composition-points="480,479;568,479;568,427;816,427;816,465;840,465" data-composition-crossover="halo" data-composition-independent="true" d="M 480 479 L 560 479 Q 568 479 568 471 L 568 435 Q 568 427 576 427 L 808 427 Q 816 427 816 435 L 816 457 Q 816 465 824 465 L 840 465" class="a-dashed" data-animate="edge" style="--step:5" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:6">
+          <path data-graph-role="automatic-crossover-underlay" d="M 375 120 L 375 240" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="editor" data-edge-to="deps" data-edge-label="lee los tipos de aquí" data-edge-key="6" data-edge-id="c7" data-composition-points="375,120;375,240" data-composition-crossover="halo" data-composition-independent="true" d="M 375 120 L 375 240" class="a-dashed" data-animate="edge" style="--step:6" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+        </g>
+
+        <!-- Components -->
+        <g id="node-bun" data-node-id="bun" data-node-label="Bun" tabindex="0" role="button" aria-label="Enfocar Bun, choco install bun, Componente de arquitectura" aria-pressed="false" data-node-kind="backend" data-node-sublabel="choco install bun" data-node-context="Componente de arquitectura">
+          <title>Bun · choco install bun · Componente de arquitectura</title>
+          <rect x="40" y="50" width="170" height="70" rx="8" class="c-mask"/>
+          <rect x="40" y="50" width="170" height="70" rx="8" class="c-backend" data-animate="node" style="--step:0" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(46 56) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="125" y="83" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Bun</text>
+        <text data-detail="context" x="125" y="99" class="t-muted" font-size="9" text-anchor="middle">choco install bun</text>
+        </g>
+
+        <g id="node-editor" data-node-id="editor" data-node-label="El editor" tabindex="0" role="button" aria-label="Enfocar El editor, con la extensión oficial, Componente de arquitectura" aria-pressed="false" data-node-kind="external" data-node-sublabel="con la extensión oficial" data-node-context="Componente de arquitectura">
+          <title>El editor · con la extensión oficial · Componente de arquitectura</title>
+          <rect x="290" y="50" width="170" height="70" rx="8" class="c-mask"/>
+          <rect x="290" y="50" width="170" height="70" rx="8" class="c-external" data-animate="node" style="--step:6" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(296 56) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="375" y="83" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">El editor</text>
+        <text data-detail="context" x="375" y="99" class="t-muted" font-size="9" text-anchor="middle">con la extensión oficial</text>
+        </g>
+
+        <g id="node-manifiesto" data-node-id="manifiesto" data-node-label="El manifiesto" tabindex="0" role="button" aria-label="Enfocar El manifiesto, y su archivo de candado, Componente de arquitectura" aria-pressed="false" data-node-kind="security" data-node-sublabel="y su archivo de candado" data-node-context="Componente de arquitectura">
+          <title>El manifiesto · y su archivo de candado · Componente de arquitectura</title>
+          <rect x="40" y="240" width="170" height="70" rx="8" class="c-mask"/>
+          <rect x="40" y="240" width="170" height="70" rx="8" class="c-security" data-animate="node" style="--step:1" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(46 246) scale(0.6875)">
+            <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
+            <path d="m5.8 8 1.5 1.5 3-3"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="125" y="273" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">El manifiesto</text>
+        <text data-detail="context" x="125" y="289" class="t-muted" font-size="9" text-anchor="middle">y su archivo de candado</text>
+        </g>
+
+        <g id="node-deps" data-node-id="deps" data-node-label="Las dependencias" tabindex="0" role="button" aria-label="Enfocar Las dependencias, bun install · no se instalan aparte, Componente de arquitectura" aria-pressed="false" data-node-kind="backend" data-node-sublabel="bun install · no se instalan aparte" data-node-context="Componente de arquitectura">
+          <title>Las dependencias · bun install · no se instalan aparte · Componente de arquitectura</title>
+          <rect x="290" y="240" width="190" height="70" rx="8" class="c-mask"/>
+          <rect x="290" y="240" width="190" height="70" rx="8" class="c-backend" data-animate="node" style="--step:1" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(296 246) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="385" y="273" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Las dependencias</text>
+        <text data-detail="context" x="385" y="289" class="t-muted" font-size="8.6" text-anchor="middle">bun install · no se instalan aparte</text>
+        </g>
+
+        <g id="node-scripts" data-node-id="scripts" data-node-label="Los guiones" tabindex="0" role="button" aria-label="Enfocar Los guiones, dev · build · test · type-check, Componente de arquitectura" aria-pressed="false" data-node-kind="backend" data-node-sublabel="dev · build · test · type-check" data-node-context="Componente de arquitectura">
+          <title>Los guiones · dev · build · test · type-check · Componente de arquitectura</title>
+          <rect x="600" y="240" width="190" height="70" rx="8" class="c-mask"/>
+          <rect x="600" y="240" width="190" height="70" rx="8" class="c-backend" data-animate="node" style="--step:3" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(606 246) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="695" y="273" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Los guiones</text>
+        <text data-detail="context" x="695" y="289" class="t-muted" font-size="9" text-anchor="middle">dev · build · test · type-check</text>
+        </g>
+
+        <g id="node-dev" data-node-id="dev" data-node-label="Servidor de desarrollo" tabindex="0" role="button" aria-label="Enfocar Servidor de desarrollo, bun run dev, Componente de arquitectura" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="bun run dev" data-node-context="Componente de arquitectura">
+          <title>Servidor de desarrollo · bun run dev · Componente de arquitectura</title>
+          <rect x="290" y="430" width="190" height="70" rx="8" class="c-mask"/>
+          <rect x="290" y="430" width="190" height="70" rx="8" class="c-frontend" data-animate="node" style="--step:4" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(296 436) scale(0.6875)">
+            <rect x="2" y="3" width="12" height="10" rx="2"/>
+            <path d="M2 6.5h12"/>
+            <circle cx="4.1" cy="4.8" r=".7" class="sigil-fill"/>
+            <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="385" y="463" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Servidor de desarrollo</text>
+        <text data-detail="context" x="385" y="479" class="t-muted" font-size="9" text-anchor="middle">bun run dev</text>
+        </g>
+
+        <g id="node-backend" data-node-id="backend" data-node-label="El servidor local" tabindex="0" role="button" aria-label="Enfocar El servidor local, lo normal, Componente de arquitectura" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="lo normal" data-node-context="Componente de arquitectura">
+          <title>El servidor local · lo normal · Componente de arquitectura</title>
+          <rect x="600" y="430" width="170" height="70" rx="8" class="c-mask"/>
+          <rect x="600" y="430" width="170" height="70" rx="8" class="c-cloud" data-animate="node" style="--step:5" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(606 436) scale(0.6875)">
+            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="685" y="463" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">El servidor local</text>
+        <text data-detail="context" x="685" y="479" class="t-muted" font-size="9" text-anchor="middle">lo normal</text>
+        </g>
+
+        <g id="node-simulados" data-node-id="simulados" data-node-label="Datos simulados" tabindex="0" role="button" aria-label="Enfocar Datos simulados, para no esperarlo, Componente de arquitectura" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="para no esperarlo" data-node-context="Componente de arquitectura">
+          <title>Datos simulados · para no esperarlo · Componente de arquitectura</title>
+          <rect x="840" y="430" width="170" height="70" rx="8" class="c-mask"/>
+          <rect x="840" y="430" width="170" height="70" rx="8" class="c-cloud" data-animate="node" style="--step:6" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(846 436) scale(0.6875)">
+            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="925" y="463" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Datos simulados</text>
+        <text data-detail="context" x="925" y="479" class="t-muted" font-size="9" text-anchor="middle">para no esperarlo</text>
+        </g>
+
+        <!-- Connection labels -->
+        <g data-detail="context" data-edge-from="bun" data-edge-to="deps" data-edge-label="instala" data-edge-key="0" data-edge-id="c1">
+          <rect x="173.7" y="124" width="43.6" height="14" rx="3" class="c-mask"/>
+          <text x="195.5" y="134" class="t-edge-emphasis" font-size="8" text-anchor="middle">instala</text>
+        </g>
+        <g data-detail="context" data-edge-from="manifiesto" data-edge-to="deps" data-edge-label="fija qué versión" data-edge-key="1" data-edge-id="c2">
+          <rect x="152.1" y="314" width="86.8" height="14" rx="3" class="c-mask"/>
+          <text x="195.5" y="324" class="t-edge-security" font-size="8" text-anchor="middle">fija qué versión</text>
+        </g>
+        <g data-detail="context" data-edge-from="bun" data-edge-to="scripts" data-edge-label="ejecuta" data-edge-key="2" data-edge-id="c3">
+          <rect x="226.7" y="72" width="43.6" height="14" rx="3" class="c-mask"/>
+          <text x="248.5" y="82" class="t-edge-emphasis" font-size="8" text-anchor="middle">ejecuta</text>
+        </g>
+        <g data-detail="context" data-edge-from="scripts" data-edge-to="dev" data-edge-label="levanta" data-edge-key="3" data-edge-id="c4">
+          <rect x="518.2" y="347.025" width="43.6" height="14" rx="3" class="c-mask"/>
+          <text x="540" y="357.025" class="t-edge-default" font-size="8" text-anchor="middle">levanta</text>
+        </g>
+        <g data-detail="context" data-edge-from="dev" data-edge-to="backend" data-edge-label="pide los datos" data-edge-key="4" data-edge-id="c5">
+          <rect x="441.9" y="504" width="77.2" height="14" rx="3" class="c-mask"/>
+          <text x="480.5" y="514" class="t-edge-emphasis" font-size="8" text-anchor="middle">pide los datos</text>
+        </g>
+        <g data-detail="context" data-edge-from="dev" data-edge-to="simulados" data-edge-label="o a estos" data-edge-key="5" data-edge-id="c6">
+          <rect x="497.4" y="459" width="53.199999999999996" height="14" rx="3" class="c-mask"/>
+          <text x="524" y="469" class="t-edge-dashed" font-size="8" text-anchor="middle">o a estos</text>
+        </g>
+        <g data-detail="context" data-edge-from="editor" data-edge-to="deps" data-edge-label="lee los tipos de aquí" data-edge-key="6" data-edge-id="c7">
+          <rect x="381" y="173" width="110.8" height="14" rx="3" class="c-mask"/>
+          <text x="436.4" y="183" class="t-edge-dashed" font-size="8" text-anchor="middle">lee los tipos de aquí</text>
+        </g>
+
+        <!-- Boundary labels (foreground masks keep routes out of titles) -->
+
+
+        <!-- Legend -->
+        <g data-legend="" data-legend-bridge="">
+          <text x="40" y="524" class="t-primary" font-size="12" font-weight="650">Leyenda</text>
+          <g data-legend-semantic-kind="frontend" data-legend-kind="frontend" data-legend-label="Lo que corre en el navegador" data-legend-x="40" data-legend-baseline="544" data-legend-width="217">
+            <rect x="40" y="535" width="16" height="10" rx="2.5" class="c-frontend" stroke-width="1"/>
+            <text x="62" y="544" class="t-muted" font-size="10" font-weight="500">Lo que corre en el navegador</text>
+          </g>
+          <g data-legend-semantic-kind="backend" data-legend-kind="backend" data-legend-label="Lo que ejecuta y construye" data-legend-x="279" data-legend-baseline="544" data-legend-width="205">
+            <rect x="279" y="535" width="16" height="10" rx="2.5" class="c-backend" stroke-width="1"/>
+            <text x="301" y="544" class="t-muted" font-size="10" font-weight="500">Lo que ejecuta y construye</text>
+          </g>
+          <g data-legend-semantic-kind="cloud" data-legend-kind="cloud" data-legend-label="Contra qué apunta" data-legend-x="506" data-legend-baseline="544" data-legend-width="149">
+            <rect x="506" y="535" width="16" height="10" rx="2.5" class="c-cloud" stroke-width="1"/>
+            <text x="528" y="544" class="t-muted" font-size="10" font-weight="500">Contra qué apunta</text>
+          </g>
+          <g data-legend-semantic-kind="security" data-legend-kind="security" data-legend-label="Lo que fija las versiones" data-legend-x="677" data-legend-baseline="544" data-legend-width="198">
+            <rect x="677" y="535" width="16" height="10" rx="2.5" class="c-security" stroke-width="1"/>
+            <text x="699" y="544" class="t-muted" font-size="10" font-weight="500">Lo que fija las versiones</text>
+          </g>
+          <g data-legend-semantic-kind="external" data-legend-kind="external" data-legend-label="Opcional" data-legend-x="897" data-legend-baseline="544" data-legend-width="93">
+            <rect x="897" y="535" width="16" height="10" rx="2.5" class="c-external" stroke-width="1"/>
+            <text x="919" y="544" class="t-muted" font-size="10" font-weight="500">Opcional</text>
+          </g>
+        </g>
+      </svg>

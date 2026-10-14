@@ -39,7 +39,8 @@ bun run diagramas  # solo los diagramas
 | **Git · 7 · Deshacer** | Escrito. El árbol de decisión según hasta dónde llegó el cambio |
 | **Preparar el equipo · 1 · Herramientas base** | Migrado. Chocolatey, git y gh, separados de las llaves |
 | **Preparar el equipo · 2 · Llaves de GitHub** | Migrado. SSH y GPG, con el diagrama de qué hace cada una |
-| Preparar el equipo · 3 y 4 | Pendientes: entorno del servidor, entorno de la pantalla |
+| **Preparar el equipo · 3 · Entorno del servidor** | Migrado. Mismo esqueleto que el 4 |
+| **Preparar el equipo · 4 · Entorno de la pantalla** | Migrado. Mismo esqueleto que el 3 |
 | Incorporación | Pendiente. El manual de onboarding de Vórtice |
 | Cómo trabaja el área | Pendiente. Sale del `ONBOARDING.md` de `vortice-specs` y de las *skills* |
 

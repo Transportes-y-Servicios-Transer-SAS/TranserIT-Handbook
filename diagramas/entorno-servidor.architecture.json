@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "El entorno del servidor, pieza por pieza",
+    "subtitle": "Arriba lo que instalas tú. Abajo lo que trae el repositorio y lo que acaba corriendo.",
+    "output": "entorno-servidor.html",
+    "locale": "es",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1060,
+      560
+    ],
+    "translations": {
+      "viewer.kind.backend": "Lo que compila y construye",
+      "viewer.kind.cloud": "El motor de contenedores",
+      "viewer.kind.database": "Datos, en un contenedor",
+      "viewer.kind.security": "El puente que más se olvida",
+      "viewer.kind.external": "Opcional",
+      "legend.architecture.backend": "Lo que compila y construye",
+      "legend.architecture.cloud": "El motor de contenedores",
+      "legend.architecture.database": "Datos, en un contenedor",
+      "legend.architecture.security": "El puente que más se olvida",
+      "legend.architecture.external": "Opcional"
+    }
+  },
+  "components": [
+    {
+      "id": "jdk",
+      "type": "backend",
+      "label": "Kit de Java 26",
+      "sublabel": "choco install openjdk",
+      "pos": [
+        40,
+        50
+      ],
+      "size": [
+        170,
+        70
+      ]
+    },
+    {
+      "id": "podman",
+      "type": "cloud",
+      "label": "Podman",
+      "sublabel": "y no Docker Desktop",
+      "pos": [
+        290,
+        50
+      ],
+      "size": [
+        170,
+        70
+      ]
+    },
+    {
+      "id": "cliente",
+      "type": "database",
+      "label": "Cliente de BD",
+      "sublabel": "DBeaver, u otro",
+      "pos": [
+        600,
+        50
+      ],
+      "size": [
+        170,
+        70
+      ]
+    },
+    {
+      "id": "ide",
+      "type": "external",
+      "label": "El editor",
+      "sublabel": "IntelliJ o VS Code",
+      "pos": [
+        840,
+        50
+      ],
+      "size": [
+        170,
+        70
+      ]
+    },
+    {
+      "id": "mvnw",
+      "type": "backend",
+      "label": "mvnw",
+      "sublabel": "viene en el repositorio",
+      "pos": [
+        40,
+        240
+      ],
+      "size": [
+        170,
+        70
+      ]
+    },
+    {
+      "id": "props",
+      "type": "security",
+      "label": ".testcontainers",
+      "sublabel": "en TU carpeta de usuario",
+      "pos": [
+        290,
+        240
+      ],
+      "size": [
+        170,
+        70
+      ]
+    },
+    {
+      "id": "compose",
+      "type": "cloud",
+      "label": "podman compose",
+      "sublabel": "la definición del servicio",
+      "pos": [
+        600,
+        240
+      ],
+      "size": [
+        170,
+        70
+      ]
+    },
+    {
+      "id": "maquina",
+      "type": "cloud",
+      "label": "Máquina de Linux",
+      "sublabel": "podman machine",
+      "pos": [
+        290,
+        430
+      ],
+      "size": [
+        170,
+        70
+      ]
+    },
+    {
+      "id": "pg",
+      "type": "database",
+      "label": "PostgreSQL local",
+      "sublabel": "desechable, a propósito",
+      "pos": [
+        600,
+        430
+      ],
+      "size": [
+        170,
+        70
+      ]
+    },
+    {
+      "id": "pruebas",
+      "type": "database",
+      "label": "Los de las pruebas",
+      "sublabel": "se crean y se borran solos",
+      "pos": [
+        840,
+        430
+      ],
+      "size": [
+        170,
+        70
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "c1",
+      "from": "jdk",
+      "to": "mvnw",
+      "label": "JAVA_HOME",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c2",
+      "from": "podman",
+      "to": "maquina",
+      "label": "la crea una vez",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c3",
+      "from": "maquina",
+      "to": "pg",
+      "label": "la levanta"
+    },
+    {
+      "id": "c4",
+      "from": "maquina",
+      "to": "pruebas",
+      "label": "y estos también"
+    },
+    {
+      "id": "c5",
+      "from": "props",
+      "to": "pruebas",
+      "label": "le dice dónde está el motor",
+      "variant": "security"
+    },
+    {
+      "id": "c6",
+      "from": "compose",
+      "to": "pg",
+      "label": "up -d"
+    },
+    {
+      "id": "c7",
+      "from": "cliente",
+      "to": "pg",
+      "label": "para mirar los datos",
+      "variant": "dashed"
+    },
+    {
+      "id": "c8",
+      "from": "mvnw",
+      "to": "pruebas",
+      "label": "clean verify",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Los dos fallos que paran a todo el mundo",
+      "items": [
+        "JAVA_HOME apunta a una carpeta que no existe: Chocolatey la registra sin el número de parche",
+        "Engaña porque java -version sí responde, y solo falla el envoltorio",
+        "Y falta el archivo .testcontainers.properties, sin el cual las pruebas de integración no arrancan"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Lo que NO se instala, y por qué",
+      "items": [
+        "Maven no: el repositorio trae el envoltorio, y es lo que garantiza que todos construyamos igual",
+        "Docker Desktop no: exige suscripción de pago en organizaciones del tamaño de Transer",
+        "Podman es libre y compatible en comandos; lo que cambia es la configuración de las pruebas"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Tu kit es 26, pero el proyecto compila contra 25",
+      "items": [
+        "La 25 es la de soporte prolongado y es la que corre en los ambientes",
+        "El POM rechaza cualquier API posterior, así que no puedes escribir algo que funcione aquí y falle allá",
+        "La versión que manda es la del CLAUDE.md del repositorio, no la última que exista"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "El entorno de la pantalla, pieza por pieza",
+    "subtitle": "Arriba lo que instalas tú. Abajo lo que trae el repositorio y lo que acaba corriendo.",
+    "output": "entorno-pantalla.html",
+    "locale": "es",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1060,
+      560
+    ],
+    "translations": {
+      "viewer.kind.frontend": "Lo que corre en el navegador",
+      "viewer.kind.backend": "Lo que ejecuta y construye",
+      "viewer.kind.security": "Lo que fija las versiones",
+      "viewer.kind.cloud": "Contra qué apunta",
+      "viewer.kind.external": "Opcional",
+      "legend.architecture.frontend": "Lo que corre en el navegador",
+      "legend.architecture.backend": "Lo que ejecuta y construye",
+      "legend.architecture.security": "Lo que fija las versiones",
+      "legend.architecture.cloud": "Contra qué apunta",
+      "legend.architecture.external": "Opcional"
+    }
+  },
+  "components": [
+    {
+      "id": "bun",
+      "type": "backend",
+      "label": "Bun",
+      "sublabel": "choco install bun",
+      "pos": [
+        40,
+        50
+      ],
+      "size": [
+        170,
+        70
+      ]
+    },
+    {
+      "id": "editor",
+      "type": "external",
+      "label": "El editor",
+      "sublabel": "con la extensión oficial",
+      "pos": [
+        290,
+        50
+      ],
+      "size": [
+        170,
+        70
+      ]
+    },
+    {
+      "id": "manifiesto",
+      "type": "security",
+      "label": "El manifiesto",
+      "sublabel": "y su archivo de candado",
+      "pos": [
+        40,
+        240
+      ],
+      "size": [
+        170,
+        70
+      ]
+    },
+    {
+      "id": "deps",
+      "type": "backend",
+      "label": "Las dependencias",
+      "sublabel": "bun install · no se instalan aparte",
+      "pos": [
+        290,
+        240
+      ],
+      "size": [
+        190,
+        70
+      ]
+    },
+    {
+      "id": "scripts",
+      "type": "backend",
+      "label": "Los guiones",
+      "sublabel": "dev · build · test · type-check",
+      "pos": [
+        600,
+        240
+      ],
+      "size": [
+        190,
+        70
+      ]
+    },
+    {
+      "id": "dev",
+      "type": "frontend",
+      "label": "Servidor de desarrollo",
+      "sublabel": "bun run dev",
+      "pos": [
+        290,
+        430
+      ],
+      "size": [
+        190,
+        70
+      ]
+    },
+    {
+      "id": "backend",
+      "type": "cloud",
+      "label": "El servidor local",
+      "sublabel": "lo normal",
+      "pos": [
+        600,
+        430
+      ],
+      "size": [
+        170,
+        70
+      ]
+    },
+    {
+      "id": "simulados",
+      "type": "cloud",
+      "label": "Datos simulados",
+      "sublabel": "para no esperarlo",
+      "pos": [
+        840,
+        430
+      ],
+      "size": [
+        170,
+        70
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "c1",
+      "from": "bun",
+      "to": "deps",
+      "label": "instala",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c2",
+      "from": "manifiesto",
+      "to": "deps",
+      "label": "fija qué versión",
+      "variant": "security"
+    },
+    {
+      "id": "c3",
+      "from": "bun",
+      "to": "scripts",
+      "label": "ejecuta",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c4",
+      "from": "scripts",
+      "to": "dev",
+      "label": "levanta"
+    },
+    {
+      "id": "c5",
+      "from": "dev",
+      "to": "backend",
+      "label": "pide los datos",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c6",
+      "from": "dev",
+      "to": "simulados",
+      "label": "o a estos",
+      "variant": "dashed"
+    },
+    {
+      "id": "c7",
+      "from": "editor",
+      "to": "deps",
+      "label": "lee los tipos de aquí",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "amber",
+      "title": "Lo que NO se instala, y por qué",
+      "items": [
+        "Node.js no: Bun lo reemplaza para lo que necesitamos, instalar y ejecutar guiones",
+        "Ni el marco, ni la biblioteca de componentes, ni el empaquetador: son dependencias del proyecto",
+        "Sus versiones las manda el manifiesto, no tu equipo"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "type-check va aparte, y hay que correrlo",
+      "items": [
+        "El compilador de tipos por sí solo NO revisa las plantillas",
+        "Y es justo donde más errores de tipo se cometen",
+        "Por eso existe ese guion separado, y por eso la compuerta lo ejecuta"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Dos modos, y conviene saber cambiar",
+      "items": [
+        "Contra el servidor local es lo normal, cuando está levantado",
+        "Contra datos simulados, cuando no lo está: es lo que permite no esperarlo",
+        "Los simulados se pactan al publicar el contrato, y se mantienen alineados con él"
+      ]
+    }
+  ]
+}

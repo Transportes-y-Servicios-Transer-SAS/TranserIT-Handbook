@@ -1,0 +1,261 @@
+<svg viewBox="0 0 1060 560" role="img" lang="es" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase" data-node-ui="" data-diagram-type="architecture" data-reader-fit="authored-height">
+        <title id="archify-diagram-title">El entorno del servidor, pieza por pieza</title>
+        <desc id="archify-diagram-description">Arriba lo que instalas tú. Abajo lo que trae el repositorio y lo que acaba corriendo.</desc>
+        <!-- Definitions -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-default" />
+          </marker>
+          <marker id="arrowhead-emphasis" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-emphasis" />
+          </marker>
+          <marker id="arrowhead-security" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-security" />
+          </marker>
+          <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-dashed" />
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" class="c-grid" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <style>
+          svg[data-node-ui] [data-node-id] > rect:not(.c-mask) { stroke-width: 1.25px; }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-frontend { fill: color-mix(in srgb, var(--frontend-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--frontend-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-backend { fill: color-mix(in srgb, var(--backend-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--backend-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-database { fill: color-mix(in srgb, var(--database-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--database-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-cloud { fill: color-mix(in srgb, var(--cloud-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--cloud-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-security { fill: color-mix(in srgb, var(--security-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--security-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-messagebus { fill: color-mix(in srgb, var(--messagebus-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--messagebus-stroke) 72%, var(--mask)); }
+          :is([data-theme="dark"] svg[data-node-ui], svg[data-node-ui][data-theme="dark"]) [data-node-id] > rect:not(.c-mask).c-external { fill: color-mix(in srgb, var(--external-stroke) 13%, var(--mask)); stroke: color-mix(in srgb, var(--external-stroke) 72%, var(--mask)); }
+          svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-region { fill: color-mix(in srgb, var(--cloud-stroke) 3%, transparent); stroke: color-mix(in srgb, var(--cloud-stroke) 42%, var(--lane-stroke)); stroke-dasharray: none; }
+          svg[data-node-ui] .c-security-group { stroke: color-mix(in srgb, var(--security-stroke) 58%, var(--lane-stroke)); }
+          svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-security-group { stroke-dasharray: 4 3; }
+          svg[data-node-ui]:is([data-preset="classic"], [data-preset="signal-flow"], [data-preset="editorial"]) .c-lane { stroke: var(--lane-stroke); stroke-dasharray: none; }
+          svg[data-node-ui] [data-graph-role="structural-frame-label-mask"] { rx: 5px; fill: color-mix(in srgb, var(--cloud-stroke) 10%, var(--mask)); stroke: color-mix(in srgb, var(--cloud-stroke) 38%, var(--mask)); stroke-width: .8px; }
+          svg[data-node-ui] [data-composition-frame-kind="security-group"] > [data-graph-role="structural-frame-label-mask"] { fill: color-mix(in srgb, var(--security-stroke) 9%, var(--mask)); stroke: color-mix(in srgb, var(--security-stroke) 36%, var(--mask)); }
+          svg[data-node-ui] .phase-rule { opacity: .5; stroke-dasharray: none; }
+          svg[data-node-ui] .phase-chip { stroke: var(--lane-stroke); stroke-width: .75px; }
+          svg[data-node-ui] g[data-edge-from] > rect.c-mask { rx: 7px; stroke: var(--lane-stroke); stroke-width: .75px; }
+          svg[data-node-ui][data-preset="blueprint"] :is([data-graph-role="structural-frame-label-mask"], g[data-edge-from] > rect.c-mask, .phase-chip) { rx: 2px; }
+          svg[data-node-ui][data-preset="editorial"] :is([data-graph-role="structural-frame-label-mask"], g[data-edge-from] > rect.c-mask, .phase-chip) { rx: 3px; }
+        </style>
+
+        <!-- Background Grid -->
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- Boundaries (behind everything) -->
+
+
+        <!-- Connection paths (before components for correct z-order) -->
+        <g data-graph-role="automatic-crossover" style="--step:0">
+          <path data-graph-role="automatic-crossover-underlay" d="M 125 120 L 125 240" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="jdk" data-edge-to="mvnw" data-edge-label="JAVA_HOME" data-edge-key="0" data-edge-id="c1" data-composition-points="125,120;125,240" data-composition-crossover="halo" data-composition-independent="true" d="M 125 120 L 125 240" class="a-emphasis" data-animate="edge" style="--step:0" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:1">
+          <path data-graph-role="automatic-crossover-underlay" d="M 375 120 L 375 229 Q 375 237 367 237 L 295 237 Q 287 237 287 245 L 287 398 Q 287 406 295 406 L 367 406 Q 375 406 375 414 L 375 430" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="podman" data-edge-to="maquina" data-edge-label="la crea una vez" data-edge-key="1" data-edge-id="c2" data-composition-points="375,120;375,237;287,237;287,406;375,406;375,430" data-composition-crossover="halo" data-composition-independent="true" d="M 375 120 L 375 229 Q 375 237 367 237 L 295 237 Q 287 237 287 245 L 287 398 Q 287 406 295 406 L 367 406 Q 375 406 375 414 L 375 430" class="a-emphasis" data-animate="edge" style="--step:1" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:2">
+          <path data-graph-role="automatic-crossover-underlay" d="M 460 458 L 600 458" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="maquina" data-edge-to="pg" data-edge-label="la levanta" data-edge-key="2" data-edge-id="c3" data-composition-points="460,458;600,458" data-composition-crossover="halo" data-composition-independent="true" d="M 460 458 L 600 458" class="a-default" data-animate="edge" style="--step:2" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:3">
+          <path data-graph-role="automatic-crossover-underlay" d="M 460 472 L 589 472 Q 597 472 597 480 L 597 495 Q 597 503 605 503 L 808 503 Q 816 503 816 495 L 816 488.05 Q 816 480.05 824 480.05 L 840 480.05" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="maquina" data-edge-to="pruebas" data-edge-label="y estos también" data-edge-key="3" data-edge-id="c4" data-composition-points="460,472;597,472;597,503;816,503;816,480.05;840,480.05" data-composition-crossover="halo" data-composition-independent="true" d="M 460 472 L 589 472 Q 597 472 597 480 L 597 495 Q 597 503 605 503 L 808 503 Q 816 503 816 495 L 816 488.05 Q 816 480.05 824 480.05 L 840 480.05" class="a-default" data-animate="edge" style="--step:3" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:4">
+          <path data-graph-role="automatic-crossover-underlay" d="M 460 275 L 556 275 Q 564 275 564 283 L 564 419 Q 564 427 572 427 L 808 427 Q 816 427 816 435 L 816 441.95 Q 816 449.95 824 449.95 L 840 449.95" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="props" data-edge-to="pruebas" data-edge-label="le dice dónde está el motor" data-edge-key="4" data-edge-id="c5" data-composition-points="460,275;564,275;564,427;816,427;816,449.95;840,449.95" data-composition-crossover="halo" data-composition-independent="true" d="M 460 275 L 556 275 Q 564 275 564 283 L 564 419 Q 564 427 572 427 L 808 427 Q 816 427 816 435 L 816 441.95 Q 816 449.95 824 449.95 L 840 449.95" class="a-security" data-animate="edge" style="--step:4" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:5">
+          <path data-graph-role="automatic-crossover-underlay" d="M 678 310 L 678 430" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="compose" data-edge-to="pg" data-edge-label="up -d" data-edge-key="5" data-edge-id="c6" data-composition-points="678,310;678,430" data-composition-crossover="halo" data-composition-independent="true" d="M 678 310 L 678 430" class="a-default" data-animate="edge" style="--step:5" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:6">
+          <path data-graph-role="automatic-crossover-underlay" d="M 770 85 L 786 85 Q 794 85 794 93 L 794 457 Q 794 465 786 465 L 770 465" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="cliente" data-edge-to="pg" data-edge-label="para mirar los datos" data-edge-key="6" data-edge-id="c7" data-composition-points="770,85;794,85;794,465;770,465" data-composition-crossover="halo" data-composition-independent="true" d="M 770 85 L 786 85 Q 794 85 794 93 L 794 457 Q 794 465 786 465 L 770 465" class="a-dashed" data-animate="edge" style="--step:6" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:7">
+          <path data-graph-role="automatic-crossover-underlay" d="M 141.1 240 L 141.1 224 Q 141.1 216 149.1 216 L 917 216 Q 925 216 925 224 L 925 430" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="mvnw" data-edge-to="pruebas" data-edge-label="clean verify" data-edge-key="7" data-edge-id="c8" data-composition-points="141.1,240;141.1,216;925,216;925,430" data-composition-crossover="halo" data-composition-independent="true" d="M 141.1 240 L 141.1 224 Q 141.1 216 149.1 216 L 917 216 Q 925 216 925 224 L 925 430" class="a-emphasis" data-animate="edge" style="--step:7" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        </g>
+
+        <!-- Components -->
+        <g id="node-jdk" data-node-id="jdk" data-node-label="Kit de Java 26" tabindex="0" role="button" aria-label="Enfocar Kit de Java 26, choco install openjdk, Componente de arquitectura" aria-pressed="false" data-node-kind="backend" data-node-sublabel="choco install openjdk" data-node-context="Componente de arquitectura">
+          <title>Kit de Java 26 · choco install openjdk · Componente de arquitectura</title>
+          <rect x="40" y="50" width="170" height="70" rx="8" class="c-mask"/>
+          <rect x="40" y="50" width="170" height="70" rx="8" class="c-backend" data-animate="node" style="--step:0" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(46 56) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="125" y="83" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Kit de Java 26</text>
+        <text data-detail="context" x="125" y="99" class="t-muted" font-size="9" text-anchor="middle">choco install openjdk</text>
+        </g>
+
+        <g id="node-podman" data-node-id="podman" data-node-label="Podman" tabindex="0" role="button" aria-label="Enfocar Podman, y no Docker Desktop, Componente de arquitectura" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="y no Docker Desktop" data-node-context="Componente de arquitectura">
+          <title>Podman · y no Docker Desktop · Componente de arquitectura</title>
+          <rect x="290" y="50" width="170" height="70" rx="8" class="c-mask"/>
+          <rect x="290" y="50" width="170" height="70" rx="8" class="c-cloud" data-animate="node" style="--step:1" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(296 56) scale(0.6875)">
+            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="375" y="83" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Podman</text>
+        <text data-detail="context" x="375" y="99" class="t-muted" font-size="9" text-anchor="middle">y no Docker Desktop</text>
+        </g>
+
+        <g id="node-cliente" data-node-id="cliente" data-node-label="Cliente de BD" tabindex="0" role="button" aria-label="Enfocar Cliente de BD, DBeaver, u otro, Componente de arquitectura" aria-pressed="false" data-node-kind="database" data-node-sublabel="DBeaver, u otro" data-node-context="Componente de arquitectura">
+          <title>Cliente de BD · DBeaver, u otro · Componente de arquitectura</title>
+          <rect x="600" y="50" width="170" height="70" rx="8" class="c-mask"/>
+          <rect x="600" y="50" width="170" height="70" rx="8" class="c-database" data-animate="node" style="--step:6" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(606 56) scale(0.6875)">
+            <ellipse cx="8" cy="4" rx="5" ry="2"/>
+            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="685" y="83" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Cliente de BD</text>
+        <text data-detail="context" x="685" y="99" class="t-muted" font-size="9" text-anchor="middle">DBeaver, u otro</text>
+        </g>
+
+        <g id="node-ide" data-node-id="ide" data-node-label="El editor" tabindex="0" role="button" aria-label="Enfocar El editor, IntelliJ o VS Code, Componente de arquitectura" aria-pressed="false" data-node-kind="external" data-node-sublabel="IntelliJ o VS Code" data-node-context="Componente de arquitectura">
+          <title>El editor · IntelliJ o VS Code · Componente de arquitectura</title>
+          <rect x="840" y="50" width="170" height="70" rx="8" class="c-mask"/>
+          <rect x="840" y="50" width="170" height="70" rx="8" class="c-external" data-animate="node" style="--step:3" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(846 56) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="925" y="83" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">El editor</text>
+        <text data-detail="context" x="925" y="99" class="t-muted" font-size="9" text-anchor="middle">IntelliJ o VS Code</text>
+        </g>
+
+        <g id="node-mvnw" data-node-id="mvnw" data-node-label="mvnw" tabindex="0" role="button" aria-label="Enfocar mvnw, viene en el repositorio, Componente de arquitectura" aria-pressed="false" data-node-kind="backend" data-node-sublabel="viene en el repositorio" data-node-context="Componente de arquitectura">
+          <title>mvnw · viene en el repositorio · Componente de arquitectura</title>
+          <rect x="40" y="240" width="170" height="70" rx="8" class="c-mask"/>
+          <rect x="40" y="240" width="170" height="70" rx="8" class="c-backend" data-animate="node" style="--step:1" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(46 246) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="125" y="273" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">mvnw</text>
+        <text data-detail="context" x="125" y="289" class="t-muted" font-size="9" text-anchor="middle">viene en el repositorio</text>
+        </g>
+
+        <g id="node-props" data-node-id="props" data-node-label=".testcontainers" tabindex="0" role="button" aria-label="Enfocar .testcontainers, en TU carpeta de usuario, Componente de arquitectura" aria-pressed="false" data-node-kind="security" data-node-sublabel="en TU carpeta de usuario" data-node-context="Componente de arquitectura">
+          <title>.testcontainers · en TU carpeta de usuario · Componente de arquitectura</title>
+          <rect x="290" y="240" width="170" height="70" rx="8" class="c-mask"/>
+          <rect x="290" y="240" width="170" height="70" rx="8" class="c-security" data-animate="node" style="--step:4" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(296 246) scale(0.6875)">
+            <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
+            <path d="m5.8 8 1.5 1.5 3-3"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="375" y="273" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">.testcontainers</text>
+        <text data-detail="context" x="375" y="289" class="t-muted" font-size="9" text-anchor="middle">en TU carpeta de usuario</text>
+        </g>
+
+        <g id="node-compose" data-node-id="compose" data-node-label="podman compose" tabindex="0" role="button" aria-label="Enfocar podman compose, la definición del servicio, Componente de arquitectura" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="la definición del servicio" data-node-context="Componente de arquitectura">
+          <title>podman compose · la definición del servicio · Componente de arquitectura</title>
+          <rect x="600" y="240" width="170" height="70" rx="8" class="c-mask"/>
+          <rect x="600" y="240" width="170" height="70" rx="8" class="c-cloud" data-animate="node" style="--step:5" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(606 246) scale(0.6875)">
+            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="685" y="273" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">podman compose</text>
+        <text data-detail="context" x="685" y="289" class="t-muted" font-size="9" text-anchor="middle">la definición del servicio</text>
+        </g>
+
+        <g id="node-maquina" data-node-id="maquina" data-node-label="Máquina de Linux" tabindex="0" role="button" aria-label="Enfocar Máquina de Linux, podman machine, Componente de arquitectura" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="podman machine" data-node-context="Componente de arquitectura">
+          <title>Máquina de Linux · podman machine · Componente de arquitectura</title>
+          <rect x="290" y="430" width="170" height="70" rx="8" class="c-mask"/>
+          <rect x="290" y="430" width="170" height="70" rx="8" class="c-cloud" data-animate="node" style="--step:2" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(296 436) scale(0.6875)">
+            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="375" y="463" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Máquina de Linux</text>
+        <text data-detail="context" x="375" y="479" class="t-muted" font-size="9" text-anchor="middle">podman machine</text>
+        </g>
+
+        <g id="node-pg" data-node-id="pg" data-node-label="PostgreSQL local" tabindex="0" role="button" aria-label="Enfocar PostgreSQL local, desechable, a propósito, Componente de arquitectura" aria-pressed="false" data-node-kind="database" data-node-sublabel="desechable, a propósito" data-node-context="Componente de arquitectura">
+          <title>PostgreSQL local · desechable, a propósito · Componente de arquitectura</title>
+          <rect x="600" y="430" width="170" height="70" rx="8" class="c-mask"/>
+          <rect x="600" y="430" width="170" height="70" rx="8" class="c-database" data-animate="node" style="--step:3" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(606 436) scale(0.6875)">
+            <ellipse cx="8" cy="4" rx="5" ry="2"/>
+            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="685" y="463" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">PostgreSQL local</text>
+        <text data-detail="context" x="685" y="479" class="t-muted" font-size="9" text-anchor="middle">desechable, a propósito</text>
+        </g>
+
+        <g id="node-pruebas" data-node-id="pruebas" data-node-label="Los de las pruebas" tabindex="0" role="button" aria-label="Enfocar Los de las pruebas, se crean y se borran solos, Componente de arquitectura" aria-pressed="false" data-node-kind="database" data-node-sublabel="se crean y se borran solos" data-node-context="Componente de arquitectura">
+          <title>Los de las pruebas · se crean y se borran solos · Componente de arquitectura</title>
+          <rect x="840" y="430" width="170" height="70" rx="8" class="c-mask"/>
+          <rect x="840" y="430" width="170" height="70" rx="8" class="c-database" data-animate="node" style="--step:4" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(846 436) scale(0.6875)">
+            <ellipse cx="8" cy="4" rx="5" ry="2"/>
+            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="925" y="463" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Los de las pruebas</text>
+        <text data-detail="context" x="925" y="479" class="t-muted" font-size="9" text-anchor="middle">se crean y se borran solos</text>
+        </g>
+
+        <!-- Connection labels -->
+        <g data-detail="context" data-edge-from="jdk" data-edge-to="mvnw" data-edge-label="JAVA_HOME" data-edge-key="0" data-edge-id="c1">
+          <rect x="65.80000000000001" y="173" width="53.199999999999996" height="14" rx="3" class="c-mask"/>
+          <text x="92.4" y="183" class="t-edge-emphasis" font-size="8" text-anchor="middle">JAVA_HOME</text>
+        </g>
+        <g data-detail="context" data-edge-from="podman" data-edge-to="maquina" data-edge-label="la crea una vez" data-edge-key="1" data-edge-id="c2">
+          <rect x="287" y="171.5" width="82" height="14" rx="3" class="c-mask"/>
+          <text x="328" y="181.5" class="t-edge-emphasis" font-size="8" text-anchor="middle">la crea una vez</text>
+        </g>
+        <g data-detail="context" data-edge-from="maquina" data-edge-to="pg" data-edge-label="la levanta" data-edge-key="2" data-edge-id="c3">
+          <rect x="501" y="438" width="58" height="14" rx="3" class="c-mask"/>
+          <text x="530" y="448" class="t-edge-default" font-size="8" text-anchor="middle">la levanta</text>
+        </g>
+        <g data-detail="context" data-edge-from="maquina" data-edge-to="pruebas" data-edge-label="y estos también" data-edge-key="3" data-edge-id="c4">
+          <rect x="487.5" y="482" width="82" height="14" rx="3" class="c-mask"/>
+          <text x="528.5" y="492" class="t-edge-default" font-size="8" text-anchor="middle">y estos también</text>
+        </g>
+        <g data-detail="context" data-edge-from="props" data-edge-to="pruebas" data-edge-label="le dice dónde está el motor" data-edge-key="4" data-edge-id="c5">
+          <rect x="494.2" y="331" width="139.6" height="14" rx="3" class="c-mask"/>
+          <text x="564" y="341" class="t-edge-security" font-size="8" text-anchor="middle">le dice dónde está el motor</text>
+        </g>
+        <g data-detail="context" data-edge-from="compose" data-edge-to="pg" data-edge-label="up -d" data-edge-key="5" data-edge-id="c6">
+          <rect x="638" y="363" width="34" height="14" rx="3" class="c-mask"/>
+          <text x="655" y="373" class="t-edge-default" font-size="8" text-anchor="middle">up -d</text>
+        </g>
+        <g data-detail="context" data-edge-from="cliente" data-edge-to="pg" data-edge-label="para mirar los datos" data-edge-key="6" data-edge-id="c7">
+          <rect x="800" y="268" width="106" height="14" rx="3" class="c-mask"/>
+          <text x="853" y="278" class="t-edge-dashed" font-size="8" text-anchor="middle">para mirar los datos</text>
+        </g>
+        <g data-detail="context" data-edge-from="mvnw" data-edge-to="pruebas" data-edge-label="clean verify" data-edge-key="7" data-edge-id="c8">
+          <rect x="499.24999999999994" y="196" width="67.6" height="14" rx="3" class="c-mask"/>
+          <text x="533.05" y="206" class="t-edge-emphasis" font-size="8" text-anchor="middle">clean verify</text>
+        </g>
+
+        <!-- Boundary labels (foreground masks keep routes out of titles) -->
+
+
+        <!-- Legend -->
+        <g data-legend="" data-legend-bridge="">
+          <text x="40" y="524" class="t-primary" font-size="12" font-weight="650">Leyenda</text>
+          <g data-legend-semantic-kind="backend" data-legend-kind="backend" data-legend-label="Lo que compila y construye" data-legend-x="40" data-legend-baseline="544" data-legend-width="205">
+            <rect x="40" y="535" width="16" height="10" rx="2.5" class="c-backend" stroke-width="1"/>
+            <text x="62" y="544" class="t-muted" font-size="10" font-weight="500">Lo que compila y construye</text>
+          </g>
+          <g data-legend-semantic-kind="database" data-legend-kind="database" data-legend-label="Datos, en un contenedor" data-legend-x="267" data-legend-baseline="544" data-legend-width="186">
+            <rect x="267" y="535" width="16" height="10" rx="2.5" class="c-database" stroke-width="1"/>
+            <text x="289" y="544" class="t-muted" font-size="10" font-weight="500">Datos, en un contenedor</text>
+          </g>
+          <g data-legend-semantic-kind="cloud" data-legend-kind="cloud" data-legend-label="El motor de contenedores" data-legend-x="475" data-legend-baseline="544" data-legend-width="192">
+            <rect x="475" y="535" width="16" height="10" rx="2.5" class="c-cloud" stroke-width="1"/>
+            <text x="497" y="544" class="t-muted" font-size="10" font-weight="500">El motor de contenedores</text>
+          </g>
+          <g data-legend-semantic-kind="security" data-legend-kind="security" data-legend-label="El puente que más se olvida" data-legend-x="689" data-legend-baseline="544" data-legend-width="211">
+            <rect x="689" y="535" width="16" height="10" rx="2.5" class="c-security" stroke-width="1"/>
+            <text x="711" y="544" class="t-muted" font-size="10" font-weight="500">El puente que más se olvida</text>
+          </g>
+          <g data-legend-semantic-kind="external" data-legend-kind="external" data-legend-label="Opcional" data-legend-x="922" data-legend-baseline="544" data-legend-width="93">
+            <rect x="922" y="535" width="16" height="10" rx="2.5" class="c-external" stroke-width="1"/>
+            <text x="944" y="544" class="t-muted" font-size="10" font-weight="500">Opcional</text>
+          </g>
+        </g>
+      </svg>

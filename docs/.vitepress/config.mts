@@ -43,6 +43,8 @@ export default defineConfig({
           items: [
             { text: '1 · Las herramientas base', link: '/equipo/herramientas' },
             { text: '2 · Las llaves de GitHub', link: '/equipo/llaves' },
+            { text: '3 · El entorno del servidor', link: '/equipo/servidor' },
+            { text: '4 · El entorno de la pantalla', link: '/equipo/pantalla' },
           ],
         },
       ],
