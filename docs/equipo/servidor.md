@@ -206,11 +206,26 @@ siguientes son rápidas.
 ## 7 · Ejecutar la aplicación
 
 ```powershell
-.\mvnw.cmd spring-boot:run
+.\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=local"
 curl http://localhost:8080/actuator/health
 ```
 
 Debe devolver un estado `UP`. Para detenerla, **Ctrl+C** en la misma ventana.
+
+> ⚠️ **Sin el perfil no arranca, y el error no dice que falte un perfil.** La configuración base no
+> declara origen de datos a propósito; el que lo declara es el perfil `local`. Si lo omites, el
+> arranque falla por una causa que parece de otra cosa.
+
+> **Las comillas tampoco sobran, y esto es de PowerShell.** Sin ellas, el intérprete puede partir el
+> argumento por el `=` y Maven recibe la propiedad a medias: **arranca igual, pero sin el perfil**.
+> En `cmd.exe` daría lo mismo; aquí no.
+
+**Si la base local pide contraseña**, va en la sesión antes de arrancar —sale de la definición del
+servicio del repositorio, y no se escribe en el comando para que no quede en el historial—:
+
+```powershell
+$env:VORTICE_DB_PASSWORD = '<la del servicio>'
+```
 
 ## Comprobar que todo quedó bien
 
@@ -221,7 +236,9 @@ java -version                 # responde 26
 podman machine list           # la máquina, running
 podman compose ps             # la base de datos, running
 .\mvnw.cmd clean verify       # compila y las pruebas pasan
-.\mvnw.cmd spring-boot:run    # arranca y el estado es UP
+
+# Y el arranque, que necesita el perfil
+.\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=local"
 ```
 
 Y una sexta que no es un comando: **conéctate a la base de datos con el cliente** y confirma que ves
