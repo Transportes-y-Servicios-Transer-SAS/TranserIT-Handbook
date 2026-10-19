@@ -3,7 +3,7 @@
   "diagram_type": "architecture",
   "meta": {
     "title": "El entorno de la pantalla, pieza por pieza",
-    "subtitle": "Arriba lo que instalas tú. Abajo lo que trae el repositorio y lo que acaba corriendo.",
+    "subtitle": "Arriba lo que instalas y lo que traes. Abajo lo que trae el repositorio y lo que acaba corriendo.",
     "output": "entorno-pantalla.html",
     "locale": "es",
     "animation": "trace",
@@ -86,7 +86,7 @@
       "id": "scripts",
       "type": "backend",
       "label": "Los guiones",
-      "sublabel": "dev · build · test · type-check",
+      "sublabel": "dev · build · test:unit:run · type-check",
       "pos": [
         600,
         240
@@ -135,6 +135,34 @@
       ],
       "size": [
         170,
+        70
+      ]
+    },
+    {
+      "id": "repo-servidor",
+      "type": "cloud",
+      "label": "El repositorio del servidor",
+      "sublabel": "clonado al lado, aunque no lo toques",
+      "pos": [
+        820,
+        50
+      ],
+      "size": [
+        200,
+        70
+      ]
+    },
+    {
+      "id": "tipos",
+      "type": "security",
+      "label": "Los tipos del contrato",
+      "sublabel": "se generan · no se versionan",
+      "pos": [
+        820,
+        240
+      ],
+      "size": [
+        200,
         70
       ]
     }
@@ -187,6 +215,20 @@
       "to": "deps",
       "label": "lee los tipos de aquí",
       "variant": "dashed"
+    },
+    {
+      "id": "c8",
+      "from": "repo-servidor",
+      "to": "tipos",
+      "label": "los genera, leyendo su contrato",
+      "variant": "security"
+    },
+    {
+      "id": "c9",
+      "from": "tipos",
+      "to": "scripts",
+      "label": "sin esto, nada compila",
+      "variant": "emphasis"
     }
   ],
   "cards": [
@@ -215,6 +257,15 @@
         "Contra el servidor local es lo normal, cuando está levantado",
         "Contra datos simulados, cuando no lo está: es lo que permite no esperarlo",
         "Los simulados se pactan al publicar el contrato, y se mantienen alineados con él"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Los tipos del contrato no vienen en el clon",
+      "items": [
+        "Se generan contra el repositorio del servidor, y están ignorados por git a propósito",
+        "Versionarlos convertiría la copia en la fuente, y empezaría la deriva",
+        "Si faltan, salen decenas de errores de tipo que dicen todos lo mismo: regenera"
       ]
     }
   ]

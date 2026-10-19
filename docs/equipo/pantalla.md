@@ -4,11 +4,14 @@ title: El entorno de la pantalla
 
 # El entorno de la pantalla
 
-> **Antes de empezar, dos condiciones.**
+> **Antes de empezar, tres condiciones.**
 >
 > **[Las herramientas base](/equipo/herramientas) instaladas** — Chocolatey, `git` y `gh`.
 > **Permisos de administrador local**, para instalar. Si no los tienes, el paso 1 trae una vía que
 > no los necesita.
+> **El repositorio del servidor clonado en tu equipo**, aunque no vayas a tocarlo: de ahí salen el
+> contrato y los permisos, que no vienen en el clon y sin los cuales esto no compila. Es el paso 5,
+> y es el que más sorprende.
 
 ## Qué se instala, y qué no
 
@@ -114,7 +117,70 @@ primera vez tarda; las siguientes son casi instantáneas.
 > integración instalemos lo mismo. Si aparece modificado en un cambio que no tocaba dependencias,
 > algo se instaló mal: revísalo antes de entregarlo.
 
-## 5 · Levantar el servidor de desarrollo
+## 5 · Generar lo que el repositorio no trae
+
+**Este paso no se puede saltar, y es el que más tiempo hace perder cuando falta.**
+
+Hay tres archivos que el clon **no trae** porque se generan, y están ignorados por git a propósito.
+Dos de ellos salen del **clon del servidor**:
+
+```powershell
+bun run scripts/generate-api-types.ts    C:\ruta\a\vortice-backend
+bun run scripts/generate-permissions.ts  C:\ruta\a\vortice-backend
+```
+
+> ⚠️ **Son dos guiones y ninguno llama al otro.** Correr solo el primero deja los permisos viejos, y
+> el síntoma es el mismo montón de errores. Van siempre juntos.
+
+| Guion | Qué produce | De dónde lo saca |
+|---|---|---|
+| `generate-api-types` | Los tipos de cada operación y cada respuesta | Del contrato que publica el servidor |
+| `generate-permissions` | La lista cerrada de permisos que existen | De las anotaciones del código del servidor |
+| `generate:design` | Los colores y medidas de la marca | Del propio repositorio — **éste no necesita el servidor** |
+
+El tercero se corre solo: `bun run dev` y `bun run build` lo ejecutan antes que nada. Solo hace
+falta invocarlo a mano —`bun run generate:design`— si vas a correr las compuertas sin haber
+levantado la aplicación antes.
+
+### Decir dónde está el clon del servidor, una sola vez
+
+Pasar la ruta en cada comando se olvida. Hay tres vías y **la tercera es la que conviene**: un
+archivo en la raíz, que ya está ignorado por git.
+
+```powershell
+Copy-Item .vortice.local.json.example .vortice.local.json
+# y edítalo con la ruta real de tu clon
+```
+
+Desde ahí, los dos guiones se invocan sin argumento. Las otras dos vías son el argumento de arriba
+y la variable de entorno `VORTICE_BACKEND`, por si te sirve más en un servidor de integración.
+
+> ⚠️ **Necesitas el repositorio del servidor clonado, aunque no vayas a tocarlo**, y
+> **actualizado antes de generar**: lo que sale es la versión que tengas en disco, no la última que
+> exista. Un clon viejo produce un contrato viejo, y el error que verás dirá lo contrario de lo que
+> pasa — que algo *no existe*, cuando existe y tú no lo tienes.
+
+**Por qué no se versionan, y no es un descuido:** versionar la copia la convertiría en la fuente y
+empezaría la deriva — la pantalla acabaría creyendo un contrato que el servidor ya no publica. Que
+haya que generarlos es lo que garantiza que nadie trabaje contra un contrato imaginario.
+
+> ⚠️ **Y si no lo haces, lo que ves no te dice que falte este paso.** Salen **decenas de errores de
+> tipo que dicen todos lo mismo** con nombres distintos:
+>
+> ```text
+> Property 'DocumentTypeResponse' does not exist on type '{ … }'
+> Property 'listDocumentTypes' does not exist on type 'operations'
+> 'CORE:CITY_VIEW' is not assignable to type 'Permission'
+> ```
+>
+> **Si ves eso, no busques el fallo en tu código: regenera los dos.** Y lo mismo cuando el servidor
+> publica una funcionalidad nueva — lo generado ayer no la conoce.
+
+> **Un aviso que sale y no es un fallo.** El generador de tipos avisa de los módulos que el contrato
+> publica y este repositorio todavía no tiene. Es información, no error: **si uno de ésos es el que
+> vas a derivar**, crea su carpeta —`mkdir src/modules/<módulo>`— y vuelve a generar.
+
+## 6 · Levantar el servidor de desarrollo
 
 ```powershell
 bun run dev
@@ -136,33 +202,49 @@ La aplicación necesita un servidor. Hay dos modos, y conviene saber cambiar ent
 equipo, no un truco: los datos simulados se pactan cuando se publica el contrato de la interfaz, y
 se mantienen alineados con él.
 
-## 6 · Los otros guiones
+## 7 · Los otros guiones
 
 Los define el manifiesto; estos son los de cada día:
 
 ```powershell
-bun run build        # construcción de producción
-bun run test         # pruebas de componente y de pantalla
-bun run type-check   # verificación de tipos, plantillas incluidas
+bun run type-check      # verificación de tipos, plantillas incluidas
+bun run test:unit:run   # las pruebas, una vez y sale
+bun run test:unit       # las pruebas, quedándose a la escucha
+bun run build           # construcción de producción
 ```
+
+> **No existe `bun run test`.** Los guiones de pruebas llevan su apellido: `test:unit` se queda
+> observando los archivos y `test:unit:run` corre una vez y termina — que es el que quieres en una
+> comprobación y el que usa la integración. Para las de navegador, `test:e2e`.
 
 > ⚠️ **`type-check` va aparte y hay que correrlo.** El compilador de tipos por sí solo **no revisa
 > las plantillas**, que es donde más errores de tipo se cometen. Por eso existe ese guion separado y
 > por eso la compuerta lo ejecuta.
->
-> Y ojo con `bun run lint`: sus dos guiones llevan `--fix`, así que **arreglan en vez de verificar**.
-> Para comprobar sin tocar nada están las variantes `verify:*`, en [el día a día](/git/dia-a-dia).
+
+> ⚠️ **Y ojo con `bun run lint`: NO verifica, arregla.** Sus dos guiones llevan `--fix`, así que
+> tocan el árbol y terminan en verde. Para comprobar sin cambiar nada están `verify:eslint` y
+> `verify:oxlint`, que están en [el día a día](/git/dia-a-dia) con el resto de la compuerta.
 
 ## Comprobar que todo quedó bien
 
-Cuatro comandos, en orden. Si los cuatro pasan, el entorno está listo:
+Seis comandos, en orden. Si los seis pasan, el entorno está listo:
 
 ```powershell
-bun --version        # responde con un número
-bun install          # termina sin errores
-bun run dev          # la aplicación abre en el navegador
-bun run test         # las pruebas pasan
+bun --version                              # responde con un número
+bun install                                # termina sin errores
+bun run scripts/generate-api-types.ts      # el contrato
+bun run scripts/generate-permissions.ts    # los permisos
+bun run type-check                         # sin errores de tipo
+bun run test:unit:run                      # las pruebas pasan
 ```
+
+*Los dos generadores van sin argumento si ya dejaste tu `.vortice.local.json`; si no, la ruta del
+clon del servidor va detrás de cada uno.*
+
+Y una séptima que no es un comando: **`bun run dev` y que la aplicación abra en el navegador.**
+
+> **El orden importa.** Si `type-check` falla con decenas de errores sobre propiedades que no
+> existen, son el tercero y el cuarto: lo generado está viejo, o no se generó.
 
 ## Problemas frecuentes
 
@@ -172,8 +254,14 @@ bun run test         # las pruebas pasan
 | `bun` no se reconoce tras instalar | Falta cerrar y abrir PowerShell. La ruta solo se actualiza en sesiones nuevas |
 | `bun install` falla bajando paquetes | El registro sí responde desde la red interna; si falla, es otra cosa. Comprueba con `bun pm ls` y pasa el error |
 | El editor no autocompleta en las plantillas | Falta la extensión oficial, o hay otra de Vue antigua en conflicto. Deja solo la oficial |
-| `bun run dev` levanta pero no carga datos | El servidor no está corriendo, o apuntas al puerto equivocado. Revisa el paso 5 |
+| **Decenas de errores de tipo que dicen todos lo mismo** | **Falta lo generado, o está viejo. Vuelve al paso 5 y corre los dos guiones** |
+| `Cannot find module … contract.generated` | Lo mismo: esos archivos no se versionan, los genera el paso 5 |
+| Solo fallan los permisos — `'CORE:…' is not assignable to type 'Permission'` | Corriste el generador de tipos pero no el de permisos. **Son dos** |
+| `No sé dónde está el clon de vortice-backend` | Falta decir dónde está: `.vortice.local.json`, o la ruta como argumento. Paso 5 |
+| `bun run test` no se reconoce | Ese guion no existe. Es `test:unit:run`, o `test:unit` si quieres que se quede observando |
+| `bun run dev` levanta pero no carga datos | El servidor no está corriendo, o apuntas al puerto equivocado. Revisa el paso 6 |
 | Errores de tipo que el editor no marcaba | Corre `bun run type-check`. Las plantillas no se revisan con la verificación normal |
+| `bun run lint` termina en verde y el árbol quedó modificado | No es un fallo: `lint` arregla. Para verificar sin tocar, `verify:eslint` y `verify:oxlint` |
 
 ## Reglas que aplican a todos
 
@@ -203,7 +291,7 @@ tercera**, cuando ya haya diez pantallas construidas encima.
 
 <div class="siguiente">
 
-**Si las cuatro comprobaciones pasaron, puedes empezar.** Lo que sigue no es de instalación: es
+**Si las cinco comprobaciones pasaron, puedes empezar.** Lo que sigue no es de instalación: es
 [el día a día](/git/dia-a-dia), donde está el orden de la entrega y la compuerta que pasa este
 repositorio.
 

@@ -5152,7 +5152,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <div class="pulse-dot"></div>
         <h1>El entorno de la pantalla, pieza por pieza</h1>
       </div>
-      <p class="subtitle">Arriba lo que instalas tú. Abajo lo que trae el repositorio y lo que acaba corriendo.</p>
+      <p class="subtitle">Arriba lo que instalas y lo que traes. Abajo lo que trae el repositorio y lo que acaba corriendo.</p>
     </div>
 
 
@@ -5162,7 +5162,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
          data-preset-badge-editorial-plate="ARCHIFY / LÁMINA 04">
       <svg viewBox="0 0 1060 560" role="img" lang="es" aria-labelledby="archify-diagram-title archify-diagram-description" data-animation="trace" data-preset="classic" data-quality-profile="showcase" data-node-ui="" data-diagram-type="architecture" data-reader-fit="authored-height">
         <title id="archify-diagram-title">El entorno de la pantalla, pieza por pieza</title>
-        <desc id="archify-diagram-description">Arriba lo que instalas tú. Abajo lo que trae el repositorio y lo que acaba corriendo.</desc>
+        <desc id="archify-diagram-description">Arriba lo que instalas y lo que traes. Abajo lo que trae el repositorio y lo que acaba corriendo.</desc>
         <!-- Definitions -->
         <defs>
           <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
@@ -5238,6 +5238,14 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           <path data-graph-role="automatic-crossover-underlay" d="M 375 120 L 375 240" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
           <path data-edge-from="editor" data-edge-to="deps" data-edge-label="lee los tipos de aquí" data-edge-key="6" data-edge-id="c7" data-composition-points="375,120;375,240" data-composition-crossover="halo" data-composition-independent="true" d="M 375 120 L 375 240" class="a-dashed" data-animate="edge" style="--step:6" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
         </g>
+        <g data-graph-role="automatic-crossover" style="--step:7">
+          <path data-graph-role="automatic-crossover-underlay" d="M 920 120 L 920 240" fill="none" stroke="var(--mask)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="repo-servidor" data-edge-to="tipos" data-edge-label="los genera, leyendo su contrato" data-edge-key="7" data-edge-id="c8" data-composition-points="920,120;920,240" data-composition-crossover="halo" data-composition-independent="true" d="M 920 120 L 920 240" class="a-security" data-animate="edge" style="--step:7" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
+        </g>
+        <g data-graph-role="automatic-crossover" style="--step:8">
+          <path data-graph-role="automatic-crossover-underlay" d="M 820 275 L 804 275 Q 796 275 796 267 L 796 224 Q 796 216 788 216 L 719.1 216 Q 711.1 216 711.1 224 L 711.1 240" fill="none" stroke="var(--mask)" stroke-width="5.8" stroke-linecap="round" stroke-linejoin="round" pointer-events="none"/>
+          <path data-edge-from="tipos" data-edge-to="scripts" data-edge-label="sin esto, nada compila" data-edge-key="8" data-edge-id="c9" data-composition-points="820,275;796,275;796,216;711.1,216;711.1,240" data-composition-crossover="halo" data-composition-independent="true" d="M 820 275 L 804 275 Q 796 275 796 267 L 796 224 Q 796 216 788 216 L 719.1 216 Q 711.1 216 711.1 224 L 711.1 240" class="a-emphasis" data-animate="edge" style="--step:8" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        </g>
 
         <!-- Components -->
         <g id="node-bun" data-node-id="bun" data-node-label="Bun" tabindex="0" role="button" aria-label="Enfocar Bun, choco install bun, Componente de arquitectura" aria-pressed="false" data-node-kind="backend" data-node-sublabel="choco install bun" data-node-context="Componente de arquitectura">
@@ -5286,15 +5294,15 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text data-detail="context" x="385" y="289" class="t-muted" font-size="8.6" text-anchor="middle">bun install · no se instalan aparte</text>
         </g>
 
-        <g id="node-scripts" data-node-id="scripts" data-node-label="Los guiones" tabindex="0" role="button" aria-label="Enfocar Los guiones, dev · build · test · type-check, Componente de arquitectura" aria-pressed="false" data-node-kind="backend" data-node-sublabel="dev · build · test · type-check" data-node-context="Componente de arquitectura">
-          <title>Los guiones · dev · build · test · type-check · Componente de arquitectura</title>
+        <g id="node-scripts" data-node-id="scripts" data-node-label="Los guiones" tabindex="0" role="button" aria-label="Enfocar Los guiones, dev · build · test:unit:run · type-check, Componente de arquitectura" aria-pressed="false" data-node-kind="backend" data-node-sublabel="dev · build · test:unit:run · type-check" data-node-context="Componente de arquitectura">
+          <title>Los guiones · dev · build · test:unit:run · type-check · Componente de arquitectura</title>
           <rect x="600" y="240" width="190" height="70" rx="8" class="c-mask"/>
           <rect x="600" y="240" width="190" height="70" rx="8" class="c-backend" data-animate="node" style="--step:3" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(606 246) scale(0.6875)">
             <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="695" y="273" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Los guiones</text>
-        <text data-detail="context" x="695" y="289" class="t-muted" font-size="9" text-anchor="middle">dev · build · test · type-check</text>
+        <text data-detail="context" x="695" y="289" class="t-muted" font-size="7.5" text-anchor="middle">dev · build · test:unit:run · type-check</text>
         </g>
 
         <g id="node-dev" data-node-id="dev" data-node-label="Servidor de desarrollo" tabindex="0" role="button" aria-label="Enfocar Servidor de desarrollo, bun run dev, Componente de arquitectura" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="bun run dev" data-node-context="Componente de arquitectura">
@@ -5333,6 +5341,29 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <text data-detail="context" x="925" y="479" class="t-muted" font-size="9" text-anchor="middle">para no esperarlo</text>
         </g>
 
+        <g id="node-repo-servidor" data-node-id="repo-servidor" data-node-label="El repositorio del servidor" tabindex="0" role="button" aria-label="Enfocar El repositorio del servidor, clonado al lado, aunque no lo toques, Componente de arquitectura" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="clonado al lado, aunque no lo toques" data-node-context="Componente de arquitectura">
+          <title>El repositorio del servidor · clonado al lado, aunque no lo toques · Componente de arquitectura</title>
+          <rect x="820" y="50" width="200" height="70" rx="8" class="c-mask"/>
+          <rect x="820" y="50" width="200" height="70" rx="8" class="c-cloud" data-animate="node" style="--step:7" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(826 56) scale(0.6875)">
+            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="920" y="83" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">El repositorio del servidor</text>
+        <text data-detail="context" x="920" y="99" class="t-muted" font-size="8.8" text-anchor="middle">clonado al lado, aunque no lo toques</text>
+        </g>
+
+        <g id="node-tipos" data-node-id="tipos" data-node-label="Los tipos del contrato" tabindex="0" role="button" aria-label="Enfocar Los tipos del contrato, se generan · no se versionan, Componente de arquitectura" aria-pressed="false" data-node-kind="security" data-node-sublabel="se generan · no se versionan" data-node-context="Componente de arquitectura">
+          <title>Los tipos del contrato · se generan · no se versionan · Componente de arquitectura</title>
+          <rect x="820" y="240" width="200" height="70" rx="8" class="c-mask"/>
+          <rect x="820" y="240" width="200" height="70" rx="8" class="c-security" data-animate="node" style="--step:8" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(826 246) scale(0.6875)">
+            <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
+            <path d="m5.8 8 1.5 1.5 3-3"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="920" y="273" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Los tipos del contrato</text>
+        <text data-detail="context" x="920" y="289" class="t-muted" font-size="9" text-anchor="middle">se generan · no se versionan</text>
+        </g>
+
         <!-- Connection labels -->
         <g data-detail="context" data-edge-from="bun" data-edge-to="deps" data-edge-label="instala" data-edge-key="0" data-edge-id="c1">
           <rect x="173.7" y="124" width="43.6" height="14" rx="3" class="c-mask"/>
@@ -5361,6 +5392,14 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <g data-detail="context" data-edge-from="editor" data-edge-to="deps" data-edge-label="lee los tipos de aquí" data-edge-key="6" data-edge-id="c7">
           <rect x="381" y="173" width="110.8" height="14" rx="3" class="c-mask"/>
           <text x="436.4" y="183" class="t-edge-dashed" font-size="8" text-anchor="middle">lee los tipos de aquí</text>
+        </g>
+        <g data-detail="context" data-edge-from="repo-servidor" data-edge-to="tipos" data-edge-label="los genera, leyendo su contrato" data-edge-key="7" data-edge-id="c8">
+          <rect x="755.2" y="173" width="158.79999999999998" height="14" rx="3" class="c-mask"/>
+          <text x="834.6" y="183" class="t-edge-security" font-size="8" text-anchor="middle">los genera, leyendo su contrato</text>
+        </g>
+        <g data-detail="context" data-edge-from="tipos" data-edge-to="scripts" data-edge-label="sin esto, nada compila" data-edge-key="8" data-edge-id="c9">
+          <rect x="738.2" y="225.5" width="115.6" height="14" rx="3" class="c-mask"/>
+          <text x="796" y="235.5" class="t-edge-emphasis" font-size="8" text-anchor="middle">sin esto, nada compila</text>
         </g>
 
         <!-- Boundary labels (foreground masks keep routes out of titles) -->
@@ -5600,6 +5639,18 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           <li>Contra el servidor local es lo normal, cuando está levantado</li>
           <li>Contra datos simulados, cuando no lo está: es lo que permite no esperarlo</li>
           <li>Los simulados se pactan al publicar el contrato, y se mantienen alineados con él</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot rose"></div>
+          <h3>Los tipos del contrato no vienen en el clon</h3>
+        </div>
+        <ul>
+          <li>Se generan contra el repositorio del servidor, y están ignorados por git a propósito</li>
+          <li>Versionarlos convertiría la copia en la fuente, y empezaría la deriva</li>
+          <li>Si faltan, salen decenas de errores de tipo que dicen todos lo mismo: regenera</li>
         </ul>
       </div>
     </div>

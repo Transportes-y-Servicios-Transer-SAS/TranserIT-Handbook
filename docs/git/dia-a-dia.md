@@ -130,6 +130,10 @@ los cambios de todos ya dentro. Al revés pruebas una versión que no existe en 
 # Paso 2 — formato
 bun run format
 
+# Antes de la compuerta, si el servidor publicó algo desde tu última generación
+bun run scripts/generate-api-types.ts
+bun run scripts/generate-permissions.ts
+
 # Paso 6 — las cinco, por separado para saber cuál falla
 bun run type-check
 bun run verify:eslint
@@ -144,6 +148,11 @@ bun run build
 > ⚠️ **En el frontend, `bun run lint` NO sirve para verificar.** Sus dos guiones llevan `--fix`:
 > arreglan el árbol y terminan en verde, así que te dicen que todo está bien **después de haberlo
 > cambiado**. Las variantes `verify:*` son las que solo miran.
+
+> ⚠️ **Si la compuerta falla con decenas de errores de tipo que dicen todos lo mismo, no es tu
+> cambio: es lo generado, que se quedó atrás.** El contrato y los permisos salen del clon del
+> servidor y no se versionan — [el entorno de la pantalla](/equipo/pantalla), paso 5, explica por
+> qué y cómo evitar escribir la ruta cada vez.
 
 **Pasa la compuerta en local aunque la integración vaya a repetirla.** Enterarte en tu máquina cuesta
 minutos; enterarte en el servidor cuesta una vuelta entera, y con ella el tiempo de quien esperaba

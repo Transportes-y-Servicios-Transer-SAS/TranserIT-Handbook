@@ -78,12 +78,25 @@ git clone git@github.com:LA_ORGANIZACION/REPOSITORIO_QUE_TE_TOCA.git
 git clone git@github.com:LA_ORGANIZACION/vortice-specs.git
 
 # 2. Comprueba que lo que recibiste está entero, ANTES de tocar nada
-cd vortice-backend;  .\mvnw.cmd verify                      # servidor
-cd vortice-frontend; bun install; bun x vitest run gates/   # pantalla
+cd vortice-backend; .\mvnw.cmd verify                           # servidor
+
+cd ..\vortice-frontend                                          # pantalla
+bun install
+bun run scripts/generate-api-types.ts   ..\vortice-backend      # lo que el clon NO trae
+bun run scripts/generate-permissions.ts ..\vortice-backend
+bun run generate:design
+bun x vitest run gates/
 
 # 3. Comprueba que las especificaciones están bien formadas
-cd vortice-specs; .\verificar-forma.ps1
+cd ..\vortice-specs; .\verificar-forma.ps1
 ```
+
+> ⚠️ **En la pantalla, generar va antes de comprobar.** Tres archivos no se versionan a propósito, y
+> sin ellos las compuertas fallan con decenas de errores que no mencionan la causa. Por qué es así y
+> cómo no volver a escribir la ruta: [el entorno de la pantalla](/equipo/pantalla), paso 5.
+>
+> **Y el servidor solo arranca con su perfil** —`.\mvnw.cmd spring-boot:run
+> "-Dspring-boot.run.profiles=local"`—, que es donde está declarada la base local.
 
 > ⚠️ **Si algo de eso sale rojo, no empieces a trabajar encima: avisa.** Heredar un árbol roto hace
 > que el primer fallo tuyo sea indistinguible del que ya estaba, y eso cuesta días.
