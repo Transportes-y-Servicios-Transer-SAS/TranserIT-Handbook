@@ -33,26 +33,38 @@ tu equipo.
 
 ## 1 · Bun
 
-**PowerShell como administrador:**
+**El instalador oficial, en PowerShell. No necesita permisos de administrador:**
 
 ```powershell
-choco install bun -y
+powershell -c "irm bun.sh/install.ps1 | iex"
 ```
 
-**Cierra PowerShell y ábrelo de nuevo** antes de comprobar. Fija la versión que usa el proyecto:
+**Cierra PowerShell y ábrelo de nuevo** antes de comprobar: la ruta solo se actualiza en sesiones
+nuevas.
 
 ```powershell
-choco search bun --all-versions
-choco install bun --version=1.3.14 -y
+bun --version
+bunx --version
 ```
 
-### Si falla la descarga
+> ⚠️ **Comprueba las DOS.** El segundo comando no sobra: hay formas de instalar que dejan `bun` y no
+> `bunx`, y el fallo no aparece al instalar sino días después, al generar los tipos del contrato,
+> con un `Executable not found in $PATH: "bunx"` que no menciona la instalación por ninguna parte.
+> **Pasó el 2026-10-20 en un equipo del área.**
+>
+> `bunx` lo crea el instalador oficial en su paso de completados —es una copia de `bun.exe`, mismo
+> tamaño—, así que **si lo ejecutas con `-NoCompletions` no lo tendrás**.
 
-**El sitio de descarga de la herramienta está bloqueado en la red corporativa**, y está comprobado.
-El registro de paquetes sí responde —las dependencias del proyecto se bajan sin problema—, pero el
-instalador no se obtiene desde la red interna.
+### Fijar la versión que usa el proyecto
 
-La vía que funciona hoy, **y que además no necesita permisos de administrador**:
+El instalador acepta la versión por parámetro, y con `irm | iex` no se puede pasar. La forma que sí
+funciona:
+
+```powershell
+& ([scriptblock]::Create((irm https://bun.sh/install.ps1))) -Version 1.3.14
+```
+
+### Si la descarga falla
 
 ```powershell
 # 1. Descarga bun-windows-x64.zip de la página de publicaciones del proyecto en GitHub
@@ -67,13 +79,19 @@ $ruta = [Environment]::GetEnvironmentVariable('Path', 'User')
 if ($ruta -notlike "*$destino*") {
   [Environment]::SetEnvironmentVariable('Path', "$ruta;$destino", 'User')
 }
+
+# 4. Y lo que el zip NO trae: el atajo de bunx
+bun completions
 ```
 
-**Cierra PowerShell y ábrelo de nuevo**: la ruta solo se actualiza en sesiones nuevas.
+> ⚠️ **El paso 4 es el que esta vía olvidaba.** Descomprimir deja `bun.exe` y nada más; `bunx` lo
+> crea el paso de completados. Sin él, el entorno parece bien montado y falla días después.
 
-```powershell
-bun --version
-```
+> **Esta sección decía que el sitio de descarga estaba bloqueado en la red corporativa, «y está
+> comprobado».** Se volvió a medir el 2026-10-20 y **responde**: `bun.sh/install.ps1`, `bun.com` y
+> la página de publicaciones devuelven las tres `HTTP 200`. Por eso el instalador oficial pasa a ser
+> la vía principal y el zip queda como respaldo. Si en tu equipo vuelve a fallar, dilo: significa
+> que el bloqueo es por equipo o por momento, no general.
 
 > ⚠️ **La versión que manda es la del repositorio**, declarada en el `CLAUDE.md` de su raíz — el
 > mismo mecanismo que usa el servidor. Mientras ese archivo no exista, manda el número de arriba;
@@ -250,7 +268,8 @@ Y una séptima que no es un comando: **`bun run dev` y que la aplicación abra e
 
 | Síntoma | Causa y salida |
 |---|---|
-| `choco install bun` falla al descargar | El bloqueo de la red corporativa sobre el sitio del proveedor. Usa la vía alterna del paso 1 |
+| `Executable not found in $PATH: "bunx"` | Tienes `bun` pero no `bunx`. Lo crea el paso de completados del instalador oficial: `bun completions`. Paso 1 |
+| El instalador oficial no descarga | Usa el respaldo del zip del paso 1 — **y no olvides su paso 4**, que es el que deja `bunx` |
 | `bun` no se reconoce tras instalar | Falta cerrar y abrir PowerShell. La ruta solo se actualiza en sesiones nuevas |
 | `bun install` falla bajando paquetes | El registro sí responde desde la red interna; si falla, es otra cosa. Comprueba con `bun pm ls` y pasa el error |
 | El editor no autocompleta en las plantillas | Falta la extensión oficial, o hay otra de Vue antigua en conflicto. Deja solo la oficial |
