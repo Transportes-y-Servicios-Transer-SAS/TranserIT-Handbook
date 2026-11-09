@@ -70,6 +70,10 @@ quien la sincronice.**
 
 Ahí entran `transer-spec` y `transer-ui-spec`, que orquestan a las demás.
 
+**El primer paso es siempre el mismo: correr el verificador de fuentes con el nombre de la
+funcionalidad.** La especificación no se copia a ninguna parte, se lee del clon de `vortice-specs`, y
+el commit del que se leyó queda registrado. Está en [De dónde se lee](/vortice/fuentes).
+
 | Quieres… | Usa |
 |---|---|
 | Convertir lo que escribió el negocio en especificación, y subirla | `transer-spec-draft` |

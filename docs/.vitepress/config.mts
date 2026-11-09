@@ -56,7 +56,8 @@ export default defineConfig({
           items: [
             { text: '1 · Qué estás construyendo', link: '/vortice/que-es' },
             { text: '2 · De la pregunta al código', link: '/vortice/flujo' },
-            { text: '3 · Las compuertas', link: '/vortice/compuertas' },
+            { text: '3 · De dónde se lee', link: '/vortice/fuentes' },
+            { text: '4 · Las compuertas', link: '/vortice/compuertas' },
           ],
         },
       ],
