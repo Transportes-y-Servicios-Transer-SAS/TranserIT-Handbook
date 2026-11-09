@@ -49,9 +49,26 @@ La forma es `tipo/vort-123-nombre-sustancial`, y está explicada en [Ramas](/git
 minúsculas**, siempre: Windows no distingue mayúsculas y `VORT-143` y `vort-143` pueden pisarse entre
 dos máquinas del mismo equipo.
 
-## 3 · Las fuentes al día
+## 3 · Preparar la derivación
 
-Antes de abrir ninguna especificación, con el **nombre** de la funcionalidad:
+El mismo comando hace **dos cosas**, y el nombre de la funcionalidad decide si hace una o las dos.
+
+**Sin nombre: pone las fuentes al día y nada más.** Sirve para comprobar cómo están tus clones en
+cualquier momento, sin ir a derivar nada.
+
+::: code-group
+
+```powershell [vortice-backend]
+.\verificar-fuentes.ps1
+```
+
+```bash [vortice-frontend]
+bun run scripts/verificar-fuentes.ts
+```
+
+:::
+
+**Con el nombre: además te dice qué vas a derivar.** Es lo que se usa al empezar una historia.
 
 ::: code-group
 
@@ -65,9 +82,14 @@ bun run scripts/verificar-fuentes.ts sedes
 
 :::
 
-Eso pone al día el clon de `vortice-specs`, te dice de qué commit vas a leer, y resuelve dónde están
-la especificación y el requerimiento. **Apunta ese commit: va al mensaje del commit de la
-derivación.** Todo el detalle está en [De dónde se lee](/vortice/fuentes).
+```text
+  «sedes» se deriva de:
+    especificación  ...\vortice-specs\backend\sedes-be.md
+    requerimiento   ...\vortice-specs\requerimientos\core\sedes.md
+```
+
+En los dos casos te dice de qué commit vas a leer. **Apunta ese commit: va al mensaje del commit de
+la derivación.** Todo el detalle está en [De dónde se lee](/vortice/fuentes).
 
 ## 4 · Los tipos del contrato · solo la pantalla
 

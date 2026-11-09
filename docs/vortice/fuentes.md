@@ -50,7 +50,9 @@ no dice por qué.
 
 ## El primer paso de toda derivación
 
-Antes de abrir ninguna especificación, se corre el verificador **con el nombre de la funcionalidad**:
+Antes de abrir ninguna especificación, se corre el verificador. **El nombre de la funcionalidad es
+opcional, y decide cuánto hace:** sin él solo pone las fuentes al día; con él, además resuelve dónde
+están su especificación y su requerimiento. Al empezar una historia se usa con nombre:
 
 ::: code-group
 
