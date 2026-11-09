@@ -142,6 +142,11 @@ Corre donde se deriva, que es donde existe el clon y donde está el riesgo. En i
 salta: traérselo allí obligaría a dar acceso de lectura entre repositorios para comprobar algo que ya
 se comprobó antes de confirmar.
 
+**Y no confía en que hayas corrido el verificador: lo exige.** Mide el atraso del clon antes de
+comparar, y se detiene si está detrás o si lleva más de un día sin preguntarle a su remoto. El
+detalle, y cómo se declara un criterio que todavía no está construido, está en
+[Las compuertas](/vortice/compuertas).
+
 ::: tip Lo que encontró el primer día
 En su primera corrida contra datos reales, la capa 3 detectó que la especificación de departamentos
 declaraba **veinte** criterios y el manifiesto diecinueve. Al tirar del hilo apareció algo peor: un

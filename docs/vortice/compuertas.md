@@ -39,6 +39,63 @@ Y el criterio tiene que estar en el manifiesto, `acceptance-criteria.properties`
 > El detalle de esa fusión, y de la otra regla de `.gitattributes`, está en
 > [conflictos](/git/conflictos).
 
+### Tres capas, y solo una mira fuera del proyecto
+
+| Capa | Qué compara | Dónde corre |
+|---|---|---|
+| **1** | La numeración de lo citado: si se cita `AC1` y `AC3`, falta el `AC2` | en todas partes |
+| **2** | El manifiesto contra las pruebas | en todas partes |
+| **3** | **La especificación vigente del repositorio** contra el manifiesto | **solo donde se deriva** |
+
+Las dos primeras miran únicamente dentro del proyecto, y ahí está su límite: **comparan artefactos
+que escribe la misma mano en la misma sesión**, así que son coherentes entre sí aunque falte un
+tercio de la especificación. La capa 3 es la única que puede detectar que falta un criterio, porque
+es la única que lee la fuente.
+
+Corre donde se deriva, que es donde existe el clon de `vortice-specs` y donde está el riesgo. En
+integración avisa y se salta: traérselo allí obligaría a dar acceso de lectura entre repositorios
+para comprobar algo que ya se comprobó antes de confirmar.
+
+### La capa 3 no confía en que hayas corrido el verificador: lo exige
+
+Que el primer paso de la derivación sea correr el verificador es **una instrucción en un documento**,
+no una garantía. Sin nada que lo respalde, bastaba con no poner al día `vortice-specs` para que la
+capa 3 comparara contra una especificación vieja **y diera verde**: el mismo fallo de siempre, con un
+clon en vez de una copia pegada.
+
+Por eso la compuerta lo mide ella, y **sin tocar la red**, porque una compuerta que hace `fetch` es
+lenta y falla sin conexión:
+
+| Qué mide | A quién caza |
+|---|---|
+| El atraso que el clon ya conoce de su remoto | al que no corrió el verificador teniendo información fresca |
+| Horas desde el último `fetch`, con 24 de límite | al que lleva días sin preguntar, y por eso su atraso marca cero por no saber nada |
+
+Las dos se arreglan con el mismo comando, el verificador, y el mensaje lo dice.
+
+### Un criterio puede estar declarado y no construido, pero hay que escribirlo
+
+Una especificación puede declarar un criterio **antes** de que exista su código. Pasa al ampliar algo
+ya entregado: se decide que la funcionalidad crezca, se escribe el criterio, y el código llega
+después con su propia historia.
+
+Para eso se marca con **`(pendiente)`**, justo después de la clave:
+
+```text
+- [ ] `DEPT-FE-AC20` (pendiente) **Dado** más departamentos de los que caben en una página,
+      **cuando** se busca uno que no está en la primera, **entonces** se encuentra
+```
+
+La capa 3 lo entiende: **lo cuenta y lo dice en su salida, pero no lo exige**.
+
+::: warning La marca no lo esconde, lo declara
+Sin ella, un criterio declarado y no construido saldría como «falta en el manifiesto»
+**para siempre**, y una compuerta en rojo permanente se desactiva en una semana. Con ella, sigue
+apareciendo en cada corrida, contado.
+
+**La diferencia entre deuda y olvido es que alguien escribió la palabra.**
+:::
+
 ## El defecto que más se repite, y tiene una forma reconocible
 
 > **Algo que parece conectado y no está conectado a nada.**
@@ -49,6 +106,7 @@ seguidas:
 | | |
 |---|---|
 | Una compuerta de trazabilidad corría **seis pruebas en verde** comparando contra un manifiesto **que no existía** | Comparar contra una lista vacía siempre sale bien |
+| Una pantalla se derivó contra **31 criterios cuando la vigente tenía 39**, y la compuerta dio verde | El manifiesto y las pruebas coincidían **entre sí**: los escribe la misma mano en la misma sesión |
 | Un `.pptx` pasaba la comprobación de integridad y el programa lo declaraba dañado | Las cabeceras decían una cosa y el directorio central otra; cada herramienta leía la suya |
 | Una especificación afirmaba *«comprobado mirando: el módulo existe»* | Sobre un módulo que no existía en ninguna rama |
 | Un guion proponía **crear** 33 historias que ya existían con otro nombre | Con `-Aplicar` las habría duplicado |
