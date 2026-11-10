@@ -178,14 +178,19 @@ git push -u origin feature/vort-142-liquidacion-retencion
 **Contra `develop`.** Nunca contra `master` ni contra `test`: hacia arriba se sube por revisión, rama
 por rama, y eso está en [Nuestra estructura](/git/estructura).
 
-Lo que el revisor necesita encontrar sin preguntarte:
+**El cuerpo viene con plantilla, y la mitad de arriba la llenas tú.** Esto es lo que pide:
 
 | En la solicitud | Para qué |
 |---|---|
 | Qué historia cierra | `VORT-142`, para poder leer sus criterios |
-| De qué commit de la especificación salió | Para saber si derivaste contra lo vigente |
-| Qué criterios cubre y cuáles no | Si alguno queda fuera, dicho aquí es una decisión; callado es un olvido |
-| Qué quedó anotado como hueco | Lo que apareció y nadie había decidido |
+| Qué entra, en una frase | Qué puede hacer alguien que antes no podía. No listes archivos: el diff ya los lista |
+| **Lo que decidiste tú, y la especificación no decía** | Una forma, un valor por omisión, un orden, un mensaje. Si no hubo nada, «Nada» |
+| Qué huecos declarados toca esta historia | Lo que la especificación dejó abierto y con dueño. «Ninguno» vale |
+
+Ninguna se deja en blanco: **la compuerta de revisión falla si queda un `_(pendiente)_` en tu
+mitad**, y también si el cuerpo no nombra una historia. La tercera existe por una medición, no por
+gusto: tres derivaciones seguidas produjeron el mismo defecto porque el documento calló, alguien
+decidió, y nadie se enteró hasta que el dato ya estaba sembrado.
 
 **La verificación corre sola sobre la solicitud**, y también sobre las tres ramas largas. Una
 solicitud en rojo no se revisa: se arregla primero.
@@ -194,6 +199,10 @@ solicitud en rojo no se revisa: se arregla primero.
 
 La revisión puede pedirte cambios, y casi siempre pide alguno. Cuando se aprueba, la solicitud se
 fusiona a `develop` y de ahí sube por su camino.
+
+**El turno de revisarla no se pide: lo reparte la rueda y lo asigna el flujo.** Qué mira quien lo
+recibe, y por qué no es el código, está en [Revisar una solicitud](/vortice/revisar). Vale la pena
+leerla aunque hoy te toque abrir y no revisar: **es la lista de lo que te van a preguntar.**
 
 **La rama se borra al fusionar.** Lo que vale queda en `develop`; una rama vieja en el remoto solo
 confunde a quien busca la actual.

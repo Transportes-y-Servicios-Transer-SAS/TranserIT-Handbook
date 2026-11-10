@@ -1,0 +1,114 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Qué pasa cuando una historia entra en revisión, y quién hace cada parte",
+    "output": "docs/public/diagramas/revision.html",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "locale": "es",
+    "translations": {
+      "viewer.kind.frontend": "Lo hace una persona",
+      "viewer.kind.cloud": "Lo hace el flujo, solo",
+      "viewer.kind.security": "Donde se puede poner en rojo"
+    },
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "frontend": { "label": "Lo hace una persona" },
+        "cloud": { "label": "Lo hace el flujo, solo" },
+        "security": { "label": "Donde se puede poner en rojo" }
+      }
+    }
+  },
+  "lanes": [
+    { "id": "abre", "label": "Quien abre" },
+    { "id": "maquina", "label": "El flujo" },
+    { "id": "revisa", "label": "Quien revisa" }
+  ],
+  "phases": [
+    { "id": "apertura", "label": "Al abrir", "fromCol": 0, "toCol": 1 },
+    { "id": "trabajo", "label": "La revisión de verdad", "fromCol": 2, "toCol": 3, "variant": "emphasis" },
+    { "id": "cierre", "label": "Cierre", "fromCol": 4, "toCol": 4 }
+  ],
+  "mainPath": ["r1", "r2", "r3", "r4", "r5"],
+  "nodes": [
+    {
+      "id": "r1",
+      "lane": "abre",
+      "col": 0,
+      "type": "frontend",
+      "label": "Llenar su mitad",
+      "sublabel": "historia, qué entra, qué decidió, qué huecos toca"
+    },
+    {
+      "id": "r2",
+      "lane": "maquina",
+      "col": 1,
+      "type": "cloud",
+      "label": "Turno y ficha",
+      "sublabel": "la rueda asigna · dos criterios sorteados"
+    },
+    {
+      "id": "r3",
+      "lane": "revisa",
+      "col": 2,
+      "type": "frontend",
+      "label": "Las cuatro preguntas",
+      "sublabel": "se responden escribiendo, no marcando"
+    },
+    {
+      "id": "r4",
+      "lane": "revisa",
+      "col": 3,
+      "type": "security",
+      "label": "Aprobar",
+      "sublabel": "después de responder, no antes"
+    },
+    {
+      "id": "r5",
+      "lane": "abre",
+      "col": 4,
+      "type": "frontend",
+      "label": "Fusionar",
+      "sublabel": "lo hace el autor, no quien revisa"
+    }
+  ],
+  "edges": [
+    { "id": "f1", "from": "r1", "to": "r2", "label": "se abre la solicitud" },
+    { "id": "f2", "from": "r2", "to": "r3", "label": "ya sabes qué mirar" },
+    { "id": "f3", "from": "r3", "to": "r4", "label": "con las cuatro respondidas" },
+    { "id": "f4", "from": "r4", "to": "r5", "label": "en verde" },
+    { "id": "f5", "from": "r4", "to": "r1", "label": "si algo no cuadra: no apruebes" },
+    { "id": "f6", "from": "r2", "to": "r1", "label": "rojo si tu mitad quedó en blanco" }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Por qué responder va antes de aprobar",
+      "items": [
+        "Tu mitad solo se exige cuando ya hay una aprobación: aprobar sin responder deja la solicitud en rojo",
+        "Se arregla editando el cuerpo, y no hace falta volver a aprobar",
+        "Exigirla antes dejaría el flujo rojo durante días, y un rojo permanente se ignora"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "El turno no se pide ni se elige",
+      "items": [
+        "Revisas a quien va justo antes que tú en la rueda, y quien la cierra revisa a quien la abre",
+        "Un turno que se pide es un turno que no se pide el viernes a las seis",
+        "Solo un revisor por solicitud: lo impone el plan de GitHub, no nosotros"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Qué NO se revisa",
+      "items": [
+        "El código línea por línea: eso ya lo miraron treinta y cuatro compuertas automáticas",
+        "Los números de migración repetidos: se bloquean solos sobre el resultado de la fusión",
+        "Lo que está en verde. Volver a mirarlo a mano es lo que hace que las revisiones se abandonen"
+      ]
+    }
+  ]
+}

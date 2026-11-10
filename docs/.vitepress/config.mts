@@ -59,6 +59,7 @@ export default defineConfig({
             { text: '3 · De dónde se lee', link: '/vortice/fuentes' },
             { text: '4 · De la historia a la solicitud', link: '/vortice/una-historia' },
             { text: '5 · Las compuertas', link: '/vortice/compuertas' },
+            { text: '6 · Revisar una solicitud', link: '/vortice/revisar' },
           ],
         },
       ],

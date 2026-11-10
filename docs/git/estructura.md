@@ -90,6 +90,13 @@ Es el instrumento de la dirección de subida. Lo que pide:
 | **La rama al día con su destino** | Por eso se trae lo nuevo del tronco **antes** de pedir la revisión, no después |
 | **Las conversaciones resueltas** | Un comentario abierto es una pregunta sin responder |
 
+> **Nada de eso se puede exigir desde la configuración de GitHub, y conviene saberlo.** La
+> organización está en plan Free con repositorios privados: protección de ramas y reglas responden
+> 403 las dos, y solo se admite **un revisor por solicitud**, así que la segunda aprobación de la
+> primera fila hoy se hace comentando, no figurando. Lo que sustituye a la configuración es una
+> compuerta propia, que no impide fusionar pero deja la solicitud en rojo y registrada. Está en
+> [Revisar una solicitud](/vortice/revisar), con lo que mira quien recibe el turno.
+
 **Quien fusiona es el autor, después de la aprobación.** No es un detalle de permisos: mantiene la
 responsabilidad del cambio con quien lo escribió hasta que llega a producción.
 
