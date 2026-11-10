@@ -149,6 +149,11 @@ mostrar, si se puede terminar la tarea sin adivinar.
 
 :::
 
+**En la pantalla esta pregunta es la más larga de las cuatro, y la pregunta 1 tiene una trampa
+propia:** una prueba puede citar su criterio y no poder probarlo, porque corre en un DOM sin
+estilos. Las dos están en [Revisar la pantalla](/vortice/revisar-pantalla), con cómo se abre la
+grabación y qué mirar en ella.
+
 ## El orden importa: primero responde, después apruebas
 
 La compuerta trata las dos mitades de la plantilla en momentos distintos, a propósito:
