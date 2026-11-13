@@ -4,134 +4,104 @@ title: Revisar una solicitud de cambio, cuando no hay QA
 
 # Revisar una solicitud
 
-> No revisas código. Eso ya lo hicieron treinta y cuatro compuertas. Revisas las cuatro cosas que
-> ninguna de ellas puede ver.
+> No revisas código. Eso ya lo hicieron las compuertas. Revisas las cuatro cosas que ninguna de
+> ellas puede ver.
 
-## El recorrido, de un vistazo
+## Lo que tienes que hacer
 
-<Diagrama
-  nombre="revision"
-  titulo="Qué pasa cuando una historia entra en revisión: qué llena quien abre, qué prepara el flujo solo, y qué mira quien recibe el turno" />
+1. Abre la solicitud, pestaña **`Checks`**, flujo **`Revisión`**.
+2. Arriba del registro hay un **resumen**. Ahí están **los dos criterios que te tocan** y dónde está
+   la prueba de cada uno.
+3. Responde **las cuatro preguntas** de abajo, escribiendo, en el cuerpo de la solicitud.
+4. Aprueba, o no. Si algo no cuadra, **no apruebes y escribe por qué**.
 
-## Por qué esta página existe
+Son dos criterios, no los diecinueve de la historia. Esa es la diferencia entre una revisión que se
+hace y una que se abandona.
 
-Medido antes de escribirla: **las cinco solicitudes anteriores se abrieron con el cuerpo vacío, y
-dos se fusionaron sin que nadie las mirara.** Una de ellas se aprobó once segundos antes de
-fusionarse, con cuarenta y tres archivos dentro.
+::: danger Primero responde, después apruebas
+Si apruebas sin responder, **la solicitud se pone en rojo**. Aprobar es un clic y las cuatro
+preguntas no.
 
-No fue descuido de nadie. A quien revisa no se le dijo nunca **qué** mirar, y «revisa el código» de
-un repositorio con [treinta y cuatro compuertas](/vortice/compuertas) no es una instrucción: es una
-tarde perdida. Cuando revisar no tiene forma, se aprueba por cortesía.
-
-En la organización no hay QA, y lo que lo sustituye no es mirar más código. Es mirar **otras cosas**.
-
-## No eliges: te toca
-
-El turno sale de la rueda, `/.github/rueda-de-revision.json`, que está duplicado igual en los dos
-repositorios. **Te toca revisar a quien va justo antes que tú**, y quien cierra la lista revisa a
-quien la abre.
-
-El flujo te asigna solo, al abrirse la solicitud. No hay que pedir revisor, y por eso no hay
-solicitudes esperando a que alguien se ofrezca un viernes a las seis.
-
-::: tip Si abres solicitudes y no estás en la rueda
-El flujo lo avisa en su registro, y hay que añadirte **en los dos repositorios**. Mientras tanto no
-tienes turno, y la rotación está incompleta sin que nada falle.
-:::
-
-> **Por qué un solo revisor.** La organización está en plan Free con repositorios privados, y ese
-> plan solo admite uno por solicitud. Tampoco se puede exigir la aprobación desde la configuración
-> de GitHub: protección de ramas y reglas responden 403 las dos. Por eso la exigencia vive en el
-> flujo, y lo que hace es dejar la solicitud en rojo, no impedir la fusión.
-
-## Lo que la máquina te deja preparado
-
-En la solicitud, pestaña **Checks**, flujo **Revisión**. El resumen aparece encima del registro, y
-trae tres cosas:
-
-| En el resumen | Para qué te sirve |
-|---|---|
-| **Los dos criterios que te tocan** | Sorteados por el número de la solicitud, para que no se puedan escoger los fáciles |
-| **Dónde está la prueba de cada uno** | Para que no la busques |
-| **Los archivos que se pisan entre ramas** | Migraciones, permisos, códigos de error y contrato |
-
-Son **dos** criterios, no los diecinueve de la historia. Esa es la diferencia entre una revisión que
-se hace y una que se abandona.
-
-::: warning Si el resumen dice que la rama no aporta ningún criterio
-Es lo normal en un cambio de estándar, de dependencias o de infraestructura. **En una derivación de
-funcionalidad no lo es:** significa que el código llegó sin pruebas que citen la especificación, y
-eso la compuerta de trazabilidad lo deja pasar porque no hay nada que citar mal. Salta la pregunta 1
-y responde las otras tres.
+¿Te pasó? Edita el cuerpo y responde. **No hace falta volver a aprobar:** el flujo se dispara solo
+al editar.
 :::
 
 ## Las cuatro preguntas
 
-Se responden **escribiendo**, en el cuerpo de la solicitud. Ninguna se marca con una casilla: una
-casilla se marca sin leer, y una frase no.
+| # | La pregunta | Dónde miras |
+|---|---|---|
+| 1 | ¿La prueba **prueba** el criterio? | Los dos criterios que te tocaron |
+| 2 | ¿Los huecos siguen abiertos? | Lo que escribió quien abrió, arriba |
+| 3 | ¿Entró algo que la historia no pedía? | Los **nombres** de los archivos |
+| 4 | ¿Se puede usar? | El mensaje de error, o la grabación |
 
-Abajo va cada una con un ejemplo real, el de la solicitud del catálogo de unidades de medida.
+Se responden **escribiendo**. Ninguna se marca con una casilla: una casilla se marca sin leer, y una
+frase no.
 
 ### 1 · ¿La prueba prueba el criterio?
 
 La compuerta comprueba que la prueba **cite** el criterio, no que lo **verifique**. Una prueba
 llamada `[UNMD-BE-AC7] el código no cambia` que afirme cualquier otra cosa pasa en verde.
 
-Abre los dos criterios que te tocaron, lee qué pide cada uno en la especificación, y di si lo que la
-prueba **afirma** es eso.
+**Qué haces:** abre el criterio en la especificación, lee qué pide, abre la prueba, y di si lo que
+**afirma** es eso.
 
-> **El ejemplo.** `UNMD-BE-AC12` pide: *cuando se reactiva una unidad retirada, vuelve a ofrecerse.*
-> La prueba de dominio solo afirma que la unidad quedó activa, que es menos. La del adaptador cierra
-> la diferencia:
->
-> ```java
-> assertThat(queries.page(false, PageRequest.of(0, 200)).content())
->     .extracting(MeasurementUnitListItemView::id).contains(unit.getId());
-> ```
->
-> Aquí hay que parar. **Si ese `false` significara «incluye las retiradas», la prueba encontraría la
-> unidad aunque la reactivación no hubiera funcionado**, y estaría en verde sin probar nada. La
-> única forma de saberlo es abrir la firma del puerto: `page(boolean includeRetired, Pageable)`. Con
-> `false` el listado las excluye, así que la prueba sí demuestra lo que dice.
->
-> Ese salto, de la prueba a la firma de lo que llama, es el trabajo entero de esta pregunta.
+::: details Ejemplo resuelto · `UNMD-BE-AC12`
+Pide: *cuando se reactiva una unidad retirada, vuelve a ofrecerse.*
+
+La prueba de dominio solo afirma que la unidad quedó activa, que es menos. La del adaptador cierra
+la diferencia:
+
+```java
+assertThat(queries.page(false, PageRequest.of(0, 200)).content())
+    .extracting(MeasurementUnitListItemView::id).contains(unit.getId());
+```
+
+**Aquí hay que parar.** Si ese `false` significara «incluye las retiradas», la prueba encontraría la
+unidad aunque la reactivación no hubiera funcionado, y estaría en verde sin probar nada. La única
+forma de saberlo es abrir la firma: `page(boolean includeRetired, Pageable)`. Con `false` el listado
+las excluye, así que la prueba sí demuestra lo que dice.
+
+Ese salto, de la prueba a la firma de lo que llama, es el trabajo entero de esta pregunta.
+:::
 
 ### 2 · ¿Los huecos siguen abiertos?
 
 Un hueco se cierra con **la decisión de alguien**, no con un valor que alguien eligió mientras
-escribía la prueba. Lee arriba lo que declaró quien abrió, y comprueba que lo que la rama sembró
-corresponda.
+escribía la prueba.
 
-> **El ejemplo.** La rama trae un documento de reconciliación con dieciséis diferencias numeradas, y
-> **cuatro marcadas «Confirmar»** que llevaban seis días sin que nadie las confirmara. Una de ellas:
-> el mensaje de código duplicado nombra a la unidad que ya lo tiene, y la auditoría señaló que
-> **quien tenga permiso de crear sin permiso de ver puede averiguar nombres probando códigos**. Eso
-> es una decisión, no un detalle de redacción, y es exactamente lo que esta pregunta tiene que sacar
-> a la superficie.
+**Qué haces:** lee lo que escribió quien abrió y comprueba que lo que la rama sembró corresponda.
+
+::: details Ejemplo resuelto
+La rama traía un documento de reconciliación con dieciséis diferencias y **cuatro marcadas
+«Confirmar»** que llevaban seis días sin confirmar. Una: el mensaje de código duplicado nombra a la
+unidad que ya lo tiene, y **quien pueda crear sin poder ver puede averiguar nombres probando
+códigos**. Eso es una decisión, no una redacción.
+:::
 
 ### 3 · ¿Entró algo que la historia no pedía?
 
-Mira **los nombres de los archivos**, no su contenido. Una migración de otro módulo, un permiso que
-nadie pidió, una guía de 251 líneas, una dependencia. No es que esté mal: es que debería viajar en
-su propia historia, donde se pueda discutir.
+**Qué haces:** mira los **nombres** de los archivos, no su contenido. Una migración de otro módulo,
+un permiso que nadie pidió, una dependencia. No es que esté mal: es que debería viajar en su propia
+historia, donde se pueda discutir.
 
-> **El ejemplo.** La rama trae **dos** migraciones: una crea la tabla y otra le añade las unicidades
-> que faltaban, con esta explicación dentro: *«va en una migración nueva y no en la anterior porque
-> la anterior ya estaba aplicada»*. Aplicada **en una base local**, que no es lo mismo que
-> desplegada. La regla del equipo dice que una migración que nunca corrió en ningún ambiente **se
-> edita en sitio**, y el único costo es recrear el esquema local.
->
-> Puede que la decisión sea la correcta. Lo que no puede es quedar sin firmar.
+::: details Ejemplo resuelto
+La rama traía **dos** migraciones: una crea la tabla y otra añade unicidades que faltaban, porque
+*«la anterior ya estaba aplicada»*. Aplicada **en una base local**, que no es desplegada. La regla
+del equipo dice que una migración que nunca corrió en ningún ambiente **se edita en sitio**.
+
+Puede que la decisión sea la correcta. Lo que no puede es quedar sin firmar.
+:::
 
 ### 4 · ¿Se puede usar?
 
-Esta es la que sustituye al QA que no tenemos, y cambia según el repositorio.
+Esta sustituye al QA que no tenemos, y cambia según el repositorio.
 
 ::: code-group
 
 ```text [Servidor: ¿el error le sirve a quien lo recibe?]
-Quien recibe estos errores es la pantalla, y lo que muestre va a ser lo que lea un
-operador. Un código estable y un mensaje que diga QUÉ HACER, no qué falló por dentro.
+Lo que muestre la pantalla va a ser lo que lea un operador. Un código estable y un
+mensaje que diga QUÉ HACER, no qué falló por dentro.
 
   Sirve:    «Ya existe una unidad llamada METRO, sin contar mayúsculas. Puede estar
              retirada; si lo está, reactívala.»
@@ -139,60 +109,69 @@ operador. Un código estable y un mensaje que diga QUÉ HACER, no qué falló po
 ```
 
 ```text [Pantalla: ¿se puede usar?]
-El recorrido de extremo a extremo quedó GRABADO y se adjunta a la corrida de
-«Verificar», en Artifacts, como informe-recorridos-<número>. Descárgalo y míralo.
+Hay una GRABACIÓN en vídeo de cada recorrido, y hay que mirarla. Cómo se abre y qué
+mirar está en «Revisar la pantalla».
 
-No busques defectos de código. Mira la pantalla como la miraría quien va a trabajar
-con ella ocho horas: qué pasa mientras carga, qué dice cuando no hay nada que
-mostrar, si se puede terminar la tarea sin adivinar.
+No busques defectos de código. Mira la pantalla como quien va a trabajar con ella
+ocho horas: qué pasa mientras carga, qué dice cuando no hay nada, si se puede
+terminar la tarea sin adivinar.
 ```
 
 :::
 
-**En la pantalla esta pregunta es la más larga de las cuatro, y la pregunta 1 tiene una trampa
-propia:** una prueba puede citar su criterio y no poder probarlo, porque corre en un DOM sin
-estilos. Las dos están en [Revisar la pantalla](/vortice/revisar-pantalla), con cómo se abre la
-grabación y qué mirar en ella.
+En la pantalla esta pregunta es la más larga, y la pregunta 1 tiene una trampa propia: una prueba
+puede citar su criterio y no poder probarlo, porque corre en un DOM sin estilos. Las dos están en
+**[Revisar la pantalla](/vortice/revisar-pantalla)**.
 
-## El orden importa: primero responde, después apruebas
+## Si encuentras algo
 
-La compuerta trata las dos mitades de la plantilla en momentos distintos, a propósito:
-
-| Mitad | Cuándo se exige |
-|---|---|
-| La de quien abre | **Desde que la solicitud se abre.** Sin historia o con marcadores sin llenar, falla |
-| La tuya | **Solo cuando ya hay una aprobación** |
-
-Así que si apruebas y dejas las preguntas sin responder, **la solicitud se pone en rojo**. No es un
-castigo: es que aprobar es un clic y las cuatro preguntas no, y sin ellas la revisión no deja
-constancia de qué se miró.
-
-::: tip Si te pasa
-Edita el cuerpo de la solicitud y responde. **No hace falta volver a aprobar:** el flujo se vuelve a
-disparar solo al editar.
-:::
-
-## Qué hacer con lo que encuentres
-
-**Si algo no te cuadra, no apruebes y escribe por qué.** Rechazar no es desconfiar de nadie: es la
-única parte del proceso que no puede hacer una máquina, y es el motivo de que tengas turno.
-
-Y no todo lo que encuentres bloquea. Tres salidas, y conviene decir cuál estás usando:
+No todo bloquea. Tres salidas, y conviene decir cuál usas:
 
 | Lo que viste | Qué haces |
 |---|---|
 | La prueba no prueba su criterio | **No apruebes.** Es el defecto que este proceso existe para atrapar |
-| Una decisión sin firmar, que parece razonable | Apruébala **diciendo que la estás firmando tú**, o pide que la confirme quien manda en ese hueco |
+| Una decisión sin firmar, que parece razonable | Apruébala **diciendo que la firmas tú**, o pide que la confirme quien manda en ese hueco |
 | Algo que entró de más y no estorba | Apruébalo **y déjalo escrito**. Dicho es una decisión; callado es un olvido |
 
-## Lo que no es tu trabajo
+## Lo que NO es tu trabajo
 
-- **Leer el diff línea por línea.** Cuarenta y cinco archivos no se revisan así, y por eso no se
-  revisan.
+- **Leer el diff línea por línea.** Cuarenta y cinco archivos no se revisan así.
 - **Volver a comprobar lo que está en verde:** arquitectura, módulos, permisos, contrato, orden de
-  las migraciones, vulnerabilidades, idioma del código. Eso son las compuertas, y están en su
-  [propia página](/vortice/compuertas).
-- **Buscar números de migración repetidos.** Esa comprobación corre sobre el resultado de la fusión
-  y pone la solicitud en rojo sola. Lo que sí te toca es **verlo venir**: por eso el resumen te
-  lista los archivos que se pisan entre ramas, seis días antes de que renumerar deje de ser un
-  cambio de nombre.
+  las migraciones, vulnerabilidades, idioma del código. Eso son las
+  [compuertas](/vortice/compuertas).
+- **Buscar números de migración repetidos.** Eso corre solo y pone la solicitud en rojo. Lo que sí
+  te toca es **verlo venir**: el resumen te lista los archivos que se pisan entre ramas.
+
+## Quién te asigna
+
+**Quien abre la solicitud elige a su revisor al crearla**, en `Reviewers`, según las designaciones
+del equipo. No hay sorteo.
+
+::: warning Si abres una solicitud y no asignas a nadie
+Nadie se entera de que existe. **La asignación es el único paso del proceso que no está
+automatizado**, y por eso es el único que se puede olvidar.
+:::
+
+> **Por qué un solo revisor, y por qué el rojo no bloquea.** La organización está en plan Free con
+> repositorios privados: ese plan solo admite un revisor por solicitud, y no deja exigir la
+> aprobación desde la configuración de GitHub (protección de ramas y reglas responden 403). Por eso
+> la exigencia vive en el flujo, y lo que hace es dejar constancia en rojo, no impedir la fusión.
+> El proceso funciona porque el equipo lo respeta.
+
+## Por qué esta página existe
+
+Medido antes de escribirla: **las cinco solicitudes anteriores se abrieron con el cuerpo vacío, y
+dos se fusionaron sin que nadie las mirara.** Una se aprobó once segundos antes de fusionarse, con
+cuarenta y tres archivos dentro.
+
+No fue descuido de nadie. A quien revisa no se le dijo nunca **qué** mirar, y «revisa el código» de
+un repositorio con decenas de [compuertas](/vortice/compuertas) no es una instrucción: es una tarde
+perdida. Cuando revisar no tiene forma, se aprueba por cortesía.
+
+En la organización no hay QA, y lo que lo sustituye no es mirar más código. Es mirar **otras cosas**.
+
+## El recorrido completo
+
+<Diagrama
+  nombre="revision"
+  titulo="Qué pasa cuando una historia entra en revisión: qué llena quien abre, qué prepara el flujo solo, y qué mira quien revisa" />
