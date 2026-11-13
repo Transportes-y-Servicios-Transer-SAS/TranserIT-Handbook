@@ -11,7 +11,20 @@ title: Revisar la pantalla, y por qué el recorrido grabado es el QA que no tene
 |---|---|---|
 | 1 · ¿La prueba prueba el criterio? | Leer la prueba | Leerla **y preguntarse si ese criterio se puede probar ahí** |
 | 2 y 3 · Huecos y lo que entró de más | Igual | Igual |
-| 4 · ¿Se puede usar? | ¿El error sirve a quien lo recibe? | **Mirar la grabación** |
+| 4 · ¿Se puede usar? | ¿El error sirve a quien lo recibe? | **Mirar el recorrido grabado** |
+
+::: danger Los criterios sorteados y el recorrido NO son lo mismo
+Es la confusión más fácil de tener, y no la aclara ninguna pantalla de GitHub.
+
+**Los dos criterios que te toca revisar se LEEN**, en la prueba que los cite, y esa prueba
+normalmente es **de unidad**, no un recorrido. Si el sorteo te da `UNMD-FE-AC1` y `UNMD-FE-AC11`,
+no los busques en la grabación: no están, y es correcto que no estén.
+
+**El recorrido cubre otros criterios**, justo los que una prueba de unidad no puede ver: el
+`text-transform`, la altura en píxeles, el foco visible, qué se descarga. Eso es la pregunta 4.
+
+Dos preguntas, dos materiales. Que no coincidan es el diseño, no un fallo.
+:::
 
 ## Cómo se ve la grabación
 
@@ -43,14 +56,29 @@ El informe carga sus datos por red. Desde un archivo suelto se queda **en blanco
 cuando no lo está. El comando de arriba levanta un servidor local, y entonces sí se ve.
 :::
 
-### Paso 3 · Llega al vídeo
+### Paso 3 · Abre el rastro, no el vídeo
 
 **Aquí es donde todo el mundo se atasca.** El informe abre con la lista de recorridos, todos en
-verde, y **desde ahí no se ve ningún vídeo**:
+verde, y desde ahí no se ve nada:
 
 1. **Haz clic en el nombre de un recorrido.** Se abre su detalle, con los pasos que dio.
 2. **Baja hasta el final**, a la sección de adjuntos.
-3. Ahí está el vídeo. Se reproduce en la misma página.
+3. Ahí hay **un rastro (`trace`) y un vídeo**. Abre el rastro.
+
+::: warning El vídeo dura dos segundos, y no es un error
+Medido el 2026-11-13: los 59 recorridos de una corrida tardan **1,9 minutos en total**. Playwright
+actúa a velocidad de máquina, así que cada vídeo dura lo que un parpadeo.
+
+**Por eso se mira el rastro.** El rastro no depende de la velocidad: guarda **una captura por
+acción**, el DOM de cada paso, la red y la consola. Se recorre hacia adelante y hacia atrás al
+ritmo de quien mira, y se puede parar en cualquier punto a inspeccionar la pantalla.
+
+El vídeo se queda como complemento, porque es lo único que muestra transiciones y animaciones.
+:::
+
+En el rastro, la línea de tiempo de arriba son las acciones. Haz clic en una y verás **cómo estaba
+la pantalla antes y después**, con el DOM de ese instante. Eso es lo que sustituye a abrir la
+aplicación: no un vídeo, un recorrido paso a paso que puedes parar.
 
 ::: tip Cuáles abrir
 Hay ocho o diez por pantalla y no hace falta verlos todos. El resumen de la corrida de **`Revisión`**
@@ -58,9 +86,9 @@ te lista **qué recorridos aporta la rama**: esos son los tuyos.
 :::
 
 > **Por qué se graban todos y no solo los que fallan.** Grabar solo los fallos es lo normal cuando
-> el vídeo sirve para depurar. Aquí sirve para lo contrario: **el recorrido que pasa es justo el que
-> hay que mirar**, porque es el material de la revisión funcional. Un recorrido en verde demuestra
-> que la pantalla no se rompe, no que se pueda usar.
+> la grabación sirve para depurar. Aquí sirve para lo contrario: **el recorrido que pasa es justo
+> el que hay que mirar**, porque es el material de la revisión funcional. Un recorrido en verde
+> demuestra que la pantalla no se rompe, no que se pueda usar.
 
 ## Qué mirar en la grabación, y qué no
 
@@ -150,3 +178,6 @@ recorrido tiene ocho pasos, y estos **solo** existen ahí:
 
 Mirar esos ocho pasos cuesta unos minutos. Es lo más barato de todo el proceso, y lo único que mira
 la pantalla como la va a mirar quien la use.
+
+> **Para verlos:** [abre la grabación](#paso-1-descarga-el-informe), entra al recorrido que te
+> interese y, en sus adjuntos, **abre el rastro**. No el vídeo: ese dura dos segundos.
