@@ -25,12 +25,55 @@ y escribe ahí. No hace falta empujar nada: el flujo se vuelve a disparar al gua
 
 ## Qué va en cada sección
 
+Ninguna de las cuatro se responde de memoria. Cada una tiene su fuente, y está escrita:
+
+| Sección | De dónde sale |
+|---|---|
+| 1 · Historia | El identificador de tu rama, o la historia en Plane |
+| 2 · Qué entra | La historia en Plane: para qué se pidió |
+| 3 · Lo que decidiste tú | Tu memoria del trabajo, y en el servidor la reconciliación |
+| 4 · Huecos declarados | La tabla **No decide / Quién** de tu especificación |
+
+### Primero, encuentra tu especificación
+
+Las especificaciones viven en el repositorio **`vortice-specs`**, en dos carpetas:
+
+```
+backend/<módulo>-be.md     la de servidor
+frontend/<módulo>-fe.md    la de pantalla
+```
+
+Son **pares simétricos**: cada pantalla tiene su servidor con el mismo nombre. Hoy hay 22 de
+servidor y 23 de pantalla.
+
+| Si tu rama es | Tu especificación es |
+|---|---|
+| `feature/vort-177-flota-tipos-cabezote` | `backend/tipos-cabezote-be.md` |
+| `feature/vort-178-flota-tipos-cabezote` | `frontend/tipos-cabezote-fe.md` |
+| `feature/vort-193-flota-estados-vehiculo` | `backend/estados-vehiculo-be.md` |
+| `feature/vort-133-core-parties` | `backend/terceros-be.md` |
+
+::: warning El nombre de la rama no siempre te lleva
+Las ramas de `core` están en inglés y las especificaciones en español: `core-parties` es
+`terceros`, `core-units` es `unidades-medida`. Las de `flota` sí coinciden.
+
+**Si dudas, la historia de Plane la nombra.** Abrir la especificación equivocada es peor que
+preguntar.
+:::
+
 ### 1 · Historia
 
 El identificador, tal cual: `VORT-125`. Nada más.
 
-**Por qué lo pide:** sin él nadie puede ir del código al acuerdo que lo originó. La verificación
-falla si no aparece.
+**Por qué lo pide:** sin él nadie puede ir del código al acuerdo que lo originó.
+
+::: tip Si tu rama ya lo lleva, la verificación no falla
+Desde el 2026-11-13 la verificación también lo busca en **el nombre de la rama**. Si la tuya es
+`feature/vort-177-flota-tipos-cabezote`, ya lo encontró y no te lo va a exigir dos veces.
+
+**Escríbelo igual.** Quien lee la solicitud lee el cuerpo, no el nombre de la rama. Y una rama
+que no lo lleve (`fix/algo`) sí te lo va a pedir aquí, que es cuando no hay de dónde sacarlo.
+:::
 
 ### 2 · Qué entra, en una frase
 
@@ -41,6 +84,9 @@ falla si no aparece.
 | «Se puede registrar, editar y retirar unidades de medida, y buscarlas por nombre o símbolo» | «Se agregó el módulo de unidades con sus controladores, servicios y repositorios» |
 
 La segunda describe el diff. La primera dice para qué sirve el trabajo.
+
+**De dónde lo sacas:** de **la historia en Plane**, su título y su descripción, que dicen para
+qué se pidió. No del diff, y no de la lista de archivos que cambiaste.
 
 ### 3 · Lo que decidiste tú, y la especificación no decía
 
@@ -59,6 +105,17 @@ alguien decidió, y nadie se enteró** hasta que el dato ya estaba sembrado en u
 Decidir no está mal: hay que hacerlo para avanzar. Lo que no puede es quedar sin firmar.
 :::
 
+**De dónde lo sacas**, tres sitios y en este orden:
+
+1. **Tu memoria del trabajo.** Dónde dudaste y elegiste sin que nadie te lo dijera. Es la fuente
+   principal y no está escrita en ninguna parte: por eso esta sección existe.
+2. **En el servidor, la reconciliación.** `vortice-backend/docs/reconciliacion/<módulo>.md`, que
+   genera la derivación. Su apartado **«4. Hallazgos contra la especificación»** es justo lo que
+   la derivación encontró que el documento no decía.
+3. **El mensaje del commit de fusión, si hubo conflicto.** Ahí queda lo que resolviste y nadie
+   más vio. Pasó en terceros: la fusión destapó un choque de migraciones que git no marca, se
+   resolvió renumerando, y eso vivía **solo** en el mensaje del commit hasta que se trasladó aquí.
+
 Si no decidiste nada, escríbelo: *«nada, la especificación cubría todos los casos»*. Es una
 respuesta válida y se tarda cinco segundos. Dejarlo en `_(pendiente)_` no lo es.
 
@@ -69,6 +126,38 @@ con qué valor y quién lo decidió.
 
 > Ejemplo: *«UNMD-BE-AC9 dejaba abierto el tope del símbolo. Se sembró en 8 caracteres, decidido con
 > el dueño del catálogo el 2026-11-04.»*
+
+**De dónde lo sacas:** abre tu especificación y baja hasta la sección **«Lo que esta
+especificación NO decide, y quién sí»**. Es una tabla de dos columnas, y está en **las 45
+especificaciones**, las 22 de servidor y las 23 de pantalla. El gesto es el mismo en las dos capas.
+
+Lo que buscas son las filas donde la columna derecha dice **«Nadie todavía»**:
+
+| No decide | Quién | |
+|---|---|---|
+| El **cálculo** del dígito de verificación | **Nadie todavía.** Queda declarado como hueco abierto | ← **es un hueco** |
+| Qué forma tiene el número de cada tipo | **El catálogo de tipos de documento.** Cada tipo la declara | ← no es un hueco |
+| El tamaño de página y su máximo | Configuración del proyecto | ← no es un hueco |
+
+Si la columna derecha **nombra a alguien** (otra especificación, un catálogo, la configuración),
+no es un hueco: es una delegación, y ese alguien ya lo decidió. Hueco es solo lo que **nadie** ha
+decidido.
+
+Luego pregúntate una sola cosa: **¿alguna de esas filas la toca mi rama?** Si ninguna, escribe
+«Ninguno» y sigue.
+
+::: danger La reconciliación no es donde están los huecos
+Es la confusión fácil, porque suena a que ahí está lo pendiente.
+
+En el servidor existe `docs/reconciliacion/<módulo>.md`, que genera la derivación. **Responde otra
+pregunta:** si la base de datos sostiene cada regla, qué índice o qué restricción falta. En **seis
+de las ocho** que existen hoy no aparece ni una vez la palabra «hueco».
+
+Sí te sirve, pero para **la sección 3**, no para esta.
+
+Y en la pantalla no hay reconciliación, ni hace falta para esto: tus huecos están en tu
+especificación, en la misma tabla y con la misma forma que los del servidor.
+:::
 
 ## Un ejemplo resuelto, de una solicitud real
 
